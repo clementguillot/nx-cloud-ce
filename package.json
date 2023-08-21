@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
-  "dependencies": {},
   "devDependencies": {
+    "@jnxplus/nx-gradle": "0.9.0",
     "@nx/workspace": "16.7.2",
     "nx": "16.7.2",
     "nx-cloud": "latest"

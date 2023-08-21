@@ -34,5 +34,6 @@
       "default"
     ],
     "sharedGlobals": []
-  }
+  },
+  "plugins": ["@jnxplus/nx-gradle"]
 }
