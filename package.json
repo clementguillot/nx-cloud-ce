@@ -1,0 +1,13 @@
+{
+  "name": "@nx-cloud-ce/source",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {},
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "@nx/workspace": "16.7.2",
+    "nx": "16.7.2",
+    "nx-cloud": "latest"
+  }
+}
