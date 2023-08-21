@@ -1,0 +1,47 @@
+{
+  "name": "api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/api/src",
+  "targets": {
+    "build": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "outputs": ["apps/api/build"],
+      "options": {
+        "task": "quarkusBuild"
+      }
+    },
+    "build-image": {
+      "executor": "@jnxplus/nx-gradle:quarkus-build-image"
+    },
+    "serve": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
+        "task": "quarkusDev",
+        "keepItRunning": true
+      }
+    },
+    "lint": {
+      "executor": "@jnxplus/nx-gradle:lint",
+      "options": {
+        "linter": "ktlint"
+      }
+    },
+    "test": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
+        "task": "test"
+      }
+    },
+    "integration-test": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
+        "task": "quarkusIntTest"
+      }
+    },
+    "ktformat": {
+      "executor": "@jnxplus/nx-gradle:ktformat"
+    }
+  },
+  "tags": []
+}

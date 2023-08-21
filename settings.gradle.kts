@@ -11,3 +11,4 @@ pluginManagement {
 }
 
 rootProject.name = "nx-cloud-ce"
+include("apps:api")
