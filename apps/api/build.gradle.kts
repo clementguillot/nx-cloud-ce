@@ -20,6 +20,9 @@ dependencies {
   implementation("io.quarkus:quarkus-arc")
   implementation("io.quarkus:quarkus-resteasy-reactive")
   implementation("io.quarkus:quarkus-config-yaml")
+  implementation("io.quarkus:quarkus-smallrye-openapi")
+  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
   testImplementation("io.quarkus:quarkus-junit5")
   testImplementation("io.rest-assured:rest-assured")
 }
