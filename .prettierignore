@@ -1,2 +1,4 @@
 # Gradle build
 build
+
+/.nx/cache
