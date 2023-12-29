@@ -1,7 +1,3 @@
-val javaVersion: String by project
-val quarkusVersion: String by project
-val ktlintVersion: String by project
-
 plugins {
   kotlin("jvm")
   kotlin("plugin.allopen")
@@ -14,14 +10,21 @@ repositories {
   mavenLocal()
 }
 
+val javaVersion: String by project
+val quarkusPlatformGroupId: String by project
+val quarkusPlatformArtifactId: String by project
+val quarkusPlatformVersion: String by project
+val ktlintVersion: String by project
+
 dependencies {
-  implementation(enforcedPlatform("io.quarkus.platform:quarkus-bom:$quarkusVersion"))
-  implementation("io.quarkus:quarkus-kotlin")
-  implementation("io.quarkus:quarkus-arc")
-  implementation("io.quarkus:quarkus-resteasy-reactive")
-  implementation("io.quarkus:quarkus-config-yaml")
-  implementation("io.quarkus:quarkus-smallrye-openapi")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+  implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
+  implementation("io.quarkus:quarkus-arc")
+  implementation("io.quarkus:quarkus-config-yaml")
+  implementation("io.quarkus:quarkus-kotlin")
+  implementation("io.quarkus:quarkus-resteasy-reactive")
+  implementation("io.quarkus:quarkus-smallrye-openapi")
 
   testImplementation("io.quarkus:quarkus-junit5")
   testImplementation("io.rest-assured:rest-assured")

@@ -6,15 +6,15 @@
 #
 # Before building the container image run:
 #
-# nx build api --args="-Dquarkus.package.type=native"
+# ./gradlew :apps:api:build -Dquarkus.package.type=native
 #
 # Then, build the image with:
 #
-# nx build-image api --imageType="native-micro"
+# docker build -f apps/api/src/main/docker/Dockerfile.native-micro -t quarkus/apps/api apps/api
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 quarkus/api
+# docker run -i --rm -p 8080:8080 quarkus/apps/api
 #
 ###
 FROM quay.io/quarkus/quarkus-micro-image:2.0
@@ -27,4 +27,4 @@ COPY --chown=1001:root build/*-runner /work/application
 EXPOSE 8080
 USER 1001
 
-CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
+ENTRYPOINT ["./application", "-Dquarkus.http.host=0.0.0.0"]

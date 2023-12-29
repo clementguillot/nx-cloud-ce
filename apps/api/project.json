@@ -1,12 +1,14 @@
 {
-  "name": "api",
+  "name": "apps/api",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/api/src",
   "targets": {
     "build": {
       "executor": "@jnxplus/nx-gradle:run-task",
-      "outputs": ["apps/api/build"],
+      "outputs": [
+        "{projectRoot}/build"
+      ],
       "options": {
         "task": "quarkusBuild"
       }
@@ -22,9 +24,9 @@
       }
     },
     "lint": {
-      "executor": "@jnxplus/nx-gradle:lint",
+      "executor": "@jnxplus/nx-gradle:run-task",
       "options": {
-        "linter": "ktlint"
+        "task": "spotlessApply"
       }
     },
     "test": {
@@ -38,9 +40,6 @@
       "options": {
         "task": "quarkusIntTest"
       }
-    },
-    "ktformat": {
-      "executor": "@jnxplus/nx-gradle:ktformat"
     }
   },
   "tags": []
