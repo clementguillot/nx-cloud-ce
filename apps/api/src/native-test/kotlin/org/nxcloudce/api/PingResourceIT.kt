@@ -1,4 +1,4 @@
-package com.nxcloudce.api
+package org.nxcloudce.api
 
 import io.quarkus.test.junit.QuarkusIntegrationTest
 

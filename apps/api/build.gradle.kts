@@ -30,7 +30,7 @@ dependencies {
   testImplementation("io.rest-assured:rest-assured")
 }
 
-group = "com.nxcloudce"
+group = "org.nxcloudce"
 version = "0.0.1-SNAPSHOT"
 
 java {
