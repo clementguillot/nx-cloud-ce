@@ -5,5 +5,5 @@ import org.nxcloudce.api.domain.organization.usecase.CreateOrganizationRequest
 data class CreateOrganizationDto(
   val name: String,
 ) {
-  fun toRequest(): CreateOrganizationRequest = CreateOrganizationRequest(name = name)
+  fun toRequest() = CreateOrganizationRequest(name = name)
 }
