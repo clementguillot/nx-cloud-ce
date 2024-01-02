@@ -1,4 +1,4 @@
-package org.nxcloudce.api
+package org.nxcloudce.api.presentation.controller
 
 import jakarta.ws.rs.GET
 import jakarta.ws.rs.Path
@@ -7,7 +7,7 @@ import jakarta.ws.rs.core.MediaType
 import org.eclipse.microprofile.openapi.annotations.Operation
 
 @Path("/ping")
-class PingResource {
+class PingController {
   @Operation(
     description = "Test api",
   )

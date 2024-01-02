@@ -13,6 +13,7 @@ pluginManagement {
     id(quarkusPluginId) version quarkusPluginVersion
     id("org.jetbrains.kotlin.jvm") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.allopen") version kotlinVersion
+    id("org.jetbrains.kotlin.plugin.noarg") version kotlinVersion
     id("io.github.khalilou88.jnxplus") version jnxplusGradlePluginVersion
     id("com.diffplug.spotless") version spotlessVersion
   }

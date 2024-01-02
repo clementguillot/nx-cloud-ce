@@ -1,4 +1,4 @@
-package org.nxcloudce.api
+package org.nxcloudce.api.presentation.controller
 
 import io.quarkus.test.junit.QuarkusTest
 import io.restassured.RestAssured.given
@@ -6,7 +6,7 @@ import org.hamcrest.CoreMatchers.`is`
 import org.junit.jupiter.api.Test
 
 @QuarkusTest
-class PingResourceTest {
+class PingControllerTest {
   @Test
   fun testHelloEndpoint() {
     given()

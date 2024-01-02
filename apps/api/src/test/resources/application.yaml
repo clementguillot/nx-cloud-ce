@@ -1,0 +1,4 @@
+quarkus:
+  mongodb:
+    devservices:
+      image-name: mongo:7.0.4
