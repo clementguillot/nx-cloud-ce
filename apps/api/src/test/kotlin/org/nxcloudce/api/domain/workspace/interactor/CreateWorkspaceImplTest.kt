@@ -49,7 +49,13 @@ class CreateWorkspaceImplTest {
     runTest {
       // Given
       val dummyOrgId = OrganizationId("valid-org-id")
-      val dummyWorkspace = Workspace(id = WorkspaceId("123"), orgId = dummyOrgId, name = "new workspace")
+      val dummyWorkspace =
+        Workspace(
+          id = WorkspaceId("123"),
+          orgId = dummyOrgId,
+          name = "new workspace",
+          installationSource = null,
+        )
       val dummyRequest = CreateWorkspaceRequest(orgId = dummyOrgId, name = "new workspace")
       val dummyResponse = CreateWorkspaceResponse(dummyWorkspace)
 
@@ -57,10 +63,7 @@ class CreateWorkspaceImplTest {
       coEvery { mockWorkspaceRepository.create(dummyRequest) } returns dummyWorkspace
 
       // When
-      val result =
-        createWorkspace.create(dummyRequest) {
-          it
-        }
+      val result = createWorkspace.create(dummyRequest) { it }
 
       // Then
       assertEquals(dummyResponse, result)

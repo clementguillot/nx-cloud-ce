@@ -18,32 +18,30 @@ import kotlin.test.assertTrue
 
 @QuarkusTest
 class OrganizationRepositoryImplTest {
-  @InjectMock
-  lateinit var mockOrgPanacheRepository: OrganizationPanacheRepository
+  @InjectMock lateinit var mockOrgPanacheRepository: OrganizationPanacheRepository
 
-  @Inject
-  lateinit var orgRepository: OrganizationRepositoryImpl
+  @Inject lateinit var orgRepository: OrganizationRepositoryImpl
 
   @Test
   fun `should create a new organization in the DB `() =
     runTest {
       // Given
       val dummyEntityId = ObjectId()
-      val dummyEntityWithId = OrganizationEntity(dummyEntityId, "test")
       val dummyRequest = CreateOrganizationRequest("test")
 
-      every { mockOrgPanacheRepository.persist(any<OrganizationEntity>()) } answers {
-        // We assign an ID to the new entity
-        (firstArg<OrganizationEntity>()).id = dummyEntityId
-        Uni.createFrom().item(dummyEntityWithId)
-      }
+      every { mockOrgPanacheRepository.persist(any<OrganizationEntity>()) } answers
+        {
+          // We assign an ID to the new entity
+          (firstArg<OrganizationEntity>()).id = dummyEntityId
+          Uni.createFrom().item(firstArg<OrganizationEntity>())
+        }
 
       // When
       val result = orgRepository.create(dummyRequest)
 
       // Then
-      assertEquals(result.id.value, dummyEntityId.toString())
-      assertEquals(result.name, dummyEntityWithId.name)
+      assertEquals(dummyEntityId.toString(), result.id.value)
+      assertEquals("test", result.name)
     }
 
   @Test

@@ -9,7 +9,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation
 @Path("/ping")
 class PingController {
   @Operation(
-    description = "Test api",
+    summary = "Test api",
   )
   @GET
   @Produces(MediaType.TEXT_PLAIN)

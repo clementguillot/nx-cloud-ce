@@ -37,6 +37,7 @@ dependencies {
   testImplementation("io.mockk:mockk:$mockkVersion")
   testImplementation("io.quarkiverse.mockk:quarkus-junit5-mockk:$quarkusMockkVersion")
   testImplementation("io.quarkus:quarkus-junit5")
+  testImplementation("io.quarkus:quarkus-test-hibernate-reactive-panache")
   testImplementation("io.rest-assured:rest-assured")
 }
 

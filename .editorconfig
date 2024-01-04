@@ -13,4 +13,4 @@ max_line_length = off
 trim_trailing_whitespace = false
 
 [*.{kt,kts}]
-ktlint_code_style = ktlint_official
+ktlint_standard_no-wildcard-imports = disabled

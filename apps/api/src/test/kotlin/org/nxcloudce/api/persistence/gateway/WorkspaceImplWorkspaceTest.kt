@@ -28,22 +28,22 @@ class WorkspaceImplWorkspaceTest {
     runTest {
       // Given
       val dummyEntityId = ObjectId()
-      val dummyEntityWithId = WorkspaceEntity(dummyEntityId, ObjectId(), "test")
-      val dummyRequest = CreateWorkspaceRequest(OrganizationId(dummyEntityWithId.orgId.toString()), "test")
+      val dummyRequest = CreateWorkspaceRequest(OrganizationId(ObjectId().toString()), "test")
 
-      every { mockWorkspacePanacheRepository.persist(any<WorkspaceEntity>()) } answers {
-        (firstArg<WorkspaceEntity>()).id = dummyEntityId
-        Uni.createFrom().item(dummyEntityWithId)
-      }
+      every { mockWorkspacePanacheRepository.persist(any<WorkspaceEntity>()) } answers
+        {
+          (firstArg<WorkspaceEntity>()).id = dummyEntityId
+          Uni.createFrom().item(firstArg<WorkspaceEntity>())
+        }
 
       // When
       val result = workspaceRepository.create(dummyRequest)
 
       // Then
       assertEquals(
-        result.id.value,
         dummyEntityId.toString(),
+        result.id.value,
       )
-      assertEquals(result.name, dummyEntityWithId.name)
+      assertEquals("test", result.name)
     }
 }

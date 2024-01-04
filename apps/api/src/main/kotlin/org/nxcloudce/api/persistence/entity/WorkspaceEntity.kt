@@ -8,4 +8,5 @@ data class WorkspaceEntity(
   var id: ObjectId?,
   var orgId: ObjectId,
   var name: String,
+  var installationSource: String?,
 )

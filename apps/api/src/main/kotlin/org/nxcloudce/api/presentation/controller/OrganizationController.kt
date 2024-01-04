@@ -15,7 +15,7 @@ import org.nxcloudce.api.presentation.dto.IdDto
 @Consumes(MediaType.APPLICATION_JSON)
 class OrganizationController(private val createOrganization: CreateOrganization) {
   @Operation(
-    description = "Create a public cloud counterpart for a private cloud org",
+    summary = "Create a public cloud counterpart for a private cloud org",
   )
   @POST
   suspend fun create(orgDto: CreateOrganizationDto) =

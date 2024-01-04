@@ -8,6 +8,7 @@ import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.notNullValue
 import org.nxcloudce.api.domain.organization.gateway.OrganizationRepository
 import org.nxcloudce.api.domain.organization.usecase.CreateOrganizationRequest
+import org.nxcloudce.api.presentation.dto.CreateOrgAndWorkspaceDto
 import org.nxcloudce.api.presentation.dto.CreateWorkspaceDto
 import kotlin.test.Test
 
@@ -35,4 +36,21 @@ class WorkspaceControllerTest {
         .statusCode(200)
         .body("id", `is`(notNullValue()))
     }
+
+  @Test
+  fun `should initialize a new workspace and return an access token`() {
+    given()
+      .header("Content-Type", "application/json")
+      .body(
+        CreateOrgAndWorkspaceDto(
+          workspaceName = "test-workspace",
+          installationSource = "junit",
+        ),
+      )
+      .`when`()
+      .post("nx-cloud/create-org-and-workspace")
+      .then()
+      .statusCode(200)
+      .body("token", `is`(notNullValue()), "url", `is`(notNullValue()))
+  }
 }
