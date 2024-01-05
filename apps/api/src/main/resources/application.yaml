@@ -4,6 +4,10 @@ quarkus:
       8080
   mongodb:
     database: nxcloudce
+  smallrye-openapi:
+    security-scheme: api-key
+    api-key-parameter-in: header
+    api-key-parameter-name: authorization
 
 "%dev":
   quarkus:

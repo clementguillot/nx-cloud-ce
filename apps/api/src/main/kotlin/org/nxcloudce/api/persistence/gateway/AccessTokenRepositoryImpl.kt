@@ -1,6 +1,7 @@
 package org.nxcloudce.api.persistence.gateway
 
 import io.smallrye.mutiny.Uni
+import io.smallrye.mutiny.coroutines.awaitSuspending
 import jakarta.enterprise.context.ApplicationScoped
 import org.bson.types.ObjectId
 import org.nxcloudce.api.domain.workspace.gateway.AccessTokenRepository
@@ -20,6 +21,11 @@ class AccessTokenRepositoryImpl(
   override fun createDefaultAccessToken(workspaceId: WorkspaceId): Uni<AccessToken> {
     val entity = buildDefaultAccessToken(workspaceId)
     return tokenPanacheRepository.persist(entity).onItem().transform { it.toDomain() }
+  }
+
+  override suspend fun findByEncodedValue(encodedValue: String): AccessToken? {
+    val entity = tokenPanacheRepository.find(AccessTokenEntity::encodedValue.name, encodedValue).firstResult().awaitSuspending()
+    return entity?.toDomain()
   }
 
   @OptIn(ExperimentalEncodingApi::class)

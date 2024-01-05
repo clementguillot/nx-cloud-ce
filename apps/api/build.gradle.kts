@@ -30,6 +30,7 @@ dependencies {
   implementation("io.quarkus:quarkus-mongodb-panache-kotlin")
   implementation("io.quarkus:quarkus-resteasy-reactive")
   implementation("io.quarkus:quarkus-resteasy-reactive-jackson")
+  implementation("io.quarkus:quarkus-smallrye-context-propagation")
   implementation("io.quarkus:quarkus-smallrye-openapi")
 
   testImplementation("org.jetbrains.kotlin:kotlin-test")

@@ -18,9 +18,11 @@ import kotlin.test.assertTrue
 
 @QuarkusTest
 class OrganizationRepositoryImplTest {
-  @InjectMock lateinit var mockOrgPanacheRepository: OrganizationPanacheRepository
+  @InjectMock
+  lateinit var mockOrgPanacheRepository: OrganizationPanacheRepository
 
-  @Inject lateinit var orgRepository: OrganizationRepositoryImpl
+  @Inject
+  lateinit var orgRepository: OrganizationRepositoryImpl
 
   @Test
   fun `should create a new organization in the DB `() =
