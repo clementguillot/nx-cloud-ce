@@ -9,6 +9,11 @@ quarkus:
     api-key-parameter-in: header
     api-key-parameter-name: authorization
 
+nx-server:
+  application-url: http://localhost:8080
+  client-bundle-version: 2401.03.1
+  client-bundle-path: static/client-bundle.gz
+
 "%dev":
   quarkus:
     mongodb:

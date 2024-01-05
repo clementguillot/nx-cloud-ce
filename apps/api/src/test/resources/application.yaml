@@ -2,3 +2,8 @@ quarkus:
   mongodb:
     devservices:
       image-name: mongo:7.0.4
+
+nx-server:
+  application-url: http://localtest
+  client-bundle-version: dummy-version
+  client-bundle-path: static/client-bundle.gz
