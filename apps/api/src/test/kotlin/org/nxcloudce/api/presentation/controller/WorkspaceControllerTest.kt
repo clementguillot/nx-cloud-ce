@@ -48,7 +48,7 @@ class WorkspaceControllerTest {
         ),
       )
       .`when`()
-      .post("nx-cloud/create-org-and-workspace")
+      .post("/nx-cloud/create-org-and-workspace")
       .then()
       .statusCode(200)
       .body("token", `is`(notNullValue()), "url", `is`(notNullValue()))

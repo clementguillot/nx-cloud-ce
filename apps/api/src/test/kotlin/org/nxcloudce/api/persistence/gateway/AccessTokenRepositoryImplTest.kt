@@ -11,7 +11,6 @@ import io.smallrye.mutiny.Uni
 import jakarta.inject.Inject
 import kotlinx.coroutines.test.runTest
 import org.bson.types.ObjectId
-import org.nxcloudce.api.domain.workspace.gateway.AccessTokenRepository
 import org.nxcloudce.api.domain.workspace.model.AccessLevel
 import org.nxcloudce.api.domain.workspace.model.WorkspaceId
 import org.nxcloudce.api.persistence.entity.AccessTokenEntity
@@ -27,7 +26,7 @@ class AccessTokenRepositoryImplTest {
   lateinit var mockAccessTokenPanacheRepository: AccessTokenPanacheRepository
 
   @Inject
-  lateinit var accessTokenRepository: AccessTokenRepository
+  lateinit var accessTokenRepository: AccessTokenRepositoryImpl
 
   @Test
   @RunOnVertxContext

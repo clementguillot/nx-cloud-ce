@@ -12,7 +12,7 @@ import org.nxcloudce.api.persistence.entity.WorkspaceEntity
 import org.nxcloudce.api.persistence.repository.WorkspacePanacheRepository
 
 @ApplicationScoped
-class WorkspaceImplWorkspace(private val workspacePanacheRepository: WorkspacePanacheRepository) :
+class WorkspaceRepositoryImpl(private val workspacePanacheRepository: WorkspacePanacheRepository) :
   WorkspaceRepository {
   override suspend fun create(workspace: CreateWorkspaceRequest): Workspace {
     val entity = workspace.toEntity()

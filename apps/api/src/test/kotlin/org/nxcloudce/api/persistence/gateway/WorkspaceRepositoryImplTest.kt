@@ -8,7 +8,6 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.test.runTest
 import org.bson.types.ObjectId
 import org.nxcloudce.api.domain.organization.model.OrganizationId
-import org.nxcloudce.api.domain.workspace.gateway.WorkspaceRepository
 import org.nxcloudce.api.domain.workspace.usecase.CreateWorkspaceRequest
 import org.nxcloudce.api.persistence.entity.WorkspaceEntity
 import org.nxcloudce.api.persistence.repository.WorkspacePanacheRepository
@@ -16,12 +15,12 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @QuarkusTest
-class WorkspaceImplWorkspaceTest {
+class WorkspaceRepositoryImplTest {
   @InjectMock
   lateinit var mockWorkspacePanacheRepository: WorkspacePanacheRepository
 
   @Inject
-  lateinit var workspaceRepository: WorkspaceRepository
+  lateinit var workspaceRepository: WorkspaceRepositoryImpl
 
   @Test
   fun `should create a new workspace in the DB`() =
