@@ -34,5 +34,6 @@
   "plugins": [
     "@jnxplus/nx-gradle"
   ],
-  "nxCloudAccessToken": "ZjJmYmI0NjItNzU2NC00MDNmLTk3YzEtNmQ2M2FjOGJmMzI1fHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "YzcwZTJjY2QtMDEzYS00NjAyLWE1OGQtYjZiNDU2ZWEwNTdmfHJlYWQtd3JpdGU=",
+  "nxCloudUrl": "http://localhost:8080"
 }

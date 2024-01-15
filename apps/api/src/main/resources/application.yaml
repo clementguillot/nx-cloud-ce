@@ -13,6 +13,14 @@ nx-server:
   application-url: http://localhost:8080
   client-bundle-version: 2401.03.1
   client-bundle-path: static/client-bundle.gz
+  storage:
+    s3:
+      endpoint: http://localhost
+      region: us-east-1
+      access-key-id: nx-cloud-ce
+      secret-access-key: nx-cloud-ce
+      bucket: nx-cloud-ce
+      force-path-style: true
 
 "%dev":
   quarkus:

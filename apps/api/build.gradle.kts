@@ -17,7 +17,9 @@ val quarkusPlatformArtifactId: String by project
 val quarkusPlatformVersion: String by project
 val ktlintVersion: String by project
 val mockkVersion: String by project
+val quarkusAwsS3Version: String by project
 val quarkusMockkVersion: String by project
+val awsSdkKotlinVersion: String by project
 
 dependencies {
   implementation(kotlin("stdlib-jdk8"))
@@ -30,12 +32,15 @@ dependencies {
   implementation("io.quarkus:quarkus-mongodb-panache-kotlin")
   implementation("io.quarkus:quarkus-resteasy-reactive")
   implementation("io.quarkus:quarkus-resteasy-reactive-jackson")
+  implementation("io.quarkus:quarkus-security")
   implementation("io.quarkus:quarkus-smallrye-context-propagation")
   implementation("io.quarkus:quarkus-smallrye-openapi")
+  implementation("aws.sdk.kotlin:s3:$awsSdkKotlinVersion")
 
   testImplementation("org.jetbrains.kotlin:kotlin-test")
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
   testImplementation("io.mockk:mockk:$mockkVersion")
+  testImplementation("io.quarkiverse.amazonservices:quarkus-amazon-s3:$quarkusAwsS3Version")
   testImplementation("io.quarkiverse.mockk:quarkus-junit5-mockk:$quarkusMockkVersion")
   testImplementation("io.quarkus:quarkus-junit5")
   testImplementation("io.quarkus:quarkus-test-hibernate-reactive-panache")
