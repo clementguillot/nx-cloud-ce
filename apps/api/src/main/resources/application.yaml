@@ -15,7 +15,7 @@ nx-server:
   client-bundle-path: static/client-bundle.gz
   storage:
     s3:
-      endpoint: http://localhost
+      endpoint: http://localhost:9000
       region: us-east-1
       access-key-id: nx-cloud-ce
       secret-access-key: nx-cloud-ce
