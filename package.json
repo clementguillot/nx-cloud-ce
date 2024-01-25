@@ -5,8 +5,8 @@
   "scripts": {},
   "private": true,
   "devDependencies": {
-    "@jnxplus/nx-gradle": "0.17.14",
-    "@nx/workspace": "17.2.7",
-    "nx": "17.2.7"
+    "@jnxplus/nx-gradle": "0.19.3",
+    "@nx/workspace": "17.2.8",
+    "nx": "17.2.8"
   }
 }
