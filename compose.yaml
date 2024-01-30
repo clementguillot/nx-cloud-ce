@@ -20,7 +20,6 @@ services:
       - mongo-db-data:/data/db
   mongo-express:
     image: mongo-express
-    restart: always
     ports:
       - 9500:9500
     environment:
