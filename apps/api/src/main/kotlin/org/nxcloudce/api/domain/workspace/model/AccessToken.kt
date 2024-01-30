@@ -7,50 +7,19 @@ import java.util.*
 @JvmInline value class AccessTokenPublicId(val value: String = UUID.randomUUID().toString())
 
 class AccessToken private constructor(builder: Builder) {
-  class Builder {
-    var id: AccessTokenId? = null
-      private set
-
-    var name: String? = null
-      private set
-
-    var publicId: AccessTokenPublicId? = null
-      private set
-
-    var accessLevel: AccessLevel? = null
-      private set
-
-    var workspaceId: WorkspaceId? = null
-      private set
-
-    var encodedValue: String? = null
-      private set
-
-    fun id(id: AccessTokenId) = apply { this.id = id }
-
-    fun name(name: String) = apply { this.name = name }
-
-    fun publicId(publicId: AccessTokenPublicId) = apply { this.publicId = publicId }
-
-    fun accessLevel(accessLevel: AccessLevel) = apply { this.accessLevel = accessLevel }
-
-    fun workspaceId(workspaceId: WorkspaceId) = apply { this.workspaceId = workspaceId }
-
-    fun encodedValue(encodedValue: String) = apply { this.encodedValue = encodedValue }
-
-    fun build() = AccessToken(this)
+  companion object {
+    operator fun invoke(block: Builder.() -> Unit): AccessToken {
+      val builder = Builder()
+      block(builder)
+      return builder.build()
+    }
   }
 
   val id: AccessTokenId
-
   val name: String
-
   val publicId: AccessTokenPublicId
-
   val accessLevel: AccessLevel
-
   val workspaceId: WorkspaceId
-
   val encodedValue: String
 
   init {
@@ -66,6 +35,17 @@ class AccessToken private constructor(builder: Builder) {
     accessLevel = builder.accessLevel!!
     workspaceId = builder.workspaceId!!
     encodedValue = builder.encodedValue!!
+  }
+
+  class Builder {
+    var id: AccessTokenId? = null
+    var name: String? = null
+    var publicId: AccessTokenPublicId? = null
+    var accessLevel: AccessLevel? = null
+    var workspaceId: WorkspaceId? = null
+    var encodedValue: String? = null
+
+    fun build() = AccessToken(this)
   }
 }
 

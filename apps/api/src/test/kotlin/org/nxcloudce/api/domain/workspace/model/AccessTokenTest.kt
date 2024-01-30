@@ -7,14 +7,14 @@ class AccessTokenTest {
   @Test
   fun `should build a new instance of AccessToken`() {
     val accessToken =
-      AccessToken.Builder()
-        .id(AccessTokenId("new-id"))
-        .name("new name")
-        .publicId(AccessTokenPublicId("public-id"))
-        .accessLevel(AccessLevel.READ_ONLY)
-        .workspaceId(WorkspaceId("workspace-id"))
-        .encodedValue("base64content")
-        .build()
+      AccessToken {
+        id = AccessTokenId("new-id")
+        name = "new name"
+        publicId = AccessTokenPublicId("public-id")
+        accessLevel = AccessLevel.READ_ONLY
+        workspaceId = WorkspaceId("workspace-id")
+        encodedValue = "base64content"
+      }
 
     assertEquals("new-id", accessToken.id.value)
     assertEquals("new name", accessToken.name)

@@ -50,14 +50,14 @@ class CreateOrgAndWorkspaceImplTest {
     every { mockAccessTokenRepository.createDefaultAccessToken(dummyWorkspaceId) } returns
       Uni.createFrom()
         .item(
-          AccessToken.Builder()
-            .id(AccessTokenId("token-ID"))
-            .workspaceId(dummyWorkspaceId)
-            .accessLevel(AccessLevel.READ_WRITE)
-            .name("default")
-            .publicId(AccessTokenPublicId())
-            .encodedValue("base64content")
-            .build(),
+          AccessToken {
+            id = AccessTokenId("token-ID")
+            workspaceId = dummyWorkspaceId
+            accessLevel = AccessLevel.READ_WRITE
+            name = "default"
+            publicId = AccessTokenPublicId()
+            encodedValue = "base64content"
+          },
         )
 
     // When
