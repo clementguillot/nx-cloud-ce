@@ -3,7 +3,7 @@ quarkus:
     port:
       8080
   mongodb:
-    database: nxcloudce
+    database: nx-cloud-ce
   smallrye-openapi:
     security-scheme: api-key
     api-key-parameter-in: header

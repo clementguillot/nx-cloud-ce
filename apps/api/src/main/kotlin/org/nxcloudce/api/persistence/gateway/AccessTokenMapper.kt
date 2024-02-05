@@ -3,7 +3,7 @@ package org.nxcloudce.api.persistence.gateway
 import org.nxcloudce.api.domain.workspace.model.*
 import org.nxcloudce.api.persistence.entity.AccessTokenEntity
 
-fun AccessTokenEntity.toDomain() =
+fun AccessTokenEntity.toDomain(): AccessToken =
   AccessToken {
     id = AccessTokenId(this@toDomain.id.toString())
     name = this@toDomain.name

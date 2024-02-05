@@ -20,6 +20,7 @@ val mockkVersion: String by project
 val quarkusAwsS3Version: String by project
 val quarkusMockkVersion: String by project
 val awsSdkKotlinVersion: String by project
+val jacksonDatatypeJsr310Version: String by project
 
 dependencies {
   implementation(kotlin("stdlib-jdk8"))
@@ -36,6 +37,7 @@ dependencies {
   implementation("io.quarkus:quarkus-smallrye-context-propagation")
   implementation("io.quarkus:quarkus-smallrye-openapi")
   implementation("aws.sdk.kotlin:s3:$awsSdkKotlinVersion")
+  implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDatatypeJsr310Version")
 
   testImplementation("org.jetbrains.kotlin:kotlin-test")
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")

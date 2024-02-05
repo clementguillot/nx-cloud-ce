@@ -55,6 +55,6 @@ enum class AccessLevel(val value: String) {
   ;
 
   companion object {
-    fun from(value: String) = entries.first { it.value == value }
+    fun from(value: String): AccessLevel = entries.find { it.value == value } ?: throw IllegalArgumentException()
   }
 }

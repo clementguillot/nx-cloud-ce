@@ -7,5 +7,5 @@ import org.nxcloudce.api.domain.workspace.exception.OrganizationNotFoundExceptio
 
 @Provider
 class DomainExceptionMapper : ExceptionMapper<OrganizationNotFoundException> {
-  override fun toResponse(exception: OrganizationNotFoundException) = Response.status(Response.Status.BAD_REQUEST).build()
+  override fun toResponse(exception: OrganizationNotFoundException): Response = Response.status(Response.Status.BAD_REQUEST).build()
 }

@@ -7,7 +7,7 @@ import org.nxcloudce.api.domain.workspace.model.WorkspaceId
 import org.nxcloudce.api.domain.workspace.usecase.CreateWorkspaceRequest
 import org.nxcloudce.api.persistence.entity.WorkspaceEntity
 
-fun WorkspaceEntity.toDomain() =
+fun WorkspaceEntity.toDomain(): Workspace =
   Workspace(
     id = WorkspaceId(id.toString()),
     orgId = OrganizationId(orgId.toString()),
@@ -15,7 +15,7 @@ fun WorkspaceEntity.toDomain() =
     installationSource = installationSource,
   )
 
-fun CreateWorkspaceRequest.toEntity() =
+fun CreateWorkspaceRequest.toEntity(): WorkspaceEntity =
   WorkspaceEntity(
     id = null,
     orgId = ObjectId(orgId.value),

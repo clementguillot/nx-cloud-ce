@@ -6,8 +6,6 @@ import java.util.*
 
 @JvmInline value class ArtifactId(val value: String = UUID.randomUUID().toString())
 
-@JvmInline value class Hash(val value: String)
-
 sealed class Artifact {
   abstract val id: ArtifactId
   abstract val hash: Hash
