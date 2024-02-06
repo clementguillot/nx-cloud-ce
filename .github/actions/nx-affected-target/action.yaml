@@ -14,7 +14,7 @@ runs:
         java-version: '21.0.2'
         distribution: 'graalvm-community'
 
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
         node-version: 20
         cache: 'npm'
