@@ -6,7 +6,7 @@
   "private": true,
   "devDependencies": {
     "@jnxplus/nx-gradle": "0.19.6",
-    "@nx/workspace": "17.2.8",
-    "nx": "17.2.8"
+    "@nx/workspace": "17.3.2",
+    "nx": "17.3.2"
   }
 }
