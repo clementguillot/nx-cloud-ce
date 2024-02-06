@@ -1,0 +1,28 @@
+name: 'Nx Affected Target'
+description: 'Shared steps for Nx Affected commands'
+
+inputs:
+  target:
+    description: 'Target (build, test, lint)'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: graalvm/setup-graalvm@v1
+      with:
+        java-version: '21.0.2'
+        distribution: 'graalvm-community'
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - run: npm ci
+      shell: bash
+
+    - uses: nrwl/nx-set-shas@v4
+
+    - run: npx nx affected -t=${{ inputs.target }}
+      shell: bash

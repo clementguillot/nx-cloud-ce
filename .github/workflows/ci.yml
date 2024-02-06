@@ -2,7 +2,6 @@ name: CI
 on:
   push:
     branches:
-      # Change this if your primary branch is not main
       - main
   pull_request:
 
@@ -12,21 +11,30 @@ permissions:
   contents: read
 
 jobs:
-  main:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: graalvm/setup-graalvm@v1
+      - uses: ./.github/actions/nx-affected-target
         with:
-          java-version: '21.0.2'
-          distribution: 'graalvm-community'
-      # Cache node_modules
-      - uses: actions/setup-node@v3
+          target: build
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
         with:
-          node-version: 20
-          cache: 'npm'
-      - run: npm ci
-      - uses: nrwl/nx-set-shas@v4
-      - run: npx nx affected -t=lint,test,build
+          fetch-depth: 0
+      - uses: ./.github/actions/nx-affected-target
+        with:
+          target: test
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/nx-affected-target
+        with:
+          target: lint
