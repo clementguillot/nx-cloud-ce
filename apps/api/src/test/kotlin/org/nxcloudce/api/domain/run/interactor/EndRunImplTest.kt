@@ -122,6 +122,8 @@ class EndRunImplTest {
       machineInfo = MachineInfo("machine-id", "platform", "version", 32),
       vcsContext = "test vcs context",
       linkId = "test link id",
+      projectGraph = "project graph",
+      hashedContributors = null,
     )
 
   private fun buildRequestTask(

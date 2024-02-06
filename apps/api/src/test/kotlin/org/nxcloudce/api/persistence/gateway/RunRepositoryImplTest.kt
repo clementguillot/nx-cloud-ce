@@ -51,6 +51,8 @@ class RunRepositoryImplTest {
             ),
           vcsContext = null,
           linkId = "test-link",
+          projectGraph = null,
+          hashedContributors = null,
         )
       val assignedEntityId = ObjectId()
 

@@ -37,6 +37,8 @@ sealed class RunDto {
     val tasks: Collection<Task>,
     val linkId: String,
     val run: RunData,
+    val projectGraph: String?,
+    val hashedContributors: String?,
   ) : RunDto() {
     fun toRunRequest(): EndRunRequest.Run =
       EndRunRequest.Run(
@@ -53,6 +55,8 @@ sealed class RunDto {
 //        meta = meta,
         vcsContext = vcsContext,
         linkId = linkId,
+        projectGraph = projectGraph,
+        hashedContributors = hashedContributors,
       )
 
     fun toTaskRequests(): List<EndRunRequest.Task> =

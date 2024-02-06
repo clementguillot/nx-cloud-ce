@@ -30,6 +30,8 @@ data class EndRunRequest(
 //    val meta: Any,
     val vcsContext: String?,
     val linkId: String,
+    val projectGraph: String?,
+    val hashedContributors: String?,
   )
 
   data class Task(

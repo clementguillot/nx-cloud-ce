@@ -32,6 +32,8 @@ class Run private constructor(builder: Builder) {
   val vcsContext: String?
   val tasks: Collection<Task>
   val linkId: String
+  val projectGraph: String?
+  val hashedContributors: String?
 
   init {
     requireNotNull(builder.id)
@@ -63,6 +65,8 @@ class Run private constructor(builder: Builder) {
     vcsContext = builder.vcsContext
     tasks = builder.tasks!!
     linkId = builder.linkId!!
+    projectGraph = builder.projectGraph
+    hashedContributors = builder.hashedContributors
   }
 
   class Builder {
@@ -84,6 +88,8 @@ class Run private constructor(builder: Builder) {
     var vcsContext: String? = null
     var tasks: Collection<Task>? = null
     var linkId: String? = null
+    var projectGraph: String? = null
+    var hashedContributors: String? = null
 
     fun build(): Run = Run(this)
   }

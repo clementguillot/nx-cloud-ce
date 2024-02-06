@@ -76,7 +76,9 @@ class RunController(
         request.inputStream().use { byteStream ->
           GZIPInputStream(byteStream).use { gzipStream ->
             gzipStream.bufferedReader(UTF_8).use { reader ->
-              objectMapper.readValue(reader, RunDto.End::class.java)
+              reader.readLine().let {
+                objectMapper.readValue(it, RunDto.End::class.java)
+              }
             }
           }
         }

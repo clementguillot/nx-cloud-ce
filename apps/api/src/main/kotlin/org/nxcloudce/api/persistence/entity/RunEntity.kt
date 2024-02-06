@@ -22,6 +22,8 @@ data class RunEntity(
 //  var meta: Any,
   var vcsContext: String?,
   var linkId: String,
+  var projectGraph: String?,
+  var hashedContributors: String?,
 ) {
   data class MachineInfo(
     var machineId: String = "",

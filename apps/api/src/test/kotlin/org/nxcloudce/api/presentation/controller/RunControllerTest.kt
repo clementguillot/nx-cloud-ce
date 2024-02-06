@@ -107,6 +107,8 @@ class RunControllerTest {
                   buildTaskDto("2"),
                 ),
               linkId = "test-link-id",
+              projectGraph = null,
+              hashedContributors = null,
               run =
                 RunDto.End.RunData(
                   command = "nx run apps/api:test",
@@ -171,6 +173,8 @@ class RunControllerTest {
                   inner = false,
                   distributedExecutionId = null,
                 ),
+              projectGraph = null,
+              hashedContributors = null,
             ),
           ),
         )

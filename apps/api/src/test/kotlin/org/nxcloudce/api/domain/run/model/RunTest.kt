@@ -4,6 +4,7 @@ import org.nxcloudce.api.domain.workspace.model.WorkspaceId
 import java.time.LocalDateTime
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class RunTest {
   @Test
@@ -28,6 +29,8 @@ class RunTest {
         vcsContext = "https://github.com/example/repo.git"
         tasks = emptyList()
         linkId = "link-id"
+        projectGraph = "project-graph"
+        hashedContributors = null
       }
 
     assertEquals("run-id", run.id.value)
@@ -46,5 +49,7 @@ class RunTest {
     assertEquals("https://github.com/example/repo.git", run.vcsContext)
     assertEquals(emptyList(), run.tasks)
     assertEquals("link-id", run.linkId)
+    assertEquals("project-graph", run.projectGraph)
+    assertNull(run.hashedContributors)
   }
 }

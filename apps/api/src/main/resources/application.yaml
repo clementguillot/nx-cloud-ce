@@ -11,8 +11,8 @@ quarkus:
 
 nx-server:
   application-url: http://localhost:8080
-  client-bundle-version: 2401.03.1
-  client-bundle-path: static/client-bundle.gz
+  client-bundle-version: 2402.02.12
+  client-bundle-path: static/client-bundle
   storage:
     s3:
       endpoint: http://localhost:9000

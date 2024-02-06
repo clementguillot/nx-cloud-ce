@@ -34,6 +34,8 @@ fun RunEntity.toDomain(): Run =
     tasks = emptyList()
     vcsContext = this@toDomain.vcsContext
     linkId = this@toDomain.linkId
+    projectGraph = this@toDomain.projectGraph
+    hashedContributors = this@toDomain.hashedContributors
   }
 
 fun EndRunRequest.Run.toEntity(
@@ -63,4 +65,6 @@ fun EndRunRequest.Run.toEntity(
 //    meta = meta,
     vcsContext = vcsContext,
     linkId = linkId,
+    projectGraph = projectGraph,
+    hashedContributors = hashedContributors,
   )
