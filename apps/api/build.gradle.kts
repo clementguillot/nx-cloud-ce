@@ -4,6 +4,7 @@ plugins {
   kotlin("plugin.noarg")
   id("io.quarkus")
   id("com.diffplug.spotless")
+  id("jacoco")
 }
 
 repositories {
@@ -59,6 +60,15 @@ java {
 
 tasks.withType<Test> {
   systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
+  finalizedBy("jacocoTestReport")
+}
+
+tasks.jacocoTestReport {
+  reports {
+    csv.required.set(false)
+    xml.required.set(true)
+    xml.outputLocation.set(layout.buildDirectory.file("reports/jacoco/jacoco.xml"))
+  }
 }
 
 allOpen {

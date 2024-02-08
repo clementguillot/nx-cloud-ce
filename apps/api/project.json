@@ -33,7 +33,12 @@
       "executor": "@jnxplus/nx-gradle:run-task",
       "options": {
         "task": "test"
-      }
+      },
+      "outputs": [
+        "{projectRoot}/build/classes",
+        "{projectRoot}/build/reports",
+        "{projectRoot}/build/test-results"
+      ]
     },
     "integration-test": {
       "executor": "@jnxplus/nx-gradle:run-task",
