@@ -11,12 +11,8 @@ data class RunSummaryDto(
   companion object {
     fun from(response: EndRunResponse): RunSummaryDto =
       RunSummaryDto(
-        runUrl = response.run.linkId,
-        status =
-          when (response.run.status) {
-            RunStatus.SUCCESS -> "success"
-            RunStatus.FAILURE -> "failure"
-          },
+        runUrl = "http://TBD/runs/${response.run.linkId}",
+        status = "success",
       )
   }
 }
