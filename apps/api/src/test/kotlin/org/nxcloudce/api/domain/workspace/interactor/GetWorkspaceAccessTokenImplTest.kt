@@ -1,6 +1,5 @@
 package org.nxcloudce.api.domain.workspace.interactor
 
-import GetWorkspaceAccessTokenImpl
 import io.mockk.*
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest

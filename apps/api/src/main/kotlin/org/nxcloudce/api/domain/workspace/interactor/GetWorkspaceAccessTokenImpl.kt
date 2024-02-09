@@ -1,3 +1,5 @@
+package org.nxcloudce.api.domain.workspace.interactor
+
 import jakarta.enterprise.context.ApplicationScoped
 import org.nxcloudce.api.domain.workspace.gateway.AccessTokenRepository
 import org.nxcloudce.api.domain.workspace.usecase.GetWorkspaceAccessToken
