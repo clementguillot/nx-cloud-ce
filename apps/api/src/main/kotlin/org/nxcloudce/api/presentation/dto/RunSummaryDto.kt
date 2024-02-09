@@ -1,8 +1,9 @@
 package org.nxcloudce.api.presentation.dto
 
-import org.nxcloudce.api.domain.run.model.RunStatus
+import io.quarkus.runtime.annotations.RegisterForReflection
 import org.nxcloudce.api.domain.run.usecase.EndRunResponse
 
+@RegisterForReflection
 data class RunSummaryDto(
   val runUrl: String,
   val status: String,

@@ -1,8 +1,10 @@
 package org.nxcloudce.api.presentation.dto
 
+import io.quarkus.runtime.annotations.RegisterForReflection
 import org.nxcloudce.api.domain.run.model.Artifact
 import org.nxcloudce.api.domain.run.usecase.StartRunResponse
 
+@RegisterForReflection
 data class RemoteArtifactListDto(
   val artifacts: Map<String, RemoteArtifact>,
 ) {
