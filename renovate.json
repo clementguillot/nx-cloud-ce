@@ -2,5 +2,20 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "description": "Group JNxPlus dependencies",
+      "groupName": "jnxplus",
+      "matchFileNames": [
+        "gradle.properties",
+        "settings.gradle.kts",
+        "package.json"
+      ],
+      "matchPackagePatterns": [
+        "io.github.khalilou88.jnxplus",
+        "@jnxplus/nx-gradle"
+      ]
+    }
   ]
 }
