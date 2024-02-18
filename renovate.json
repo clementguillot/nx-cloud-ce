@@ -1,8 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ],
+  "extends": ["config:recommended"],
   "packageRules": [
     {
       "description": "Group JNxPlus dependencies",
@@ -16,6 +14,15 @@
         "io.github.khalilou88.jnxplus",
         "@jnxplus/nx-gradle"
       ]
+    },
+    {
+      "description": "Keep major/minor versions in Quarkus dockerfiles",
+      "matchFileNames": ["**/src/main/docker/Dockerfile.*"],
+      "matchPackageNames": [
+        "registry.access.redhat.com/ubi8/openjdk-17",
+        "registry.access.redhat.com/ubi8/ubi-minimal"
+      ],
+      "allowedVersions": "/^[0-9]+\\.[0-9]+$/"
     }
   ]
 }
