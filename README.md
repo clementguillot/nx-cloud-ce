@@ -21,9 +21,9 @@ Since Nx Cloud is a proprietary software from Narwhal Technologies Inc., it is h
 
 ## Project structure
 
-| Application/library   | Summary                                                       |
-| --------------------- | ------------------------------------------------------------- |
-| [`apps/api`](app/api) | Backend of Nx Cloud CE, handles requests from Nx Cloud client |
+| Application/library    | Summary                                                       |
+|------------------------| ------------------------------------------------------------- |
+| [`apps/api`](apps/api) | Backend of Nx Cloud CE, handles requests from Nx Cloud client |
 
 ## External Code and Licenses
 
