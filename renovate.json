@@ -23,6 +23,19 @@
         "registry.access.redhat.com/ubi8/ubi-minimal"
       ],
       "allowedVersions": "/^[0-9]+\\.[0-9]+$/"
+    },
+    {
+      "description": "Group Quarkus dependencies",
+      "groupName": "Quarkus",
+      "matchFileNames": [
+        "**/build.gradle.kts",
+        "gradle.properties",
+        "settings.gradle.kts"
+      ],
+      "matchPackagePatterns": [
+        "io.quarkus",
+        "io.quarkus.platform:quarkus-bom"
+      ]
     }
   ]
 }
