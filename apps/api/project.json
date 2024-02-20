@@ -34,13 +34,13 @@
       "options": {
         "engine": "docker",
         "context": "apps/api",
-        "file": "apps/api/src/main/docker/Dockerfile.mandrel",
-        "load": true,
+        "file": "apps/api/src/main/docker/Dockerfile.mandrel-builder",
         "metadata": {
-          "images": ["[ghcr.io/clementguillot/nx-cloud-ce-api"],
+          "images": ["ghcr.io/clementguillot/nx-cloud-ce-api"],
           "tags": [
             "type=schedule",
-            "type=sha,prefix="
+            "type=sha,prefix=",
+            "latest"
           ]
         }
       }
