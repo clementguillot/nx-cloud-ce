@@ -13,6 +13,38 @@
         "task": "quarkusBuild"
       }
     },
+    "build-native-sources": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
+        "task": ["build", "-Dquarkus.package.type=native-sources"]
+      },
+      "outputs": ["{projectRoot}/build/native-sources"]
+    },
+    "patch-native-sources": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build-native-sources"],
+      "options": {
+        "command": "sed -i -e 's/--link-at-build-time//g' apps/api/build/native-sources/native-image.args"
+      },
+      "outputs": ["{projectRoot}/build/native-sources"]
+    },
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": ["patch-native-sources"],
+      "options": {
+        "engine": "docker",
+        "context": "apps/api",
+        "file": "apps/api/src/main/docker/Dockerfile.mandrel",
+        "load": true,
+        "metadata": {
+          "images": ["[ghcr.io/clementguillot/nx-cloud-ce-api"],
+          "tags": [
+            "type=schedule",
+            "type=sha,prefix="
+          ]
+        }
+      }
+    },
     "build-image": {
       "executor": "@jnxplus/nx-gradle:quarkus-build-image"
     },
