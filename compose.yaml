@@ -21,7 +21,7 @@ services:
   mongo-express:
     image: mongo-express
     ports:
-      - 9500:9500
+      - '9500:9500'
     environment:
       ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
       PORT: 9500
