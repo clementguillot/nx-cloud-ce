@@ -3,7 +3,7 @@
 Open source and community-based implementation of Nx Cloud.
 
 [![License](https://img.shields.io/github/license/clementguillot/nx-cloud-ce)]()
-[![build](https://github.com/clementguillot/nx-cloud-ce/actions/workflows/ci.yml/badge.svg)](https://github.com/hashicorp/clementguillot/nx-cloud-ce/actions/workflows/ci)
+[![build](https://github.com/clementguillot/nx-cloud-ce/actions/workflows/ci.yaml/badge.svg)](https://github.com/clementguillot/nx-cloud-ce/actions/workflows/ci.yaml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=clementguillot_nx-cloud-ce&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=clementguillot_nx-cloud-ce)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
