@@ -91,6 +91,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       - name: Login to DockerHub
@@ -103,4 +105,5 @@ jobs:
       - run: npx nx affected -t container
         env:
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_PLATFORMS: "linux/amd64,linux/arm64"
           INPUT_PUSH: true
