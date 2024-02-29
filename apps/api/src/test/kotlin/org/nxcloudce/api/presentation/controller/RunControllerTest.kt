@@ -198,6 +198,7 @@ class RunControllerTest {
           CreateOrgAndWorkspaceDto(
             workspaceName = "test-workspace",
             installationSource = "junit",
+            nxInitDate = null,
           ),
         )
         .post("/nx-cloud/create-org-and-workspace")

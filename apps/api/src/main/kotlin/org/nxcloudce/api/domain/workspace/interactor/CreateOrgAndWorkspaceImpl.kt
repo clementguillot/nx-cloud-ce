@@ -27,7 +27,7 @@ class CreateOrgAndWorkspaceImpl(
           .onItem()
           .transform { org ->
             workspaceRepository
-              .create(request.workspaceName, org.id, request.installationSource)
+              .create(request, org.id)
               .onItem()
               .transform { workspace ->
                 accessTokenRepository.createDefaultAccessToken(workspace.id).onItem().transform { token ->

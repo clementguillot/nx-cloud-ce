@@ -13,6 +13,7 @@ fun WorkspaceEntity.toDomain(): Workspace =
     orgId = OrganizationId(orgId.toString()),
     name = name,
     installationSource = installationSource,
+    nxInitDate = nxInitDate,
   )
 
 fun CreateWorkspaceRequest.toEntity(): WorkspaceEntity =
@@ -21,4 +22,5 @@ fun CreateWorkspaceRequest.toEntity(): WorkspaceEntity =
     orgId = ObjectId(orgId.value),
     name = name,
     installationSource = null,
+    nxInitDate = null,
   )
