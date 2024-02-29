@@ -20,17 +20,9 @@
       },
       "outputs": ["{projectRoot}/build/native-sources"]
     },
-    "patch-native-sources": {
-      "executor": "nx:run-commands",
-      "dependsOn": ["build-native-sources"],
-      "options": {
-        "command": "sed -i -e 's/--link-at-build-time//g' apps/api/build/native-sources/native-image.args"
-      },
-      "outputs": ["{projectRoot}/build/native-sources"]
-    },
     "container": {
       "executor": "@nx-tools/nx-container:build",
-      "dependsOn": ["patch-native-sources"],
+      "dependsOn": ["build-native-sources"],
       "options": {
         "engine": "docker",
         "context": "apps/api",
