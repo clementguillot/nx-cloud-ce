@@ -55,6 +55,7 @@ class CreateWorkspaceImplTest {
           orgId = dummyOrgId,
           name = "new workspace",
           installationSource = null,
+          nxInitDate = null,
         )
       val dummyRequest = CreateWorkspaceRequest(orgId = dummyOrgId, name = "new workspace")
       val dummyResponse = CreateWorkspaceResponse(dummyWorkspace)

@@ -14,6 +14,7 @@ import org.nxcloudce.api.domain.workspace.gateway.OrganizationCreationService
 import org.nxcloudce.api.domain.workspace.gateway.WorkspaceRepository
 import org.nxcloudce.api.domain.workspace.model.*
 import org.nxcloudce.api.domain.workspace.usecase.CreateOrgAndWorkspaceRequest
+import java.time.LocalDateTime
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -38,14 +39,14 @@ class CreateOrgAndWorkspaceImplTest {
     val dummyOrgId = OrganizationId("org-id")
     val dummyWorkspaceId = WorkspaceId("workspace-id")
     val dummyRequest =
-      CreateOrgAndWorkspaceRequest(workspaceName = "test workspace", installationSource = "junit")
+      CreateOrgAndWorkspaceRequest(workspaceName = "test workspace", installationSource = "junit", nxInitDate = LocalDateTime.now())
 
     every { mockOrgCreation.createOrg("test workspace") } returns
       Uni.createFrom().item(Organization(dummyOrgId, "test workspace"))
-    every { mockWorkspaceRepository.create("test workspace", dummyOrgId, "junit") } returns
+    every { mockWorkspaceRepository.create(dummyRequest, dummyOrgId) } returns
       Uni.createFrom()
         .item(
-          Workspace(dummyWorkspaceId, dummyOrgId, "test workspace", "junit"),
+          Workspace(dummyWorkspaceId, dummyOrgId, "test workspace", "junit", null),
         )
     every { mockAccessTokenRepository.createDefaultAccessToken(dummyWorkspaceId) } returns
       Uni.createFrom()

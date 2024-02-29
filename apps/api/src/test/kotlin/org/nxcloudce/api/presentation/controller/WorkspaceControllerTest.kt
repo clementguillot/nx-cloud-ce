@@ -45,6 +45,7 @@ class WorkspaceControllerTest {
         CreateOrgAndWorkspaceDto(
           workspaceName = "test-workspace",
           installationSource = "junit",
+          nxInitDate = null,
         ),
       )
       .`when`()
