@@ -22,6 +22,7 @@ val quarkusAwsS3Version: String by project
 val quarkusMockkVersion: String by project
 val awsSdkKotlinVersion: String by project
 val jacksonDatatypeJsr310Version: String by project
+val okhttp3Version: String by project
 
 dependencies {
   implementation(kotlin("stdlib-jdk8"))
@@ -39,6 +40,10 @@ dependencies {
   implementation("io.quarkus:quarkus-smallrye-openapi")
   implementation("aws.sdk.kotlin:s3:$awsSdkKotlinVersion")
   implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDatatypeJsr310Version")
+
+  implementation(platform("com.squareup.okhttp3:okhttp-bom:$okhttp3Version"))
+  implementation("com.squareup.okhttp3:okhttp")
+  implementation("com.squareup.okhttp3:logging-interceptor")
 
   testImplementation("org.jetbrains.kotlin:kotlin-test")
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
