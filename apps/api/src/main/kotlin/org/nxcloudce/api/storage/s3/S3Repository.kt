@@ -23,10 +23,10 @@ class S3Repository(
         bucket = this@S3Repository.bucket.name
         key = objectPath
       }
-    return s3Client.presignGetObject(
-      getRequest,
-      presignExpiration,
-    ).url.toString()
+    return s3Client
+      .presignGetObject(getRequest, presignExpiration)
+      .url
+      .toString()
   }
 
   override suspend fun generatePutUrl(objectPath: String): String {
@@ -35,9 +35,9 @@ class S3Repository(
         bucket = this@S3Repository.bucket.name
         key = objectPath
       }
-    return s3Client.presignPutObject(
-      putRequest,
-      presignExpiration,
-    ).url.toString()
+    return s3Client
+      .presignPutObject(putRequest, presignExpiration)
+      .url
+      .toString()
   }
 }

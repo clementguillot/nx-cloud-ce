@@ -5,7 +5,7 @@ quarkus:
   s3:
     devservices:
       enabled: true
-      buckets: [nx-cloud-ce]
+      buckets: [ nx-cloud-ce ]
 
 nx-server:
   application-url: http://localtest
