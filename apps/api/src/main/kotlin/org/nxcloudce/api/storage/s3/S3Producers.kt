@@ -26,8 +26,7 @@ class S3Producers {
 
   @Produces
   @ApplicationScoped
-  fun bucket(s3Configuration: S3Configuration): Bucket =
-    Bucket(s3Configuration.bucket(), s3Configuration.forcePathStyle().map { it }.orElse(false))
+  fun bucket(s3Configuration: S3Configuration): Bucket = Bucket(s3Configuration.bucket())
 
   @Produces
   @ApplicationScoped
