@@ -16,7 +16,7 @@ class S3Producers {
     S3Client {
       endpointUrl = Url.parse(s3Configuration.endpoint())
       region = s3Configuration.region()
-      forcePathStyle = s3Configuration.forcePathStyle()
+      forcePathStyle = s3Configuration.forcePathStyle().map { it }.orElse(null)
       credentialsProvider =
         StaticCredentialsProvider {
           accessKeyId = s3Configuration.accessKeyId()
@@ -26,7 +26,7 @@ class S3Producers {
 
   @Produces
   @ApplicationScoped
-  fun bucket(s3Configuration: S3Configuration): Bucket = Bucket(s3Configuration.bucket(), s3Configuration.forcePathStyle() ?: false)
+  fun bucket(s3Configuration: S3Configuration): Bucket = Bucket(s3Configuration.bucket())
 
   @Produces
   @ApplicationScoped

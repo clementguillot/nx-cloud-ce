@@ -1,6 +1,7 @@
 package org.nxcloudce.api.storage.s3
 
 import io.smallrye.config.ConfigMapping
+import java.util.*
 
 @ConfigMapping(prefix = "nx-server.storage.s3")
 interface S3Configuration {
@@ -14,5 +15,5 @@ interface S3Configuration {
 
   fun bucket(): String
 
-  fun forcePathStyle(): Boolean?
+  fun forcePathStyle(): Optional<Boolean>
 }
