@@ -10,19 +10,20 @@ quarkus:
     api-key-parameter-name: authorization
 
 nx-server:
-  application-url: http://localhost:8080
   client-bundle-version: 2402.02.12
   client-bundle-path: static/client-bundle
-  storage:
-    s3:
-      endpoint: http://localhost:9000
-      region: us-east-1
-      access-key-id: nx-cloud-ce
-      secret-access-key: nx-cloud-ce
-      bucket: nx-cloud-ce
-      force-path-style: true
 
 "%dev":
   quarkus:
     mongodb:
       connection-string: mongodb://localhost:27017
+  nx-server:
+    application-url: http://localhost:8080
+    storage:
+      s3:
+        endpoint: http://localhost:9000
+        region: us-east-1
+        access-key-id: nx-cloud-ce
+        secret-access-key: nx-cloud-ce
+        bucket: nx-cloud-ce
+        force-path-style: true
