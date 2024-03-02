@@ -10,6 +10,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.hamcrest.CoreMatchers.*
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.run.model.MachineInfo
 import org.nxcloudce.api.persistence.entity.ArtifactEntity
 import org.nxcloudce.api.persistence.repository.ArtifactPanacheRepository
@@ -21,7 +22,6 @@ import java.io.ByteArrayOutputStream
 import java.time.LocalDateTime
 import java.util.*
 import java.util.zip.GZIPOutputStream
-import kotlin.test.Test
 
 @QuarkusTest
 class RunControllerTest {

@@ -1,11 +1,11 @@
 quarkus:
   mongodb:
     devservices:
-      image-name: mongo:7.0.4
+      image-name: mongo:7.0.6
   s3:
     devservices:
       enabled: true
-      buckets: [ nx-cloud-ce ]
+      buckets: [nx-cloud-ce]
 
 nx-server:
   application-url: http://localtest

@@ -4,8 +4,8 @@ import io.quarkus.test.junit.QuarkusTest
 import io.restassured.RestAssured.given
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.notNullValue
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.presentation.dto.CreateOrganizationDto
-import kotlin.test.Test
 
 @QuarkusTest
 class OrganizationControllerTest {

@@ -1,18 +1,19 @@
 package org.nxcloudce.api.domain.organization.interactor
 
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
 import jakarta.inject.Inject
 import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.organization.gateway.OrganizationRepository
 import org.nxcloudce.api.domain.organization.model.Organization
 import org.nxcloudce.api.domain.organization.model.OrganizationId
 import org.nxcloudce.api.domain.organization.usecase.CreateOrganizationRequest
 import org.nxcloudce.api.domain.organization.usecase.CreateOrganizationResponse
-import kotlin.test.Test
-import kotlin.test.assertEquals
 
 @QuarkusTest
 class CreateOrganizationImplTest {
@@ -36,7 +37,7 @@ class CreateOrganizationImplTest {
       val result = createOrganization.create(dummyRequest) { it }
 
       // Then
-      assertEquals(dummyResponse, result)
+      expect(result).toEqual(dummyResponse)
       coVerify(exactly = 1) { mockOrgRepository.create(dummyRequest) }
     }
 }

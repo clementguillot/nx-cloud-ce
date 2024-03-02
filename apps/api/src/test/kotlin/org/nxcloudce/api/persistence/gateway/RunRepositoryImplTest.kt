@@ -1,5 +1,8 @@
 package org.nxcloudce.api.persistence.gateway
 
+import ch.tutteli.atrium.api.fluent.en_GB.its
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.every
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
@@ -7,6 +10,7 @@ import io.smallrye.mutiny.Uni
 import jakarta.inject.Inject
 import kotlinx.coroutines.test.runTest
 import org.bson.types.ObjectId
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.run.model.MachineInfo
 import org.nxcloudce.api.domain.run.model.RunId
 import org.nxcloudce.api.domain.run.model.RunStatus
@@ -15,8 +19,6 @@ import org.nxcloudce.api.domain.workspace.model.WorkspaceId
 import org.nxcloudce.api.persistence.entity.RunEntity
 import org.nxcloudce.api.persistence.repository.RunPanacheRepository
 import java.time.LocalDateTime
-import kotlin.test.Test
-import kotlin.test.assertEquals
 
 @QuarkusTest
 class RunRepositoryImplTest {
@@ -65,8 +67,10 @@ class RunRepositoryImplTest {
       val result = runRepository.create(runRequest, RunStatus.SUCCESS, workspaceId)
 
       // Then
-      assertEquals(RunId(assignedEntityId.toString()), result.id)
-      assertEquals("test-link", result.linkId)
-      assertEquals("nx test apps/api", result.command)
+      expect(result) {
+        its { id }.toEqual(RunId(assignedEntityId.toString()))
+        its { linkId }.toEqual("test-link")
+        its { command }.toEqual("nx test apps/api")
+      }
     }
 }

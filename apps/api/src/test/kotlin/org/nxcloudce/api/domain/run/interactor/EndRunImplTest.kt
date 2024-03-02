@@ -1,10 +1,14 @@
 package org.nxcloudce.api.domain.run.interactor
 
+import ch.tutteli.atrium.api.fluent.en_GB.notToEqualNull
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.coEvery
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
 import jakarta.inject.Inject
 import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.run.gateway.ArtifactRepository
 import org.nxcloudce.api.domain.run.gateway.RunRepository
 import org.nxcloudce.api.domain.run.gateway.TaskRepository
@@ -12,9 +16,6 @@ import org.nxcloudce.api.domain.run.model.*
 import org.nxcloudce.api.domain.run.usecase.EndRunRequest
 import org.nxcloudce.api.domain.workspace.model.WorkspaceId
 import java.time.LocalDateTime
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
 
 @QuarkusTest
 class EndRunImplTest {
@@ -66,9 +67,8 @@ class EndRunImplTest {
       val response = endRunImpl.end(request) { it.run }
 
       // Then
-      assertEquals(RunStatus.SUCCESS, response.status)
-      assertNotNull(remoteArtifactSize)
-      assertEquals(1, remoteArtifactSize)
+      expect(response.status).toEqual(RunStatus.SUCCESS)
+      expect(remoteArtifactSize).notToEqualNull().toEqual(1)
     }
 
   @Test
@@ -105,7 +105,7 @@ class EndRunImplTest {
       val response = endRunImpl.end(request) { it.run }
 
       // Then
-      assertEquals(RunStatus.FAILURE, response.status)
+      expect(response.status).toEqual(RunStatus.FAILURE)
     }
 
   private fun buildRequestRun(): EndRunRequest.Run =

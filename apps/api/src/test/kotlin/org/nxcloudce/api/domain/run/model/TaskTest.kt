@@ -1,10 +1,11 @@
 package org.nxcloudce.api.domain.run.model
 
+import ch.tutteli.atrium.api.fluent.en_GB.its
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.verbs.expect
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.workspace.model.WorkspaceId
 import java.time.LocalDateTime
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class TaskTest {
   @Test
@@ -29,19 +30,21 @@ class TaskTest {
         artifactId = ArtifactId("artifact-id")
       }
 
-    assertEquals("task-id", task.taskId.value)
-    assertEquals("run-id", task.runId.value)
-    assertEquals("workspace-id", task.workspaceId.value)
-    assertEquals("hash-value", task.hash.value)
-    assertEquals("apps/api", task.projectName)
-    assertEquals("test", task.target)
-    assertEquals(dummyStartTime, task.startTime)
-    assertEquals(dummyEndTime, task.endTime)
-    assertEquals(CacheStatus.CACHE_MISS, task.cacheStatus)
-    assertEquals(0, task.status)
-    assertTrue(task.uploadedToStorage)
-    assertEquals("params", task.params)
-    assertEquals("terminal-output", task.terminalOutput)
-    assertEquals("artifact-id", task.artifactId?.value)
+    expect(task) {
+      its { taskId.value }.toEqual("task-id")
+      its { runId.value }.toEqual("run-id")
+      its { workspaceId.value }.toEqual("workspace-id")
+      its { hash.value }.toEqual("hash-value")
+      its { projectName }.toEqual("apps/api")
+      its { target }.toEqual("test")
+      its { startTime }.toEqual(dummyStartTime)
+      its { endTime }.toEqual(dummyEndTime)
+      its { cacheStatus }.toEqual(CacheStatus.CACHE_MISS)
+      its { status }.toEqual(0)
+      its { uploadedToStorage }.toEqual(true)
+      its { params }.toEqual("params")
+      its { terminalOutput }.toEqual("terminal-output")
+      its { artifactId?.value }.toEqual("artifact-id")
+    }
   }
 }

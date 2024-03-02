@@ -1,5 +1,9 @@
 package org.nxcloudce.api.domain.run.interactor
 
+import ch.tutteli.atrium.api.fluent.en_GB.its
+import ch.tutteli.atrium.api.fluent.en_GB.toBeAnInstanceOf
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.quarkiverse.test.junit.mockk.InjectMock
@@ -14,9 +18,6 @@ import org.nxcloudce.api.domain.run.model.ArtifactId
 import org.nxcloudce.api.domain.run.model.Hash
 import org.nxcloudce.api.domain.run.usecase.StartRunRequest
 import org.nxcloudce.api.domain.workspace.model.WorkspaceId
-import kotlin.test.assertEquals
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
 
 @QuarkusTest
 class StartRunImplTest {
@@ -59,10 +60,13 @@ class StartRunImplTest {
       val result = startRunImpl.start(dummyRequest) { it }
 
       // Then
-      assertTrue(result.artifacts.first() is Artifact.Exist)
-      val resultArtifact = result.artifacts.first() as Artifact.Exist
-      assertEquals("test-get-url", resultArtifact.get)
-      assertEquals("test-put-url", resultArtifact.put)
+      val firstArtifact = result.artifacts.first()
+      expect(firstArtifact).toBeAnInstanceOf<Artifact.Exist>()
+      val resultArtifact = firstArtifact as Artifact.Exist
+      expect(resultArtifact) {
+        its { get }.toEqual("test-get-url")
+        its { put }.toEqual("test-put-url")
+      }
       coVerify(exactly = 1) { mockArtifactRepository.createWithHash(emptyList(), dummyWorkspaceId) }
     }
 
@@ -95,9 +99,10 @@ class StartRunImplTest {
       val result = startRunImpl.start(dummyRequest) { it }
 
       // Then
-      assertTrue(result.artifacts.first() is Artifact.New)
+      val firstArtifact = result.artifacts.first()
+      expect(firstArtifact).toBeAnInstanceOf<Artifact.New>()
       val resultArtifact = result.artifacts.first() as Artifact.New
-      assertEquals("test-put-url", resultArtifact.put)
+      expect(resultArtifact.put).toEqual("test-put-url")
       coVerify(exactly = 0) { mockStorageService.generateGetUrl(dummyArtifact.id, dummyWorkspaceId) }
     }
 
@@ -131,10 +136,13 @@ class StartRunImplTest {
       val result = startRunImpl.start(dummyRequest) { it }
 
       // Then
-      assertTrue(result.artifacts.first() is Artifact.Exist)
+      val firstArtifact = result.artifacts.first()
+      expect(firstArtifact).toBeAnInstanceOf<Artifact.Exist>()
       val resultArtifact = result.artifacts.first() as Artifact.Exist
-      assertEquals("test-get-url", resultArtifact.get)
-      assertNull(resultArtifact.put)
+      expect(resultArtifact) {
+        its { get }.toEqual("test-get-url")
+        its { put }.toEqual(null)
+      }
       coVerify(exactly = 1) { mockArtifactRepository.createWithHash(emptyList(), dummyWorkspaceId) }
     }
 }

@@ -1,10 +1,11 @@
 package org.nxcloudce.api.domain.run.model
 
+import ch.tutteli.atrium.api.fluent.en_GB.its
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.verbs.expect
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.workspace.model.WorkspaceId
 import java.time.LocalDateTime
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNull
 
 class RunTest {
   @Test
@@ -33,23 +34,25 @@ class RunTest {
         hashedContributors = null
       }
 
-    assertEquals("run-id", run.id.value)
-    assertEquals("workspace-id", run.workspaceId.value)
-    assertEquals("nx test apps/api", run.command)
-    assertEquals(RunStatus.SUCCESS, run.status)
-    assertEquals(dummyStartTime, run.startTime)
-    assertEquals(dummyEndTime, run.endTime)
-    assertEquals("main", run.branch)
-    assertEquals("default", run.runGroup)
-    assertEquals(false, run.inner)
-    assertEquals(null, run.distributedExecutionId)
-    assertEquals(null, run.ciExecutionId)
-    assertEquals(null, run.ciExecutionEnv)
-    assertEquals(MachineInfo("machine-id", "linux", "1.0", 4), run.machineInfo)
-    assertEquals("https://github.com/example/repo.git", run.vcsContext)
-    assertEquals(emptyList(), run.tasks)
-    assertEquals("link-id", run.linkId)
-    assertEquals("project-graph", run.projectGraph)
-    assertNull(run.hashedContributors)
+    expect(run) {
+      its { id.value }.toEqual("run-id")
+      its { workspaceId.value }.toEqual("workspace-id")
+      its { command }.toEqual("nx test apps/api")
+      its { status }.toEqual(RunStatus.SUCCESS)
+      its { startTime }.toEqual(dummyStartTime)
+      its { endTime }.toEqual(dummyEndTime)
+      its { branch }.toEqual("main")
+      its { runGroup }.toEqual("default")
+      its { inner }.toEqual(false)
+      its { distributedExecutionId }.toEqual(null)
+      its { ciExecutionId }.toEqual(null)
+      its { ciExecutionEnv }.toEqual(null)
+      its { machineInfo }.toEqual(MachineInfo("machine-id", "linux", "1.0", 4))
+      its { vcsContext }.toEqual("https://github.com/example/repo.git")
+      its { tasks }.toEqual(emptyList())
+      its { linkId }.toEqual("link-id")
+      its { projectGraph }.toEqual("project-graph")
+      its { hashedContributors }.toEqual(null)
+    }
   }
 }

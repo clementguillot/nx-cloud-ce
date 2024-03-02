@@ -1,11 +1,12 @@
 package org.nxcloudce.api.presentation.infrastructure
 
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.verbs.expect
 import io.quarkus.test.junit.QuarkusTest
 import jakarta.inject.Inject
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.organization.model.OrganizationId
 import org.nxcloudce.api.domain.workspace.exception.OrganizationNotFoundException
-import kotlin.test.Test
-import kotlin.test.assertEquals
 
 @QuarkusTest
 class DomainExceptionMapperTest {
@@ -18,6 +19,6 @@ class DomainExceptionMapperTest {
 
     val result = domainExceptionMapper.toResponse(dummyException)
 
-    assertEquals(400, result.status)
+    expect(result.status).toEqual(400)
   }
 }
