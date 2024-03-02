@@ -1,5 +1,8 @@
 package org.nxcloudce.api.persistence.gateway
 
+import ch.tutteli.atrium.api.fluent.en_GB.its
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.every
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
@@ -7,12 +10,11 @@ import io.smallrye.mutiny.Uni
 import jakarta.inject.Inject
 import kotlinx.coroutines.test.runTest
 import org.bson.types.ObjectId
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.organization.model.OrganizationId
 import org.nxcloudce.api.domain.workspace.usecase.CreateWorkspaceRequest
 import org.nxcloudce.api.persistence.entity.WorkspaceEntity
 import org.nxcloudce.api.persistence.repository.WorkspacePanacheRepository
-import kotlin.test.Test
-import kotlin.test.assertEquals
 
 @QuarkusTest
 class WorkspaceRepositoryImplTest {
@@ -39,10 +41,9 @@ class WorkspaceRepositoryImplTest {
       val result = workspaceRepository.create(dummyRequest)
 
       // Then
-      assertEquals(
-        dummyEntityId.toString(),
-        result.id.value,
-      )
-      assertEquals("test", result.name)
+      expect(result) {
+        its { id.value }.toEqual(dummyEntityId.toString())
+        its { name }.toEqual("test")
+      }
     }
 }

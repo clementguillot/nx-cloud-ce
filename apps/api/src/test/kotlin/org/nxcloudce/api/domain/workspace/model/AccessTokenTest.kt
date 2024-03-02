@@ -1,7 +1,9 @@
 package org.nxcloudce.api.domain.workspace.model
 
-import kotlin.test.Test
-import kotlin.test.assertEquals
+import ch.tutteli.atrium.api.fluent.en_GB.its
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.verbs.expect
+import org.junit.jupiter.api.Test
 
 class AccessTokenTest {
   @Test
@@ -16,11 +18,13 @@ class AccessTokenTest {
         encodedValue = "base64content"
       }
 
-    assertEquals("new-id", accessToken.id.value)
-    assertEquals("new name", accessToken.name)
-    assertEquals("public-id", accessToken.publicId.value)
-    assertEquals(AccessLevel.READ_ONLY, accessToken.accessLevel)
-    assertEquals("workspace-id", accessToken.workspaceId.value)
-    assertEquals("base64content", accessToken.encodedValue)
+    expect(accessToken) {
+      its { id.value }.toEqual("new-id")
+      its { name }.toEqual("new name")
+      its { publicId.value }.toEqual("public-id")
+      its { accessLevel }.toEqual(AccessLevel.READ_ONLY)
+      its { workspaceId.value }.toEqual("workspace-id")
+      its { encodedValue }.toEqual("base64content")
+    }
   }
 }

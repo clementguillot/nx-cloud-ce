@@ -1,5 +1,9 @@
 package org.nxcloudce.api.presentation.filter
 
+import ch.tutteli.atrium.api.fluent.en_GB.its
+import ch.tutteli.atrium.api.fluent.en_GB.notToEqualNull
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.*
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
@@ -7,16 +11,13 @@ import jakarta.inject.Inject
 import jakarta.ws.rs.container.ContainerRequestContext
 import jakarta.ws.rs.core.SecurityContext
 import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.workspace.model.AccessLevel
 import org.nxcloudce.api.domain.workspace.model.AccessToken
 import org.nxcloudce.api.domain.workspace.model.WorkspaceId
 import org.nxcloudce.api.domain.workspace.usecase.GetWorkspaceAccessToken
 import org.nxcloudce.api.domain.workspace.usecase.GetWorkspaceAccessTokenRequest
 import org.nxcloudce.api.domain.workspace.usecase.GetWorkspaceAccessTokenResponse
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
 
 @QuarkusTest
 class SecurityContextFilterTest {
@@ -55,11 +56,13 @@ class SecurityContextFilterTest {
 
       // Then
       verify(exactly = 1) { dummyRequestContext.securityContext = any() }
-      assertNotNull(capturedSecurityContext)
-      assertEquals("workspace-id", capturedSecurityContext!!.userPrincipal.name)
-      assertEquals("api-key", capturedSecurityContext!!.authenticationScheme)
-      assertTrue(capturedSecurityContext!!.isUserInRole(AccessLevel.READ_WRITE.value))
-      assertTrue(capturedSecurityContext!!.isSecure)
+      expect(capturedSecurityContext) {
+        notToEqualNull()
+        its { this?.userPrincipal!!.name }.toEqual("workspace-id")
+        its { this?.authenticationScheme }.toEqual("api-key")
+        its { this?.isUserInRole(AccessLevel.READ_WRITE.value) }.toEqual(true)
+        its { this?.isSecure }.toEqual(true)
+      }
     }
 
   @Test

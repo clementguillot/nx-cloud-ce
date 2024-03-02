@@ -20,6 +20,7 @@ val ktlintVersion: String by project
 val mockkVersion: String by project
 val quarkusAwsS3Version: String by project
 val quarkusMockkVersion: String by project
+val atriumVersion: String by project
 val awsSdkKotlinVersion: String by project
 val jacksonDatatypeJsr310Version: String by project
 val okhttp3Version: String by project
@@ -45,8 +46,8 @@ dependencies {
   implementation("com.squareup.okhttp3:okhttp")
   implementation("com.squareup.okhttp3:logging-interceptor")
 
-  testImplementation("org.jetbrains.kotlin:kotlin-test")
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
+  testImplementation("ch.tutteli.atrium:atrium-fluent:$atriumVersion")
   testImplementation("io.mockk:mockk:$mockkVersion")
   testImplementation("io.quarkiverse.amazonservices:quarkus-amazon-s3:$quarkusAwsS3Version")
   testImplementation("io.quarkiverse.mockk:quarkus-junit5-mockk:$quarkusMockkVersion")

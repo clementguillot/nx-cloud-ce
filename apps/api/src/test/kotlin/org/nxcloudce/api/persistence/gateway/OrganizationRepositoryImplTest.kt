@@ -1,5 +1,8 @@
 package org.nxcloudce.api.persistence.gateway
 
+import ch.tutteli.atrium.api.fluent.en_GB.its
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.every
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
@@ -7,14 +10,11 @@ import io.smallrye.mutiny.Uni
 import jakarta.inject.Inject
 import kotlinx.coroutines.test.runTest
 import org.bson.types.ObjectId
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.organization.model.OrganizationId
 import org.nxcloudce.api.domain.organization.usecase.CreateOrganizationRequest
 import org.nxcloudce.api.persistence.entity.OrganizationEntity
 import org.nxcloudce.api.persistence.repository.OrganizationPanacheRepository
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
 
 @QuarkusTest
 class OrganizationRepositoryImplTest {
@@ -42,8 +42,10 @@ class OrganizationRepositoryImplTest {
       val result = orgRepository.create(dummyRequest)
 
       // Then
-      assertEquals(dummyEntityId.toString(), result.id.value)
-      assertEquals("test", result.name)
+      expect(result) {
+        its { id.value }.toEqual(dummyEntityId.toString())
+        its { name }.toEqual("test")
+      }
     }
 
   @Test
@@ -61,7 +63,7 @@ class OrganizationRepositoryImplTest {
       val invalidId = orgRepository.isValidOrgId(OrganizationId(ObjectId().toString()))
 
       // Then
-      assertTrue(existingId)
-      assertFalse(invalidId)
+      expect(existingId).toEqual(true)
+      expect(invalidId).toEqual(false)
     }
 }

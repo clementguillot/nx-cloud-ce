@@ -1,11 +1,16 @@
 package org.nxcloudce.api.domain.workspace.interactor
 
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.fluent.en_GB.toThrow
+import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
 import jakarta.inject.Inject
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.organization.model.OrganizationId
 import org.nxcloudce.api.domain.workspace.exception.OrganizationNotFoundException
 import org.nxcloudce.api.domain.workspace.gateway.OrganizationValidationService
@@ -14,9 +19,6 @@ import org.nxcloudce.api.domain.workspace.model.Workspace
 import org.nxcloudce.api.domain.workspace.model.WorkspaceId
 import org.nxcloudce.api.domain.workspace.usecase.CreateWorkspaceRequest
 import org.nxcloudce.api.domain.workspace.usecase.CreateWorkspaceResponse
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 
 @QuarkusTest
 class CreateWorkspaceImplTest {
@@ -39,9 +41,9 @@ class CreateWorkspaceImplTest {
       coEvery { mockOrgValidationService.isValidOrgId(dummyOrgId) } returns false
 
       // When and then
-      assertFailsWith<OrganizationNotFoundException> {
-        createWorkspace.create(dummyRequest) {}
-      }
+      expect {
+        runBlocking { createWorkspace.create(dummyRequest) {} }
+      }.toThrow<OrganizationNotFoundException>()
     }
 
   @Test
@@ -67,7 +69,7 @@ class CreateWorkspaceImplTest {
       val result = createWorkspace.create(dummyRequest) { it }
 
       // Then
-      assertEquals(dummyResponse, result)
+      expect(result).toEqual(dummyResponse)
       coVerify(exactly = 1) { mockWorkspaceRepository.create(dummyRequest) }
     }
 }

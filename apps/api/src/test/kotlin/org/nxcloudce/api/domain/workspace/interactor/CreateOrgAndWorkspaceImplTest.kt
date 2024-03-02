@@ -1,5 +1,8 @@
 package org.nxcloudce.api.domain.workspace.interactor
 
+import ch.tutteli.atrium.api.fluent.en_GB.its
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.every
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
@@ -7,6 +10,7 @@ import io.quarkus.test.vertx.RunOnVertxContext
 import io.quarkus.test.vertx.UniAsserter
 import io.smallrye.mutiny.Uni
 import jakarta.inject.Inject
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.organization.model.Organization
 import org.nxcloudce.api.domain.organization.model.OrganizationId
 import org.nxcloudce.api.domain.workspace.gateway.AccessTokenRepository
@@ -15,8 +19,6 @@ import org.nxcloudce.api.domain.workspace.gateway.WorkspaceRepository
 import org.nxcloudce.api.domain.workspace.model.*
 import org.nxcloudce.api.domain.workspace.usecase.CreateOrgAndWorkspaceRequest
 import java.time.LocalDateTime
-import kotlin.test.Test
-import kotlin.test.assertEquals
 
 @QuarkusTest
 class CreateOrgAndWorkspaceImplTest {
@@ -66,10 +68,12 @@ class CreateOrgAndWorkspaceImplTest {
       { createOrgAndWorkspace.create(dummyRequest) { it } },
       { response ->
         // Then
-        assertEquals("test workspace", response.workspace.name)
-        assertEquals(dummyWorkspaceId, response.workspace.id)
-        assertEquals("default", response.accessToken.name)
-        assertEquals(AccessLevel.READ_WRITE, response.accessToken.accessLevel)
+        expect(response) {
+          its { workspace.name }.toEqual("test workspace")
+          its { workspace.id }.toEqual(dummyWorkspaceId)
+          its { accessToken.name }.toEqual("default")
+          its { accessToken.accessLevel }.toEqual(AccessLevel.READ_WRITE)
+        }
       },
     )
   }

@@ -1,15 +1,16 @@
 package org.nxcloudce.api.domain.workspace.interactor
 
+import ch.tutteli.atrium.api.fluent.en_GB.toEqual
+import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.*
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
 import jakarta.inject.Inject
 import kotlinx.coroutines.test.runTest
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.workspace.gateway.AccessTokenRepository
 import org.nxcloudce.api.domain.workspace.model.AccessToken
 import org.nxcloudce.api.domain.workspace.usecase.GetWorkspaceAccessTokenRequest
-import kotlin.test.Test
-import kotlin.test.assertEquals
 
 @QuarkusTest
 class GetWorkspaceAccessTokenImplTest {
@@ -32,7 +33,7 @@ class GetWorkspaceAccessTokenImplTest {
       val result = getWorkspaceAccessToken.getAccessToken(dummyRequest) { it }
 
       // Then
-      assertEquals(dummyAccessToken, result.accessToken)
+      expect(result.accessToken).toEqual(dummyAccessToken)
       coVerify(exactly = 1) { mockAccessTokenRepository.findByEncodedValue("test-token") }
     }
 }

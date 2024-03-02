@@ -1,5 +1,7 @@
 package org.nxcloudce.api.persistence.gateway
 
+import ch.tutteli.atrium.api.fluent.en_GB.*
+import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.coEvery
 import io.mockk.every
 import io.quarkiverse.test.junit.mockk.InjectMock
@@ -8,15 +10,13 @@ import io.smallrye.mutiny.Uni
 import jakarta.inject.Inject
 import kotlinx.coroutines.test.runTest
 import org.bson.types.ObjectId
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.run.model.Artifact
 import org.nxcloudce.api.domain.run.model.ArtifactId
 import org.nxcloudce.api.domain.run.model.Hash
 import org.nxcloudce.api.domain.workspace.model.WorkspaceId
 import org.nxcloudce.api.persistence.entity.ArtifactEntity
 import org.nxcloudce.api.persistence.repository.ArtifactPanacheRepository
-import kotlin.test.Test
-import kotlin.test.assertContentEquals
-import kotlin.test.assertEquals
 
 @QuarkusTest
 class ArtifactRepositoryImplTest {
@@ -36,7 +36,12 @@ class ArtifactRepositoryImplTest {
         ArtifactEntity(ObjectId(), "artifactId1", "hash1", ObjectId(workspaceId.value))
       val artifactEntity2 =
         ArtifactEntity(ObjectId(), "artifactId2", "hash2", ObjectId(workspaceId.value))
-      val expectedArtifacts = listOf(artifactEntity1.toDomain(), artifactEntity2.toDomain())
+      val expectedArtifacts =
+        listOf(
+          artifactEntity1.toDomain(),
+          artifactEntity2.toDomain(),
+          Artifact.Exist(ArtifactId("lol"), Hash("lol"), WorkspaceId("caca"), null, null),
+        )
 
       coEvery {
         mockArtifactPanacheRepository.findByHash(
@@ -49,7 +54,7 @@ class ArtifactRepositoryImplTest {
       val result = artifactRepository.findByHash(hashes.map { Hash(it) }, workspaceId)
 
       // Then
-      assertContentEquals(expectedArtifacts, result)
+      expect(result).toContainExactly(expectedArtifacts[0], expectedArtifacts[1])
     }
 
   @Test
@@ -63,7 +68,7 @@ class ArtifactRepositoryImplTest {
       val result = artifactRepository.createWithHash(hashes.map { Hash(it) }, workspaceId)
 
       // Then
-      assertEquals(2, result.size)
+      expect(result.size).toEqual(2)
     }
 
   @Test
@@ -106,6 +111,6 @@ class ArtifactRepositoryImplTest {
       val result = artifactRepository.createRemoteArtifacts(artifact, workspaceId)
 
       // Then
-      assertContentEquals(expectedArtifacts, result)
+      expect(result).toContainExactly(expectedArtifacts[0], expectedArtifacts[1])
     }
 }

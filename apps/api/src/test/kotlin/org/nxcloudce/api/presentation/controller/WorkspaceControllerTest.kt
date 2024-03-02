@@ -6,11 +6,11 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.notNullValue
+import org.junit.jupiter.api.Test
 import org.nxcloudce.api.domain.organization.gateway.OrganizationRepository
 import org.nxcloudce.api.domain.organization.usecase.CreateOrganizationRequest
 import org.nxcloudce.api.presentation.dto.CreateOrgAndWorkspaceDto
 import org.nxcloudce.api.presentation.dto.CreateWorkspaceDto
-import kotlin.test.Test
 
 @QuarkusTest
 class WorkspaceControllerTest {
