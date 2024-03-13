@@ -27,7 +27,7 @@ data class EndRunRequest(
     val ciExecutionId: String?,
     val ciExecutionEnv: String?,
     val machineInfo: MachineInfo,
-//    val meta: Any,
+    val meta: Map<String, String>,
     val vcsContext: String?,
     val linkId: String,
     val projectGraph: String?,
@@ -46,7 +46,7 @@ data class EndRunRequest(
     val uploadedToStorage: Boolean,
     val params: String,
     val terminalOutput: String,
-//    val hashDetails
+    val hashDetails: HashDetails,
     val artifactId: ArtifactId?,
   )
 }

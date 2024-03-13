@@ -27,6 +27,7 @@ class RunTest {
         ciExecutionId = null
         ciExecutionEnv = null
         machineInfo = MachineInfo("machine-id", "linux", "1.0", 4)
+        meta = mapOf("nxCloudVersion" to "123")
         vcsContext = "https://github.com/example/repo.git"
         tasks = emptyList()
         linkId = "link-id"
@@ -48,6 +49,7 @@ class RunTest {
       its { ciExecutionId }.toEqual(null)
       its { ciExecutionEnv }.toEqual(null)
       its { machineInfo }.toEqual(MachineInfo("machine-id", "linux", "1.0", 4))
+      its { meta }.toEqual(mapOf("nxCloudVersion" to "123"))
       its { vcsContext }.toEqual("https://github.com/example/repo.git")
       its { tasks }.toEqual(emptyList())
       its { linkId }.toEqual("link-id")

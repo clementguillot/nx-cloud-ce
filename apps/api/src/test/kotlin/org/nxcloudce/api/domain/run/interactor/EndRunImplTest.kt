@@ -120,6 +120,7 @@ class EndRunImplTest {
       ciExecutionId = "test ci execution id",
       ciExecutionEnv = "test ci execution env",
       machineInfo = MachineInfo("machine-id", "platform", "version", 32),
+      meta = mapOf("nxCloudVersion" to "123"),
       vcsContext = "test vcs context",
       linkId = "test link id",
       projectGraph = "project graph",
@@ -143,6 +144,12 @@ class EndRunImplTest {
       uploadedToStorage = uploadedToStorage,
       params = "test params",
       terminalOutput = "test terminal output",
+      hashDetails =
+        HashDetails(
+          nodes = mapOf("apps/api:ProjectConfiguration" to "dummy"),
+          runtime = emptyMap(),
+          implicitDeps = emptyMap(),
+        ),
       artifactId = ArtifactId("artifact$suffix"),
     )
 
@@ -165,6 +172,7 @@ class EndRunImplTest {
       ciExecutionId = run.ciExecutionId
       ciExecutionEnv = run.ciExecutionEnv
       machineInfo = run.machineInfo
+      meta = run.meta
       vcsContext = run.vcsContext
       tasks = emptyList()
       linkId = run.linkId
@@ -189,6 +197,7 @@ class EndRunImplTest {
       uploadedToStorage = task.uploadedToStorage
       params = task.params
       terminalOutput = task.terminalOutput
+      hashDetails = task.hashDetails
       artifactId = task.artifactId
     }
 }

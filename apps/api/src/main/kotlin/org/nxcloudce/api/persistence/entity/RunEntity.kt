@@ -19,7 +19,7 @@ data class RunEntity(
   var ciExecutionId: String?,
   var ciExecutionEnv: String?,
   var machineInfo: MachineInfo,
-//  var meta: Any,
+  var meta: Map<String, String>,
   var vcsContext: String?,
   var linkId: String,
   var projectGraph: String?,

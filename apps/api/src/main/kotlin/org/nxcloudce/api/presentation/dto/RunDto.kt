@@ -11,7 +11,7 @@ sealed class RunDto {
   abstract val ciExecutionId: String?
   abstract val ciExecutionEnv: String?
   abstract val machineInfo: MachineInfo
-  abstract val meta: Any
+  abstract val meta: Map<String, String>
   abstract val vcsContext: String?
 
   data class Start(
@@ -20,7 +20,7 @@ sealed class RunDto {
     override val ciExecutionId: String?,
     override val ciExecutionEnv: String?,
     override val machineInfo: MachineInfo,
-    override val meta: Any,
+    override val meta: Map<String, String>,
     override val vcsContext: String?,
     val distributedExecutionId: String?,
     val hashes: Collection<String>,
@@ -32,7 +32,7 @@ sealed class RunDto {
     override val ciExecutionId: String?,
     override val ciExecutionEnv: String?,
     override val machineInfo: MachineInfo,
-    override val meta: Any,
+    override val meta: Map<String, String>,
     override val vcsContext: String?,
     val tasks: Collection<Task>,
     val linkId: String,
@@ -52,7 +52,7 @@ sealed class RunDto {
         ciExecutionId = ciExecutionId,
         ciExecutionEnv = ciExecutionEnv,
         machineInfo = machineInfo,
-//        meta = meta,
+        meta = meta,
         vcsContext = vcsContext,
         linkId = linkId,
         projectGraph = projectGraph,
@@ -73,6 +73,7 @@ sealed class RunDto {
           uploadedToStorage = task.uploadedToStorage,
           params = task.params,
           terminalOutput = task.terminalOutput,
+          hashDetails = task.hashDetails,
           artifactId = task.artifactId?.let { ArtifactId(it.toString()) },
         )
       }
@@ -91,13 +92,7 @@ sealed class RunDto {
       val terminalOutput: String,
       val hashDetails: HashDetails,
       val artifactId: UUID?,
-    ) {
-      data class HashDetails(
-        val nodes: Map<String, String>,
-        val runtime: Any,
-        val implicitDeps: Any,
-      )
-    }
+    )
 
     data class RunData(
       val command: String,

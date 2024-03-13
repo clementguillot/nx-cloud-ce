@@ -27,6 +27,12 @@ class TaskTest {
         uploadedToStorage = true
         params = "params"
         terminalOutput = "terminal-output"
+        hashDetails =
+          HashDetails(
+            nodes = mapOf("apps/api:ProjectConfiguration" to "dummy"),
+            runtime = emptyMap(),
+            implicitDeps = emptyMap(),
+          )
         artifactId = ArtifactId("artifact-id")
       }
 
@@ -44,6 +50,13 @@ class TaskTest {
       its { uploadedToStorage }.toEqual(true)
       its { params }.toEqual("params")
       its { terminalOutput }.toEqual("terminal-output")
+      its { hashDetails }.toEqual(
+        HashDetails(
+          nodes = mapOf("apps/api:ProjectConfiguration" to "dummy"),
+          runtime = emptyMap(),
+          implicitDeps = emptyMap(),
+        ),
+      )
       its { artifactId?.value }.toEqual("artifact-id")
     }
   }
