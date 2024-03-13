@@ -61,7 +61,7 @@ class RunControllerTest {
                 version = "1",
                 cpuCores = 1,
               ),
-            meta = "1",
+            meta = mapOf("nxCloudVersion" to "123"),
             vcsContext = null,
           ),
         )
@@ -99,7 +99,7 @@ class RunControllerTest {
                 version = "1",
                 cpuCores = 1,
               ),
-              meta = "1",
+              meta = mapOf("nxCloudVersion" to "123"),
               vcsContext = null,
               tasks =
                 listOf(
@@ -155,7 +155,7 @@ class RunControllerTest {
                 version = "1",
                 cpuCores = 1,
               ),
-              meta = "1",
+              meta = mapOf("nxCloudVersion" to "123"),
               vcsContext = null,
               tasks =
                 listOf(

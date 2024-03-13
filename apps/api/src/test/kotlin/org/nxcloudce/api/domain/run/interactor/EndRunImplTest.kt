@@ -120,6 +120,7 @@ class EndRunImplTest {
       ciExecutionId = "test ci execution id",
       ciExecutionEnv = "test ci execution env",
       machineInfo = MachineInfo("machine-id", "platform", "version", 32),
+      meta = mapOf("nxCloudVersion" to "123"),
       vcsContext = "test vcs context",
       linkId = "test link id",
       projectGraph = "project graph",
@@ -165,6 +166,7 @@ class EndRunImplTest {
       ciExecutionId = run.ciExecutionId
       ciExecutionEnv = run.ciExecutionEnv
       machineInfo = run.machineInfo
+      meta = run.meta
       vcsContext = run.vcsContext
       tasks = emptyList()
       linkId = run.linkId

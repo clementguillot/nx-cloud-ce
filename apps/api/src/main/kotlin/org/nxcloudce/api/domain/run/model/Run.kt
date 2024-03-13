@@ -27,8 +27,7 @@ class Run private constructor(builder: Builder) {
   val ciExecutionId: String?
   val ciExecutionEnv: String?
   val machineInfo: MachineInfo
-
-//  val meta: Any
+  val meta: Map<String, String>
   val vcsContext: String?
   val tasks: Collection<Task>
   val linkId: String
@@ -45,7 +44,7 @@ class Run private constructor(builder: Builder) {
     requireNotNull(builder.runGroup)
     requireNotNull(builder.runGroup)
     requireNotNull(builder.inner)
-//    requireNotNull(builder.meta)
+    requireNotNull(builder.meta)
     requireNotNull(builder.tasks)
     requireNotNull(builder.linkId)
     id = builder.id!!
@@ -61,7 +60,7 @@ class Run private constructor(builder: Builder) {
     ciExecutionId = builder.ciExecutionId
     ciExecutionEnv = builder.ciExecutionEnv
     machineInfo = builder.machineInfo!!
-//    meta = builder.meta!!
+    meta = builder.meta!!
     vcsContext = builder.vcsContext
     tasks = builder.tasks!!
     linkId = builder.linkId!!
@@ -83,8 +82,7 @@ class Run private constructor(builder: Builder) {
     var ciExecutionId: String? = null
     var ciExecutionEnv: String? = null
     var machineInfo: MachineInfo? = null
-
-//    var meta: Any? = null
+    var meta: Map<String, String>? = null
     var vcsContext: String? = null
     var tasks: Collection<Task>? = null
     var linkId: String? = null

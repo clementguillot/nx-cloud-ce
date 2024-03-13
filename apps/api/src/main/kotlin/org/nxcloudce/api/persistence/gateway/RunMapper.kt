@@ -30,7 +30,7 @@ fun RunEntity.toDomain(): Run =
         version = this@toDomain.machineInfo.version,
         cpuCores = this@toDomain.machineInfo.cpuCores,
       )
-//    meta = this@toDomain.meta
+    meta = this@toDomain.meta
     tasks = emptyList()
     vcsContext = this@toDomain.vcsContext
     linkId = this@toDomain.linkId
@@ -62,7 +62,7 @@ fun EndRunRequest.Run.toEntity(
         version = this@toEntity.machineInfo.version
         cpuCores = this@toEntity.machineInfo.cpuCores
       },
-//    meta = meta,
+    meta = meta,
     vcsContext = vcsContext,
     linkId = linkId,
     projectGraph = projectGraph,

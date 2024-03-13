@@ -51,6 +51,7 @@ class RunRepositoryImplTest {
               version = "42",
               cpuCores = 42,
             ),
+          meta = mapOf("nxCloudVersion" to "123"),
           vcsContext = null,
           linkId = "test-link",
           projectGraph = null,
