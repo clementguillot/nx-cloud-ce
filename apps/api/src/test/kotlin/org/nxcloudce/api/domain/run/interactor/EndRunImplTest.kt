@@ -144,6 +144,12 @@ class EndRunImplTest {
       uploadedToStorage = uploadedToStorage,
       params = "test params",
       terminalOutput = "test terminal output",
+      hashDetails =
+        HashDetails(
+          nodes = mapOf("apps/api:ProjectConfiguration" to "dummy"),
+          runtime = emptyMap(),
+          implicitDeps = emptyMap(),
+        ),
       artifactId = ArtifactId("artifact$suffix"),
     )
 
@@ -191,6 +197,7 @@ class EndRunImplTest {
       uploadedToStorage = task.uploadedToStorage
       params = task.params
       terminalOutput = task.terminalOutput
+      hashDetails = task.hashDetails
       artifactId = task.artifactId
     }
 }

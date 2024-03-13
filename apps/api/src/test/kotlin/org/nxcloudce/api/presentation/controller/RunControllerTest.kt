@@ -11,6 +11,7 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.hamcrest.CoreMatchers.*
 import org.junit.jupiter.api.Test
+import org.nxcloudce.api.domain.run.model.HashDetails
 import org.nxcloudce.api.domain.run.model.MachineInfo
 import org.nxcloudce.api.persistence.entity.ArtifactEntity
 import org.nxcloudce.api.persistence.repository.ArtifactPanacheRepository
@@ -246,10 +247,10 @@ class RunControllerTest {
       params = "params-$suffix",
       terminalOutput = "terminal output",
       hashDetails =
-        RunDto.End.Task.HashDetails(
+        HashDetails(
           nodes = emptyMap(),
-          runtime = "",
-          implicitDeps = "",
+          runtime = emptyMap(),
+          implicitDeps = emptyMap(),
         ),
       artifactId = UUID.randomUUID(),
     )

@@ -46,7 +46,7 @@ data class EndRunRequest(
     val uploadedToStorage: Boolean,
     val params: String,
     val terminalOutput: String,
-//    val hashDetails
+    val hashDetails: HashDetails,
     val artifactId: ArtifactId?,
   )
 }

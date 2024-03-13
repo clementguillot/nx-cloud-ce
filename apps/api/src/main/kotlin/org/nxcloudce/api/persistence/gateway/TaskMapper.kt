@@ -20,7 +20,7 @@ fun TaskEntity.toDomain(): Task =
     status = this@toDomain.status
     uploadedToStorage = this@toDomain.uploadedToStorage
     params = this@toDomain.params
-    // hashDetails = hashDetails
+    hashDetails = this@toDomain.hashDetails
     terminalOutput = this@toDomain.terminalOutput
     artifactId = this@toDomain.artifactId?.let { ArtifactId(it) }
   }
@@ -43,7 +43,7 @@ fun EndRunRequest.Task.toEntity(
     status = status,
     uploadedToStorage = uploadedToStorage,
     params = params,
-    // hashDetails
+    hashDetails = hashDetails,
     terminalOutput = terminalOutput,
     artifactId = artifactId?.value,
   )

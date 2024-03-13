@@ -43,6 +43,12 @@ class TaskRepositoryImplTest {
             uploadedToStorage = true,
             params = "params1",
             terminalOutput = "output1",
+            hashDetails =
+              HashDetails(
+                nodes = mapOf("apps/api:ProjectConfiguration" to "dummy"),
+                runtime = emptyMap(),
+                implicitDeps = emptyMap(),
+              ),
             artifactId = ArtifactId("artifact1"),
           ),
           EndRunRequest.Task(
@@ -57,6 +63,12 @@ class TaskRepositoryImplTest {
             uploadedToStorage = true,
             params = "params2",
             terminalOutput = "output2",
+            hashDetails =
+              HashDetails(
+                nodes = mapOf("apps/server:ProjectConfiguration" to "dummy"),
+                runtime = emptyMap(),
+                implicitDeps = emptyMap(),
+              ),
             artifactId = null,
           ),
         )

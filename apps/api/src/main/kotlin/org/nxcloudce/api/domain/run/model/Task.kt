@@ -27,8 +27,7 @@ class Task private constructor(builder: Builder) {
   val uploadedToStorage: Boolean
   val params: String
   val terminalOutput: String
-
-  // val hashDetails
+  val hashDetails: HashDetails
   val artifactId: ArtifactId?
 
   init {
@@ -45,7 +44,7 @@ class Task private constructor(builder: Builder) {
     requireNotNull(builder.uploadedToStorage)
     requireNotNull(builder.params)
     requireNotNull(builder.terminalOutput)
-//    requireNotNull(builder.hashDetails)
+    requireNotNull(builder.hashDetails)
 
     taskId = builder.taskId!!
     runId = builder.runId!!
@@ -59,7 +58,7 @@ class Task private constructor(builder: Builder) {
     status = builder.status!!
     uploadedToStorage = builder.uploadedToStorage!!
     params = builder.params!!
-    // hashDetails = builder.hashDetails!!
+    hashDetails = builder.hashDetails!!
     terminalOutput = builder.terminalOutput!!
     artifactId = builder.artifactId
   }
@@ -78,8 +77,7 @@ class Task private constructor(builder: Builder) {
     var uploadedToStorage: Boolean? = null
     var params: String? = null
     var terminalOutput: String? = null
-
-    // val hashDetails
+    var hashDetails: HashDetails? = null
     var artifactId: ArtifactId? = null
 
     fun build(): Task = Task(this)

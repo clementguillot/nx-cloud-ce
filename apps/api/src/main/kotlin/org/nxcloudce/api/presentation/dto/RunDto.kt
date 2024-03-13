@@ -73,6 +73,7 @@ sealed class RunDto {
           uploadedToStorage = task.uploadedToStorage,
           params = task.params,
           terminalOutput = task.terminalOutput,
+          hashDetails = task.hashDetails,
           artifactId = task.artifactId?.let { ArtifactId(it.toString()) },
         )
       }
@@ -91,13 +92,7 @@ sealed class RunDto {
       val terminalOutput: String,
       val hashDetails: HashDetails,
       val artifactId: UUID?,
-    ) {
-      data class HashDetails(
-        val nodes: Map<String, String>,
-        val runtime: Any,
-        val implicitDeps: Any,
-      )
-    }
+    )
 
     data class RunData(
       val command: String,
