@@ -89,38 +89,7 @@ class RunControllerTest {
         .header("Content-Type", "application/octet-stream")
         .body(
           gzipDto(
-            RunDto.End(
-              branch = null,
-              runGroup = "run-group",
-              ciExecutionId = null,
-              ciExecutionEnv = null,
-              MachineInfo(
-                machineId = "junit",
-                platform = "test",
-                version = "1",
-                cpuCores = 1,
-              ),
-              meta = mapOf("nxCloudVersion" to "123"),
-              vcsContext = null,
-              tasks =
-                listOf(
-                  buildTaskDto("1"),
-                  buildTaskDto("2"),
-                ),
-              linkId = "test-link-id",
-              projectGraph = null,
-              hashedContributors = null,
-              run =
-                RunDto.End.RunData(
-                  command = "nx run apps/api:test",
-                  startTime = LocalDateTime.now(),
-                  endTime = LocalDateTime.now().plusHours(1),
-                  branch = null,
-                  runGroup = null,
-                  inner = false,
-                  distributedExecutionId = null,
-                ),
-            ),
+            buildEndRunDto("test-link-id"),
           ),
         )
         .`when`()
@@ -191,6 +160,29 @@ class RunControllerTest {
         )
     }
 
+  @Test
+  fun `should end run and generate its link ID`() =
+    runTest {
+      val token = prepareWorkspaceAndAccessToken()
+
+      given()
+        .header("authorization", token)
+        .header("Content-Type", "application/octet-stream")
+        .body(
+          gzipDto(
+            buildEndRunDto(null),
+          ),
+        )
+        .`when`()
+        .post("/nx-cloud/runs/end")
+        .then()
+        .statusCode(200)
+        .body(
+          "status",
+          `is`("success"),
+        )
+    }
+
   private suspend fun prepareWorkspaceAndAccessToken(): String {
     val response =
       given()
@@ -229,6 +221,40 @@ class RunControllerTest {
         outputStream.toByteArray()
       }
     }
+
+  private fun buildEndRunDto(linkId: String? = null): RunDto.End =
+    RunDto.End(
+      branch = null,
+      runGroup = "run-group",
+      ciExecutionId = null,
+      ciExecutionEnv = null,
+      MachineInfo(
+        machineId = "junit",
+        platform = "test",
+        version = "1",
+        cpuCores = 1,
+      ),
+      meta = mapOf("nxCloudVersion" to "123"),
+      vcsContext = null,
+      tasks =
+        listOf(
+          buildTaskDto("1"),
+          buildTaskDto("2"),
+        ),
+      linkId = linkId,
+      projectGraph = null,
+      hashedContributors = null,
+      run =
+        RunDto.End.RunData(
+          command = "nx run apps/api:test",
+          startTime = LocalDateTime.now(),
+          endTime = LocalDateTime.now().plusHours(1),
+          branch = null,
+          runGroup = null,
+          inner = false,
+          distributedExecutionId = null,
+        ),
+    )
 
   private fun buildTaskDto(
     suffix: String,
