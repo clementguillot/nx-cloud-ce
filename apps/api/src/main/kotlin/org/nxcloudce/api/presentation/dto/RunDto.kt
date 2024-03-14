@@ -35,11 +35,18 @@ sealed class RunDto {
     override val meta: Map<String, String>,
     override val vcsContext: String?,
     val tasks: Collection<Task>,
-    val linkId: String,
+    val linkId: String?,
     val run: RunData,
     val projectGraph: String?,
     val hashedContributors: String?,
   ) : RunDto() {
+    companion object {
+      fun buildLinkId(): String {
+        val characters = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+        return (1..10).map { characters.random() }.joinToString("")
+      }
+    }
+
     fun toRunRequest(): EndRunRequest.Run =
       EndRunRequest.Run(
         command = run.command,
@@ -54,7 +61,7 @@ sealed class RunDto {
         machineInfo = machineInfo,
         meta = meta,
         vcsContext = vcsContext,
-        linkId = linkId,
+        linkId = linkId ?: buildLinkId(),
         projectGraph = projectGraph,
         hashedContributors = hashedContributors,
       )
