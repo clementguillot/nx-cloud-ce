@@ -28,11 +28,12 @@ class Run private constructor(builder: Builder) {
   val ciExecutionEnv: String?
   val machineInfo: MachineInfo
   val meta: Map<String, String>
-  val vcsContext: String?
+  val vcsContext: VcsContext?
   val tasks: Collection<Task>
   val linkId: String
-  val projectGraph: String?
+  val projectGraph: ProjectGraph?
   val hashedContributors: String?
+  val sha: String?
 
   init {
     requireNotNull(builder.id)
@@ -66,6 +67,7 @@ class Run private constructor(builder: Builder) {
     linkId = builder.linkId!!
     projectGraph = builder.projectGraph
     hashedContributors = builder.hashedContributors
+    sha = builder.sha
   }
 
   class Builder {
@@ -83,11 +85,12 @@ class Run private constructor(builder: Builder) {
     var ciExecutionEnv: String? = null
     var machineInfo: MachineInfo? = null
     var meta: Map<String, String>? = null
-    var vcsContext: String? = null
+    var vcsContext: VcsContext? = null
     var tasks: Collection<Task>? = null
     var linkId: String? = null
-    var projectGraph: String? = null
+    var projectGraph: ProjectGraph? = null
     var hashedContributors: String? = null
+    var sha: String? = null
 
     fun build(): Run = Run(this)
   }

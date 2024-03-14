@@ -121,10 +121,11 @@ class EndRunImplTest {
       ciExecutionEnv = "test ci execution env",
       machineInfo = MachineInfo("machine-id", "platform", "version", 32),
       meta = mapOf("nxCloudVersion" to "123"),
-      vcsContext = "test vcs context",
+      vcsContext = null,
       linkId = "test link id",
-      projectGraph = "project graph",
+      projectGraph = null,
       hashedContributors = null,
+      sha = null,
     )
 
   private fun buildRequestTask(

@@ -36,6 +36,7 @@ fun RunEntity.toDomain(): Run =
     linkId = this@toDomain.linkId
     projectGraph = this@toDomain.projectGraph
     hashedContributors = this@toDomain.hashedContributors
+    sha = this@toDomain.sha
   }
 
 fun EndRunRequest.Run.toEntity(
@@ -67,4 +68,5 @@ fun EndRunRequest.Run.toEntity(
     linkId = linkId,
     projectGraph = projectGraph,
     hashedContributors = hashedContributors,
+    sha = sha,
   )

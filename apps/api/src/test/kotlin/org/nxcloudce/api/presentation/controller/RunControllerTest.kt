@@ -89,7 +89,13 @@ class RunControllerTest {
         .header("Content-Type", "application/octet-stream")
         .body(
           gzipDto(
-            buildEndRunDto("test-link-id"),
+            buildEndRunDto(
+              listOf(
+                buildTaskDto("1"),
+                buildTaskDto("2"),
+              ),
+              "test-link-id",
+            ),
           ),
         )
         .`when`()
@@ -114,37 +120,12 @@ class RunControllerTest {
         .header("Content-Type", "application/octet-stream")
         .body(
           gzipDto(
-            RunDto.End(
-              branch = null,
-              runGroup = "run-group",
-              ciExecutionId = null,
-              ciExecutionEnv = null,
-              MachineInfo(
-                machineId = "junit",
-                platform = "test",
-                version = "1",
-                cpuCores = 1,
+            buildEndRunDto(
+              listOf(
+                buildTaskDto("1"),
+                buildTaskDto("2", 1),
               ),
-              meta = mapOf("nxCloudVersion" to "123"),
-              vcsContext = null,
-              tasks =
-                listOf(
-                  buildTaskDto("1"),
-                  buildTaskDto("2", 1),
-                ),
-              linkId = "test-link-id",
-              run =
-                RunDto.End.RunData(
-                  command = "nx run apps/api:test",
-                  startTime = LocalDateTime.now(),
-                  endTime = LocalDateTime.now().plusHours(1),
-                  branch = null,
-                  runGroup = null,
-                  inner = false,
-                  distributedExecutionId = null,
-                ),
-              projectGraph = null,
-              hashedContributors = null,
+              "test-link-id",
             ),
           ),
         )
@@ -170,7 +151,13 @@ class RunControllerTest {
         .header("Content-Type", "application/octet-stream")
         .body(
           gzipDto(
-            buildEndRunDto(null),
+            buildEndRunDto(
+              listOf(
+                buildTaskDto("1"),
+                buildTaskDto("2"),
+              ),
+              null,
+            ),
           ),
         )
         .`when`()
@@ -222,7 +209,10 @@ class RunControllerTest {
       }
     }
 
-  private fun buildEndRunDto(linkId: String? = null): RunDto.End =
+  private fun buildEndRunDto(
+    tasks: Collection<RunDto.End.Task>,
+    linkId: String? = null,
+  ): RunDto.End =
     RunDto.End(
       branch = null,
       runGroup = "run-group",
@@ -236,11 +226,7 @@ class RunControllerTest {
       ),
       meta = mapOf("nxCloudVersion" to "123"),
       vcsContext = null,
-      tasks =
-        listOf(
-          buildTaskDto("1"),
-          buildTaskDto("2"),
-        ),
+      tasks = tasks,
       linkId = linkId,
       projectGraph = null,
       hashedContributors = null,
@@ -253,6 +239,7 @@ class RunControllerTest {
           runGroup = null,
           inner = false,
           distributedExecutionId = null,
+          sha = null,
         ),
     )
 
