@@ -3,7 +3,7 @@ package org.nxcloudce.api.presentation.dto
 import org.nxcloudce.api.domain.run.model.*
 import org.nxcloudce.api.domain.run.usecase.EndRunRequest
 import java.time.LocalDateTime
-import java.util.UUID
+import java.util.*
 
 sealed class RunDto {
   abstract val branch: String?
@@ -12,7 +12,7 @@ sealed class RunDto {
   abstract val ciExecutionEnv: String?
   abstract val machineInfo: MachineInfo
   abstract val meta: Map<String, String>
-  abstract val vcsContext: String?
+  abstract val vcsContext: VcsContext?
 
   data class Start(
     override val branch: String?,
@@ -21,7 +21,7 @@ sealed class RunDto {
     override val ciExecutionEnv: String?,
     override val machineInfo: MachineInfo,
     override val meta: Map<String, String>,
-    override val vcsContext: String?,
+    override val vcsContext: VcsContext?,
     val distributedExecutionId: String?,
     val hashes: Collection<String>,
   ) : RunDto()
@@ -33,11 +33,11 @@ sealed class RunDto {
     override val ciExecutionEnv: String?,
     override val machineInfo: MachineInfo,
     override val meta: Map<String, String>,
-    override val vcsContext: String?,
+    override val vcsContext: VcsContext?,
     val tasks: Collection<Task>,
     val linkId: String?,
     val run: RunData,
-    val projectGraph: String?,
+    val projectGraph: ProjectGraph?,
     val hashedContributors: String?,
   ) : RunDto() {
     companion object {
@@ -64,6 +64,7 @@ sealed class RunDto {
         linkId = linkId ?: buildLinkId(),
         projectGraph = projectGraph,
         hashedContributors = hashedContributors,
+        sha = run.sha,
       )
 
     fun toTaskRequests(): List<EndRunRequest.Task> =
@@ -109,6 +110,7 @@ sealed class RunDto {
       val runGroup: String?,
       val inner: Boolean,
       val distributedExecutionId: String?,
+      val sha: String?,
     )
   }
 }

@@ -28,11 +28,12 @@ class RunTest {
         ciExecutionEnv = null
         machineInfo = MachineInfo("machine-id", "linux", "1.0", 4)
         meta = mapOf("nxCloudVersion" to "123")
-        vcsContext = "https://github.com/example/repo.git"
+        vcsContext = buildVcsContext()
         tasks = emptyList()
         linkId = "link-id"
-        projectGraph = "project-graph"
+        projectGraph = buildProjectGraph()
         hashedContributors = null
+        sha = "c4a5be0"
       }
 
     expect(run) {
@@ -50,11 +51,51 @@ class RunTest {
       its { ciExecutionEnv }.toEqual(null)
       its { machineInfo }.toEqual(MachineInfo("machine-id", "linux", "1.0", 4))
       its { meta }.toEqual(mapOf("nxCloudVersion" to "123"))
-      its { vcsContext }.toEqual("https://github.com/example/repo.git")
+      its { vcsContext }.toEqual(buildVcsContext())
       its { tasks }.toEqual(emptyList())
       its { linkId }.toEqual("link-id")
-      its { projectGraph }.toEqual("project-graph")
+      its { projectGraph }.toEqual(buildProjectGraph())
       its { hashedContributors }.toEqual(null)
+      its { sha }.toEqual("c4a5be0")
     }
   }
+
+  private fun buildVcsContext(): VcsContext =
+    VcsContext(
+      branch = "test",
+      ref = null,
+      title = null,
+      headSha = null,
+      baseSha = null,
+      commitLink = null,
+      author = null,
+      authorUrl = null,
+      authorAvatarUrl = null,
+      repositoryUrl = "https://github.com/example/repo.git",
+      platformName = null,
+    )
+
+  private fun buildProjectGraph(): ProjectGraph =
+    ProjectGraph(
+      nodes =
+        mapOf(
+          "apps/api" to
+            ProjectGraph.Node(
+              type = "application",
+              name = "apps/api",
+              data = mapOf("root" to "apps/api", "sourceRoot" to "apps/api/src"),
+            ),
+        ),
+      dependencies =
+        mapOf(
+          "apps/api" to
+            listOf(
+              ProjectGraph.Dependency(
+                source = "apps/api",
+                target = "apps/api",
+                type = "static",
+              ),
+            ),
+        ),
+    )
 }

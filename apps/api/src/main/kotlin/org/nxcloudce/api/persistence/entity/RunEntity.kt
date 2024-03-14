@@ -2,6 +2,8 @@ package org.nxcloudce.api.persistence.entity
 
 import io.quarkus.mongodb.panache.common.MongoEntity
 import org.bson.types.ObjectId
+import org.nxcloudce.api.domain.run.model.ProjectGraph
+import org.nxcloudce.api.domain.run.model.VcsContext
 import java.time.LocalDateTime
 
 @MongoEntity(collection = "run")
@@ -20,10 +22,11 @@ data class RunEntity(
   var ciExecutionEnv: String?,
   var machineInfo: MachineInfo,
   var meta: Map<String, String>,
-  var vcsContext: String?,
+  var vcsContext: VcsContext?,
   var linkId: String,
-  var projectGraph: String?,
+  var projectGraph: ProjectGraph?,
   var hashedContributors: String?,
+  var sha: String?,
 ) {
   data class MachineInfo(
     var machineId: String = "",

@@ -28,10 +28,11 @@ data class EndRunRequest(
     val ciExecutionEnv: String?,
     val machineInfo: MachineInfo,
     val meta: Map<String, String>,
-    val vcsContext: String?,
+    val vcsContext: VcsContext?,
     val linkId: String,
-    val projectGraph: String?,
+    val projectGraph: ProjectGraph?,
     val hashedContributors: String?,
+    val sha: String?,
   )
 
   data class Task(
