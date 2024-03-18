@@ -12,11 +12,13 @@ import org.nxcloudce.api.presentation.dto.CreateOrgAndWorkspaceDto
 import org.nxcloudce.api.presentation.dto.CreateWorkspaceDto
 import org.nxcloudce.api.presentation.dto.IdDto
 import org.nxcloudce.api.presentation.dto.InitWorkspaceDto
+import org.nxcloudce.api.presentation.infrastructure.ServerConfiguration
 
 @Path("")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 class WorkspaceController(
+  private val serverConfiguration: ServerConfiguration,
   private val createWorkspace: CreateWorkspace,
   private val createOrgAndWorkspace: CreateOrgAndWorkspace,
 ) {
@@ -37,7 +39,7 @@ class WorkspaceController(
     ) { response ->
       response.onItem().transform {
         InitWorkspaceDto(
-          url = "http://TBD?token=${it.accessToken.encodedValue}",
+          url = "${serverConfiguration.applicationUrl()}?token=${it.accessToken.encodedValue}",
           token = it.accessToken.encodedValue,
         )
       }

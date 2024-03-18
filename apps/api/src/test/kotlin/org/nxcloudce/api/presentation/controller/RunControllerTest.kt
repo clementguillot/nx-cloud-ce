@@ -104,7 +104,7 @@ class RunControllerTest {
         .statusCode(200)
         .body(
           "runUrl",
-          `is`("http://TBD/runs/test-link-id"),
+          `is`("http://localtest/runs/test-link-id"),
           "status",
           `is`("success"),
         )
@@ -135,7 +135,7 @@ class RunControllerTest {
         .statusCode(200)
         .body(
           "runUrl",
-          `is`("http://TBD/runs/test-link-id"),
+          `is`("http://localtest/runs/test-link-id"),
           "status",
           `is`("success"),
         )
