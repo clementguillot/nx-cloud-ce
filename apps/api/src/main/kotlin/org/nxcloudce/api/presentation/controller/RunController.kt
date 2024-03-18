@@ -21,6 +21,7 @@ import org.nxcloudce.api.domain.workspace.model.WorkspaceId
 import org.nxcloudce.api.presentation.dto.RemoteArtifactListDto
 import org.nxcloudce.api.presentation.dto.RunDto
 import org.nxcloudce.api.presentation.dto.RunSummaryDto
+import org.nxcloudce.api.presentation.infrastructure.ServerConfiguration
 import java.util.zip.GZIPInputStream
 import kotlin.text.Charsets.UTF_8
 
@@ -31,6 +32,7 @@ class RunController(
   private val dispatcher: CoroutineDispatcher,
   private val objectMapper: ObjectMapper,
   private val identity: CurrentIdentityAssociation,
+  private val serverConfiguration: ServerConfiguration,
   private val startRun: StartRun,
   private val endRun: EndRun,
 ) {
@@ -64,7 +66,7 @@ class RunController(
             workspaceId = WorkspaceId(identity.deferredIdentity.awaitSuspending().principal.name),
           ),
         ) { response ->
-          RunSummaryDto.from(response)
+          RunSummaryDto.from(response, serverConfiguration.applicationUrl())
         }
       }
 

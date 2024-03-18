@@ -9,9 +9,12 @@ data class RunSummaryDto(
   val status: String,
 ) {
   companion object {
-    fun from(response: EndRunResponse): RunSummaryDto =
+    fun from(
+      response: EndRunResponse,
+      applicationUrl: String,
+    ): RunSummaryDto =
       RunSummaryDto(
-        runUrl = "http://TBD/runs/${response.run.linkId}",
+        runUrl = "$applicationUrl/runs/${response.run.linkId}",
         status = "success",
       )
   }
