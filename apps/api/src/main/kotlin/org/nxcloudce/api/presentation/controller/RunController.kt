@@ -40,7 +40,7 @@ class RunController(
     summary = "Retrieves URLs for retrieving/storing cached artifacts",
   )
   @POST
-  @Path("/nx-cloud/v2/runs/start")
+  @Path("/v2/runs/start")
   @Consumes(MediaType.APPLICATION_JSON)
   suspend fun start(startRunDto: RunDto.Start): RemoteArtifactListDto =
     startRun.start(
@@ -54,7 +54,7 @@ class RunController(
     }
 
   @POST
-  @Path("/nx-cloud/runs/end")
+  @Path("/runs/end")
   @Consumes(MediaType.APPLICATION_OCTET_STREAM)
   suspend fun end(request: ByteArray): RunSummaryDto =
     getEndRunDtoFromRequest(request)

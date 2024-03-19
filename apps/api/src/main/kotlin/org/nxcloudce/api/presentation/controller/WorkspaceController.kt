@@ -24,7 +24,7 @@ class WorkspaceController(
 ) {
   @Operation(summary = "Create a public cloud counterpart for a private cloud workspace")
   @POST
-  @Path("/nx-cloud/private/create-workspace")
+  @Path("/private/create-workspace")
   suspend fun create(workspaceDto: CreateWorkspaceDto) =
     createWorkspace.create(workspaceDto.toRequest()) { response ->
       IdDto(response.workspace.id.value)
@@ -32,7 +32,7 @@ class WorkspaceController(
 
   @Operation(summary = "Create an org and a workspace")
   @POST
-  @Path("/nx-cloud/create-org-and-workspace")
+  @Path("/create-org-and-workspace")
   fun createOrgAndWorkspace(requestDto: CreateOrgAndWorkspaceDto) =
     createOrgAndWorkspace.create(
       requestDto.toRequest(),

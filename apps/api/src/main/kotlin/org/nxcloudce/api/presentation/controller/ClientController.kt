@@ -6,7 +6,7 @@ import org.jboss.resteasy.reactive.RestQuery
 import org.nxcloudce.api.presentation.dto.VerifyClientBundleDto
 import org.nxcloudce.api.presentation.infrastructure.ServerConfiguration
 
-@Path("/nx-cloud/client/verify")
+@Path("/client/verify")
 class ClientController(private val serverConfiguration: ServerConfiguration) {
   @GET
   fun verify(

@@ -15,7 +15,7 @@ class OrganizationControllerTest {
       .header("Content-Type", "application/json")
       .body(CreateOrganizationDto("my new org"))
       .`when`()
-      .post("/nx-cloud/private/create-org")
+      .post("/private/create-org")
       .then()
       .statusCode(200)
       .body("id", `is`(notNullValue()))

@@ -67,7 +67,7 @@ class RunControllerTest {
           ),
         )
         .`when`()
-        .post("/nx-cloud/v2/runs/start")
+        .post("/v2/runs/start")
         .then()
         .statusCode(200)
         .body(
@@ -99,7 +99,7 @@ class RunControllerTest {
           ),
         )
         .`when`()
-        .post("/nx-cloud/runs/end")
+        .post("/runs/end")
         .then()
         .statusCode(200)
         .body(
@@ -130,7 +130,7 @@ class RunControllerTest {
           ),
         )
         .`when`()
-        .post("/nx-cloud/runs/end")
+        .post("/runs/end")
         .then()
         .statusCode(200)
         .body(
@@ -161,7 +161,7 @@ class RunControllerTest {
           ),
         )
         .`when`()
-        .post("/nx-cloud/runs/end")
+        .post("/runs/end")
         .then()
         .statusCode(200)
         .body(
@@ -181,7 +181,7 @@ class RunControllerTest {
             nxInitDate = null,
           ),
         )
-        .post("/nx-cloud/create-org-and-workspace")
+        .post("/create-org-and-workspace")
         .`as`(InitWorkspaceDto::class.java)
 
     return response.token
