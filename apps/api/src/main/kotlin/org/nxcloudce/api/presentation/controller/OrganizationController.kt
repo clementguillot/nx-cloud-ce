@@ -10,7 +10,7 @@ import org.nxcloudce.api.domain.organization.usecase.CreateOrganization
 import org.nxcloudce.api.presentation.dto.CreateOrganizationDto
 import org.nxcloudce.api.presentation.dto.IdDto
 
-@Path("/nx-cloud/private/create-org")
+@Path("/private/create-org")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 class OrganizationController(private val createOrganization: CreateOrganization) {

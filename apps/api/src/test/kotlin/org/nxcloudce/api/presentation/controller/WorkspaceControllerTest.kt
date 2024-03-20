@@ -31,7 +31,7 @@ class WorkspaceControllerTest {
           ),
         )
         .`when`()
-        .post("/nx-cloud/private/create-workspace")
+        .post("/private/create-workspace")
         .then()
         .statusCode(200)
         .body("id", `is`(notNullValue()))
@@ -49,7 +49,7 @@ class WorkspaceControllerTest {
         ),
       )
       .`when`()
-      .post("/nx-cloud/create-org-and-workspace")
+      .post("/create-org-and-workspace")
       .then()
       .statusCode(200)
       .body("token", `is`(notNullValue()), "url", `is`(notNullValue()))

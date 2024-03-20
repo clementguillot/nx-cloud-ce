@@ -52,6 +52,7 @@ dependencies {
   testImplementation("io.quarkiverse.amazonservices:quarkus-amazon-s3:$quarkusAwsS3Version")
   testImplementation("io.quarkiverse.mockk:quarkus-junit5-mockk:$quarkusMockkVersion")
   testImplementation("io.quarkus:quarkus-junit5")
+  testImplementation("io.quarkus:quarkus-junit5-internal")
   testImplementation("io.quarkus:quarkus-test-hibernate-reactive-panache")
   testImplementation("io.rest-assured:rest-assured")
   testImplementation("io.quarkus:quarkus-jacoco")
