@@ -9,7 +9,7 @@ import org.nxcloudce.api.presentation.infrastructure.ServerConfiguration
 @Path("/client/verify")
 class ClientController(private val serverConfiguration: ServerConfiguration) {
   @GET
-  fun verify(
+  suspend fun verify(
     @RestQuery version: String?,
     @RestQuery contentHash: String?,
   ): VerifyClientBundleDto {

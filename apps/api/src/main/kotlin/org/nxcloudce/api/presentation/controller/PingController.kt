@@ -13,5 +13,5 @@ class PingController {
   )
   @GET
   @Produces(MediaType.TEXT_PLAIN)
-  fun ping() = ""
+  suspend fun ping() = ""
 }
