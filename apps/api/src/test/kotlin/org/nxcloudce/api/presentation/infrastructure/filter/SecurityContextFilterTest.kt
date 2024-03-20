@@ -1,4 +1,4 @@
-package org.nxcloudce.api.presentation.filter
+package org.nxcloudce.api.presentation.infrastructure.filter
 
 import ch.tutteli.atrium.api.fluent.en_GB.its
 import ch.tutteli.atrium.api.fluent.en_GB.notToEqualNull
