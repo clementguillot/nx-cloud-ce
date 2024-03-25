@@ -50,6 +50,12 @@
     "lint": {
       "executor": "@jnxplus/nx-gradle:run-task",
       "options": {
+        "task": "spotlessCheck"
+      }
+    },
+    "format": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
         "task": "spotlessApply"
       }
     },
