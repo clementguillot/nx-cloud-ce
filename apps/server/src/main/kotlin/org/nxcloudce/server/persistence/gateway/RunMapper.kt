@@ -1,10 +1,7 @@
 package org.nxcloudce.server.persistence.gateway
 
 import org.bson.types.ObjectId
-import org.nxcloudce.server.domain.run.model.MachineInfo
-import org.nxcloudce.server.domain.run.model.Run
-import org.nxcloudce.server.domain.run.model.RunId
-import org.nxcloudce.server.domain.run.model.RunStatus
+import org.nxcloudce.server.domain.run.model.*
 import org.nxcloudce.server.domain.run.usecase.EndRunRequest
 import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 import org.nxcloudce.server.persistence.entity.RunEntity
@@ -32,9 +29,46 @@ fun RunEntity.toDomain(): Run =
       )
     meta = this@toDomain.meta
     tasks = emptyList()
-    vcsContext = this@toDomain.vcsContext
+    vcsContext =
+      this@toDomain.vcsContext?.let { vcsContext ->
+        VcsContext(
+          branch = vcsContext.branch,
+          ref = vcsContext.ref,
+          title = vcsContext.title,
+          headSha = vcsContext.headSha,
+          baseSha = vcsContext.baseSha,
+          commitLink = vcsContext.commitLink,
+          author = vcsContext.author,
+          authorUrl = vcsContext.authorUrl,
+          authorAvatarUrl = vcsContext.authorAvatarUrl,
+          repositoryUrl = vcsContext.repositoryUrl,
+          platformName = vcsContext.platformName,
+        )
+      }
     linkId = this@toDomain.linkId
-    projectGraph = this@toDomain.projectGraph
+    projectGraph =
+      this@toDomain.projectGraph?.let { projectGraph ->
+        ProjectGraph(
+          nodes =
+            projectGraph.nodes.mapValues { (_, node) ->
+              ProjectGraph.Node(
+                type = node.type,
+                name = node.name,
+                data = node.data,
+              )
+            },
+          dependencies =
+            projectGraph.dependencies.mapValues { (_, dependencies) ->
+              dependencies.map { dependency ->
+                ProjectGraph.Dependency(
+                  source = dependency.source,
+                  target = dependency.target,
+                  type = dependency.type,
+                )
+              }
+            },
+        )
+      }
     hashedContributors = this@toDomain.hashedContributors
     sha = this@toDomain.sha
   }
@@ -64,9 +98,46 @@ fun EndRunRequest.Run.toEntity(
         cpuCores = this@toEntity.machineInfo.cpuCores
       },
     meta = meta,
-    vcsContext = vcsContext,
+    vcsContext =
+      vcsContext?.let { vcsContext ->
+        RunEntity.VcsContext(
+          branch = vcsContext.branch,
+          ref = vcsContext.ref,
+          title = vcsContext.title,
+          headSha = vcsContext.headSha,
+          baseSha = vcsContext.baseSha,
+          commitLink = vcsContext.commitLink,
+          author = vcsContext.author,
+          authorUrl = vcsContext.authorUrl,
+          authorAvatarUrl = vcsContext.authorAvatarUrl,
+          repositoryUrl = vcsContext.repositoryUrl,
+          platformName = vcsContext.platformName,
+        )
+      },
     linkId = linkId,
-    projectGraph = projectGraph,
+    projectGraph =
+      projectGraph?.let { projectGraph ->
+        RunEntity.ProjectGraph(
+          nodes =
+            projectGraph.nodes.mapValues { (_, node) ->
+              RunEntity.ProjectGraph.Node(
+                type = node.type,
+                name = node.name,
+                data = node.data,
+              )
+            },
+          dependencies =
+            projectGraph.dependencies.mapValues { (_, dependencies) ->
+              dependencies.map { dependency ->
+                RunEntity.ProjectGraph.Dependency(
+                  source = dependency.source,
+                  target = dependency.target,
+                  type = dependency.type,
+                )
+              }
+            },
+        )
+      },
     hashedContributors = hashedContributors,
     sha = sha,
   )

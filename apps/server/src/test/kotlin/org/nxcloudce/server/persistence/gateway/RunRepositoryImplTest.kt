@@ -11,9 +11,7 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.test.runTest
 import org.bson.types.ObjectId
 import org.junit.jupiter.api.Test
-import org.nxcloudce.server.domain.run.model.MachineInfo
-import org.nxcloudce.server.domain.run.model.RunId
-import org.nxcloudce.server.domain.run.model.RunStatus
+import org.nxcloudce.server.domain.run.model.*
 import org.nxcloudce.server.domain.run.usecase.EndRunRequest
 import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 import org.nxcloudce.server.persistence.entity.RunEntity
@@ -52,18 +50,50 @@ class RunRepositoryImplTest {
               cpuCores = 42,
             ),
           meta = mapOf("nxCloudVersion" to "123"),
-          vcsContext = null,
+          vcsContext =
+            VcsContext(
+              branch = "main",
+              ref = null,
+              title = null,
+              headSha = null,
+              baseSha = null,
+              commitLink = null,
+              author = "clement guillot",
+              authorUrl = null,
+              authorAvatarUrl = null,
+              repositoryUrl = "https://github.com/clementguillot/nx-cloud-ce",
+              platformName = "JUNIT",
+            ),
           linkId = "test-link",
-          projectGraph = null,
+          projectGraph =
+            ProjectGraph(
+              nodes =
+                mapOf(
+                  "apps/server" to
+                    ProjectGraph.Node(
+                      type = "application",
+                      name = "apps/server",
+                      data = mapOf("root" to "apps/server/src"),
+                    ),
+                ),
+              dependencies =
+                mapOf(
+                  "apps/server" to
+                    listOf(
+                      ProjectGraph.Dependency(source = "apps/server", target = "libs/server/domain", type = "static"),
+                    ),
+                ),
+            ),
           hashedContributors = null,
           sha = null,
         )
       val assignedEntityId = ObjectId()
 
-      every { mockRunPanacheRepository.persist(any<RunEntity>()) } answers {
-        firstArg<RunEntity>().id = assignedEntityId
-        Uni.createFrom().item(firstArg<RunEntity>())
-      }
+      every { mockRunPanacheRepository.persist(any<RunEntity>()) } answers
+        {
+          firstArg<RunEntity>().id = assignedEntityId
+          Uni.createFrom().item(firstArg<RunEntity>())
+        }
 
       // When
       val result = runRepository.create(runRequest, RunStatus.SUCCESS, workspaceId)

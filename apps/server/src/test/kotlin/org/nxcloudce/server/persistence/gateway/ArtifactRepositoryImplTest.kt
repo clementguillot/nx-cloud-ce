@@ -46,7 +46,7 @@ class ArtifactRepositoryImplTest {
       coEvery {
         mockArtifactPanacheRepository.findByHash(
           hashes,
-          workspaceId,
+          workspaceId.value,
         )
       } returns listOf(artifactEntity1, artifactEntity2)
 

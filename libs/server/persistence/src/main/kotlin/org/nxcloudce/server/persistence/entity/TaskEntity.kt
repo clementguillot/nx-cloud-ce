@@ -2,7 +2,6 @@ package org.nxcloudce.server.persistence.entity
 
 import io.quarkus.mongodb.panache.common.MongoEntity
 import org.bson.types.ObjectId
-import org.nxcloudce.server.domain.run.model.HashDetails
 import java.time.LocalDateTime
 
 @MongoEntity(collection = "task")
@@ -23,4 +22,10 @@ data class TaskEntity(
   var terminalOutput: String,
   var hashDetails: HashDetails,
   var artifactId: String?,
-)
+) {
+  data class HashDetails(
+    val nodes: Map<String, String>,
+    val runtime: Map<String, String>?,
+    val implicitDeps: Map<String, String>?,
+  )
+}

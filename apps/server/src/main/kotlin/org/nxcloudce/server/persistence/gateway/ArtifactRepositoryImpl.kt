@@ -20,7 +20,7 @@ class ArtifactRepositoryImpl(
     workspaceId: WorkspaceId,
   ): Collection<Artifact.Exist> =
     artifactPanacheRepository
-      .findByHash(hashes.map { it.value }, workspaceId)
+      .findByHash(hashes.map { it.value }, workspaceId.value)
       .map { it.toDomain() }
 
   override suspend fun createWithHash(

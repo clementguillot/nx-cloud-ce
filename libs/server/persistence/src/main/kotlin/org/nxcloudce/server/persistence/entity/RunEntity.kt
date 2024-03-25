@@ -2,8 +2,6 @@ package org.nxcloudce.server.persistence.entity
 
 import io.quarkus.mongodb.panache.common.MongoEntity
 import org.bson.types.ObjectId
-import org.nxcloudce.server.domain.run.model.ProjectGraph
-import org.nxcloudce.server.domain.run.model.VcsContext
 import java.time.LocalDateTime
 
 @MongoEntity(collection = "run")
@@ -34,4 +32,35 @@ data class RunEntity(
     var version: String = "",
     var cpuCores: Short = 0,
   )
+
+  data class VcsContext(
+    val branch: String,
+    val ref: String?,
+    val title: String?,
+    val headSha: String?,
+    val baseSha: String?,
+    val commitLink: String?,
+    val author: String?,
+    val authorUrl: String?,
+    val authorAvatarUrl: String?,
+    val repositoryUrl: String?,
+    val platformName: String?,
+  )
+
+  data class ProjectGraph(
+    val nodes: Map<String, Node>,
+    val dependencies: Map<String, List<Dependency>>,
+  ) {
+    data class Node(
+      val type: String,
+      val name: String,
+      val data: Map<String, String>,
+    )
+
+    data class Dependency(
+      val source: String,
+      val target: String,
+      val type: String,
+    )
+  }
 }
