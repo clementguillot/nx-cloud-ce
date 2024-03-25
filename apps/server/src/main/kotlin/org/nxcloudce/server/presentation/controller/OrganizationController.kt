@@ -19,7 +19,7 @@ class OrganizationController(private val createOrganization: CreateOrganization)
   )
   @POST
   suspend fun create(orgDto: CreateOrganizationDto) =
-    createOrganization.create(orgDto.toRequest()) { response ->
+    createOrganization(orgDto.toRequest()) { response ->
       IdDto(response.organization.id.value)
     }
 }

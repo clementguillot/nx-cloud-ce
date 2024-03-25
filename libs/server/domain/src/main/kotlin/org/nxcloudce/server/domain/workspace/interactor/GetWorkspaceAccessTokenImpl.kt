@@ -6,7 +6,7 @@ import org.nxcloudce.server.domain.workspace.usecase.GetWorkspaceAccessTokenRequ
 import org.nxcloudce.server.domain.workspace.usecase.GetWorkspaceAccessTokenResponse
 
 class GetWorkspaceAccessTokenImpl(private val accessTokenRepository: AccessTokenRepository) : GetWorkspaceAccessToken {
-  override suspend fun <T> getAccessToken(
+  override suspend operator fun <T> invoke(
     request: GetWorkspaceAccessTokenRequest,
     presenter: (GetWorkspaceAccessTokenResponse) -> T,
   ): T =

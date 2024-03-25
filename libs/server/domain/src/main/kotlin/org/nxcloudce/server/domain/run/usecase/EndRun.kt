@@ -1,15 +1,11 @@
 package org.nxcloudce.server.domain.run.usecase
 
+import org.nxcloudce.server.domain.UseCase
 import org.nxcloudce.server.domain.run.model.*
 import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 import java.time.LocalDateTime
 
-interface EndRun {
-  suspend fun <T> end(
-    request: EndRunRequest,
-    presenter: (EndRunResponse) -> T,
-  ): T
-}
+interface EndRun : UseCase<EndRunRequest, EndRunResponse>
 
 data class EndRunRequest(
   val run: Run,

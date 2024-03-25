@@ -57,7 +57,7 @@ class CreateOrgAndWorkspaceImplTest {
 
     // When
     uniAsserter.assertThat(
-      { createOrgAndWorkspace.create(dummyRequest) { it } },
+      { createOrgAndWorkspace(dummyRequest) { it } },
       { response ->
         // Then
         expect(response) {

@@ -29,7 +29,7 @@ class CreateOrganizationImplTest {
       coEvery { mockOrgRepository.create(dummyRequest) } returns dummyOrg
 
       // When
-      val result = createOrganization.create(dummyRequest) { it }
+      val result = createOrganization(dummyRequest) { it }
 
       // Then
       expect(result).toEqual(dummyResponse)

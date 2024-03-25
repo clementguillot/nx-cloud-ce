@@ -6,7 +6,7 @@ import org.nxcloudce.server.domain.workspace.model.Workspace
 import java.time.LocalDateTime
 
 interface CreateOrgAndWorkspace {
-  fun <T> create(
+  operator fun <T> invoke(
     request: CreateOrgAndWorkspaceRequest,
     presenter: (Uni<CreateOrgAndWorkspaceResponse>) -> Uni<T>,
   ): Uni<T>

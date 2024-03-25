@@ -1,13 +1,9 @@
 package org.nxcloudce.server.domain.organization.usecase
 
+import org.nxcloudce.server.domain.UseCase
 import org.nxcloudce.server.domain.organization.model.Organization
 
-interface CreateOrganization {
-  suspend fun <T> create(
-    request: CreateOrganizationRequest,
-    presenter: (CreateOrganizationResponse) -> T,
-  ): T
-}
+interface CreateOrganization : UseCase<CreateOrganizationRequest, CreateOrganizationResponse>
 
 data class CreateOrganizationRequest(val name: String)
 

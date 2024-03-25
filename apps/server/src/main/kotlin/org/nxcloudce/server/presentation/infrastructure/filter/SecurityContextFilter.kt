@@ -18,7 +18,7 @@ class SecurityContextFilter(private val getWorkspaceAccessToken: GetWorkspaceAcc
       return
     }
 
-    getWorkspaceAccessToken.getAccessToken(GetWorkspaceAccessTokenRequest(encodedAccessToken = apiKey)) { response ->
+    getWorkspaceAccessToken(GetWorkspaceAccessTokenRequest(encodedAccessToken = apiKey)) { response ->
       response.accessToken?.let { accessToken ->
         requestContext.securityContext = buildSecurityContext(accessToken)
       }

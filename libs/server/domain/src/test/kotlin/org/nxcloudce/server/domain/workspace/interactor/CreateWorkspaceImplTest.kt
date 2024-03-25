@@ -34,7 +34,7 @@ class CreateWorkspaceImplTest {
 
       // When and then
       expect {
-        runBlocking { createWorkspace.create(dummyRequest) {} }
+        runBlocking { createWorkspace(dummyRequest) {} }
       }.toThrow<OrganizationNotFoundException>()
     }
 
@@ -58,7 +58,7 @@ class CreateWorkspaceImplTest {
       coEvery { mockWorkspaceRepository.create(dummyRequest) } returns dummyWorkspace
 
       // When
-      val result = createWorkspace.create(dummyRequest) { it }
+      val result = createWorkspace(dummyRequest) { it }
 
       // Then
       expect(result).toEqual(dummyResponse)

@@ -14,7 +14,7 @@ class StartRunImpl(
   private val artifactRepository: ArtifactRepository,
   private val storageService: StorageService,
 ) : StartRun {
-  override suspend fun <T> start(
+  override suspend operator fun <T> invoke(
     request: StartRunRequest,
     presenter: (StartRunResponse) -> T,
   ): T {

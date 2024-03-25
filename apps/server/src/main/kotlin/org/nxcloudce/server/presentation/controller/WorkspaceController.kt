@@ -26,7 +26,7 @@ class WorkspaceController(
   @POST
   @Path("/private/create-workspace")
   suspend fun create(workspaceDto: CreateWorkspaceDto) =
-    createWorkspace.create(workspaceDto.toRequest()) { response ->
+    createWorkspace(workspaceDto.toRequest()) { response ->
       IdDto(response.workspace.id.value)
     }
 
@@ -34,7 +34,7 @@ class WorkspaceController(
   @POST
   @Path("/create-org-and-workspace")
   fun createOrgAndWorkspace(requestDto: CreateOrgAndWorkspaceDto) =
-    createOrgAndWorkspace.create(
+    createOrgAndWorkspace(
       requestDto.toRequest(),
     ) { response ->
       response.onItem().transform {

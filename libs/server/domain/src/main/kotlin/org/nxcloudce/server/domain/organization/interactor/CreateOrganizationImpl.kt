@@ -6,7 +6,7 @@ import org.nxcloudce.server.domain.organization.usecase.CreateOrganizationReques
 import org.nxcloudce.server.domain.organization.usecase.CreateOrganizationResponse
 
 class CreateOrganizationImpl(private val orgGateway: OrganizationRepository) : CreateOrganization {
-  override suspend fun <T> create(
+  override suspend operator fun <T> invoke(
     request: CreateOrganizationRequest,
     presenter: (CreateOrganizationResponse) -> T,
   ): T {

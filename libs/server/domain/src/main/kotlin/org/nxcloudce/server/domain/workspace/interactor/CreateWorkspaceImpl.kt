@@ -11,7 +11,7 @@ class CreateWorkspaceImpl(
   private val workspaceGateway: WorkspaceRepository,
   private val orgValidation: OrganizationValidationService,
 ) : CreateWorkspace {
-  override suspend fun <T> create(
+  override suspend operator fun <T> invoke(
     request: CreateWorkspaceRequest,
     presenter: (CreateWorkspaceResponse) -> T,
   ): T {

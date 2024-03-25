@@ -23,7 +23,7 @@ class GetWorkspaceAccessTokenImplTest {
       coEvery { mockAccessTokenRepository.findByEncodedValue("test-token") } returns dummyAccessToken
 
       // When
-      val result = getWorkspaceAccessToken.getAccessToken(dummyRequest) { it }
+      val result = getWorkspaceAccessToken(dummyRequest) { it }
 
       // Then
       expect(result.accessToken).toEqual(dummyAccessToken)

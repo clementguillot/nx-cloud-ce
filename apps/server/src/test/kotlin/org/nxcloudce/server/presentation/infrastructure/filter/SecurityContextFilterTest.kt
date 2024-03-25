@@ -43,7 +43,7 @@ class SecurityContextFilterTest {
       every { dummyAccessToken.workspaceId } returns WorkspaceId("workspace-id")
       every { dummyAccessToken.accessLevel } returns AccessLevel.READ_WRITE
       coEvery {
-        mockGetWorkspaceAccessToken.getAccessToken(
+        mockGetWorkspaceAccessToken(
           GetWorkspaceAccessTokenRequest("valid API key"),
           capture(capturePresenter),
         )
@@ -74,7 +74,7 @@ class SecurityContextFilterTest {
 
       every { dummyRequestContext.headers.getFirst("authorization") } returns "valid API key"
       coEvery {
-        mockGetWorkspaceAccessToken.getAccessToken(
+        mockGetWorkspaceAccessToken(
           GetWorkspaceAccessTokenRequest("valid API key"),
           capture(capturePresenter),
         )

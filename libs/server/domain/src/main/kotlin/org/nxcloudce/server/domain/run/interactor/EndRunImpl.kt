@@ -16,7 +16,7 @@ class EndRunImpl(
   private val taskRepository: TaskRepository,
   private val artifactRepository: ArtifactRepository,
 ) : EndRun {
-  override suspend fun <T> end(
+  override suspend operator fun <T> invoke(
     request: EndRunRequest,
     presenter: (EndRunResponse) -> T,
   ): T {
@@ -25,9 +25,7 @@ class EndRunImpl(
 
     createTaskArtifacts(tasks, request.workspaceId)
 
-    return presenter(
-      EndRunResponse(run = run),
-    )
+    return presenter(EndRunResponse(run = run))
   }
 
   private fun getRunStatus(tasks: Collection<EndRunRequest.Task>): RunStatus =

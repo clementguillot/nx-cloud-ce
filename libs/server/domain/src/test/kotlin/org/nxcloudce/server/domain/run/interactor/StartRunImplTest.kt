@@ -49,7 +49,7 @@ class StartRunImplTest {
         )
 
       // When
-      val result = startRunImpl.start(dummyRequest) { it }
+      val result = startRunImpl(dummyRequest) { it }
 
       // Then
       val firstArtifact = result.artifacts.first()
@@ -88,7 +88,7 @@ class StartRunImplTest {
         )
 
       // When
-      val result = startRunImpl.start(dummyRequest) { it }
+      val result = startRunImpl(dummyRequest) { it }
 
       // Then
       val firstArtifact = result.artifacts.first()
@@ -125,7 +125,7 @@ class StartRunImplTest {
         )
 
       // When
-      val result = startRunImpl.start(dummyRequest) { it }
+      val result = startRunImpl(dummyRequest) { it }
 
       // Then
       val firstArtifact = result.artifacts.first()

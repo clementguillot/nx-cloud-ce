@@ -54,7 +54,7 @@ class EndRunImplTest {
       }
 
       // When
-      val response = endRunImpl.end(request) { it.run }
+      val response = endRunImpl(request) { it.run }
 
       // Then
       expect(response.status).toEqual(RunStatus.SUCCESS)
@@ -92,7 +92,7 @@ class EndRunImplTest {
       }
 
       // When
-      val response = endRunImpl.end(request) { it.run }
+      val response = endRunImpl(request) { it.run }
 
       // Then
       expect(response.status).toEqual(RunStatus.FAILURE)

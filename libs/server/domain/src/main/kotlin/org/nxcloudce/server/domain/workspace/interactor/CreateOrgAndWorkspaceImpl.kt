@@ -14,7 +14,7 @@ class CreateOrgAndWorkspaceImpl(
   private val orgCreation: OrganizationCreationService,
   private val accessTokenRepository: AccessTokenRepository,
 ) : CreateOrgAndWorkspace {
-  override fun <T> create(
+  override operator fun <T> invoke(
     request: CreateOrgAndWorkspaceRequest,
     presenter: (Uni<CreateOrgAndWorkspaceResponse>) -> Uni<T>,
   ): Uni<T> {

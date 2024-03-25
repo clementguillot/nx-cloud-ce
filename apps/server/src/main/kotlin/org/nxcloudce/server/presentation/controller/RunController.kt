@@ -43,7 +43,7 @@ class RunController(
   @Path("/v2/runs/start")
   @Consumes(MediaType.APPLICATION_JSON)
   suspend fun start(startRunDto: RunDto.Start): RemoteArtifactListDto =
-    startRun.start(
+    startRun(
       StartRunRequest(
         hashes = startRunDto.hashes.map { Hash(it) },
         workspaceId = WorkspaceId(identity.deferredIdentity.awaitSuspending().principal.name),
@@ -59,7 +59,7 @@ class RunController(
   suspend fun end(request: ByteArray): RunSummaryDto =
     getEndRunDtoFromRequest(request)
       .let { dto ->
-        endRun.end(
+        endRun(
           EndRunRequest(
             run = dto.toRunRequest(),
             tasks = dto.toTaskRequests(),
