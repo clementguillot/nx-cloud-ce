@@ -1,0 +1,75 @@
+{
+  "name": "apps/server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/server/src",
+  "targets": {
+    "build": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "outputs": [
+        "{projectRoot}/build"
+      ],
+      "options": {
+        "task": "quarkusBuild"
+      }
+    },
+    "build-native-sources": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
+        "task": ["build", "-Dquarkus.package.type=native-sources"]
+      },
+      "outputs": ["{projectRoot}/build/native-sources"]
+    },
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": ["build-native-sources"],
+      "options": {
+        "engine": "docker",
+        "context": "apps/server",
+        "file": "apps/server/src/main/docker/Dockerfile.mandrel-builder",
+        "metadata": {
+          "images": ["ghcr.io/clementguillot/nx-cloud-ce-server"],
+          "tags": [
+            "type=schedule",
+            "type=sha,prefix=",
+            "latest"
+          ]
+        }
+      }
+    },
+    "build-image": {
+      "executor": "@jnxplus/nx-gradle:quarkus-build-image"
+    },
+    "serve": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
+        "task": "quarkusDev",
+        "keepItRunning": true
+      }
+    },
+    "lint": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
+        "task": "spotlessApply"
+      }
+    },
+    "test": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
+        "task": "test"
+      },
+      "outputs": [
+        "{projectRoot}/build/classes",
+        "{projectRoot}/build/reports",
+        "{projectRoot}/build/test-results"
+      ]
+    },
+    "integration-test": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
+        "task": "quarkusIntTest"
+      }
+    }
+  },
+  "tags": []
+}
