@@ -6,7 +6,6 @@ import aws.smithy.kotlin.runtime.net.url.Url
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.inject.Produces
 import org.nxcloudce.server.storage.gateway.FileRepository
-import org.nxcloudce.server.storage.model.Bucket
 
 @ApplicationScoped
 class S3Producers {
@@ -26,13 +25,8 @@ class S3Producers {
 
   @Produces
   @ApplicationScoped
-  fun bucket(s3Configuration: S3Configuration): Bucket = Bucket(s3Configuration.bucket())
-
-  @Produces
-  @ApplicationScoped
   fun s3repository(
     s3Client: S3Client,
-    bucket: Bucket,
     s3Configuration: S3Configuration,
-  ): FileRepository = S3Repository(s3Client, bucket)
+  ): FileRepository = S3Repository(s3Client, s3Configuration.bucket())
 }

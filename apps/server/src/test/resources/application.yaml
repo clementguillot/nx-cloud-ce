@@ -5,7 +5,7 @@ quarkus:
   s3:
     devservices:
       enabled: true
-      buckets: [nx-cloud-ce]
+      buckets: [nx-cloud-ce-test]
 
 nx-server:
   application-url: http://localtest
@@ -17,5 +17,5 @@ nx-server:
       region: us-east-1
       access-key-id: test-key
       secret-access-key: test-secret
-      bucket: nx-cloud-ce
+      bucket: nx-cloud-ce-test
       force-path-style: true

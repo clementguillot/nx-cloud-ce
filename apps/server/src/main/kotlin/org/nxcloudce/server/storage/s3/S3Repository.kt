@@ -6,12 +6,11 @@ import aws.sdk.kotlin.services.s3.model.PutObjectRequest
 import aws.sdk.kotlin.services.s3.presigners.presignGetObject
 import aws.sdk.kotlin.services.s3.presigners.presignPutObject
 import org.nxcloudce.server.storage.gateway.FileRepository
-import org.nxcloudce.server.storage.model.Bucket
 import kotlin.time.Duration.Companion.hours
 
 class S3Repository(
   private val s3Client: S3Client,
-  private val bucket: Bucket,
+  private val bucketName: String,
 ) : FileRepository {
   companion object {
     private val presignExpiration = 1.hours
@@ -20,7 +19,7 @@ class S3Repository(
   override suspend fun generateGetUrl(objectPath: String): String {
     val getRequest =
       GetObjectRequest {
-        bucket = this@S3Repository.bucket.name
+        bucket = this@S3Repository.bucketName
         key = objectPath
       }
     return s3Client
@@ -32,7 +31,7 @@ class S3Repository(
   override suspend fun generatePutUrl(objectPath: String): String {
     val putRequest =
       PutObjectRequest {
-        bucket = this@S3Repository.bucket.name
+        bucket = this@S3Repository.bucketName
         key = objectPath
       }
     return s3Client
