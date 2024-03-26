@@ -1,0 +1,21 @@
+quarkus:
+  mongodb:
+    devservices:
+      image-name: mongo:7.0.6
+  s3:
+    devservices:
+      enabled: true
+      buckets: [nx-cloud-ce-test]
+
+nx-server:
+  application-url: http://localtest
+  client-bundle-version: dummy-version
+  client-bundle-path: static/client-bundle.gz
+  storage:
+    s3:
+      endpoint: http://localhost:4566
+      region: us-east-1
+      access-key-id: test-key
+      secret-access-key: test-secret
+      bucket: nx-cloud-ce-test
+      force-path-style: true
