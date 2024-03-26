@@ -1,5 +1,8 @@
 package org.nxcloudce.server.presentation.dto
 
+import io.quarkus.runtime.annotations.RegisterForReflection
+
+@RegisterForReflection
 sealed class VerifyClientBundleDto(
   val valid: Boolean,
   val url: String?,
