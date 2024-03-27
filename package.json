@@ -5,7 +5,7 @@
   "scripts": {},
   "private": true,
   "devDependencies": {
-    "@jnxplus/nx-gradle": "0.40.0",
+    "@jnxplus/nx-gradle": "0.42.1",
     "@nx-tools/container-metadata": "5.2.0",
     "@nx-tools/nx-container": "5.2.0",
     "@nx/workspace": "18.1.3",
