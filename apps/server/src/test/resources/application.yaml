@@ -1,7 +1,7 @@
 quarkus:
   mongodb:
     devservices:
-      image-name: mongo:7.0.6
+      image-name: mongo:7.0.7
   s3:
     devservices:
       enabled: true
