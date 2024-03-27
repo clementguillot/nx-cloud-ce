@@ -71,11 +71,16 @@ class RunControllerTest {
         .then()
         .statusCode(200)
         .body(
-          "artifacts.size()", `is`(2),
-          "artifacts.existing-hash.artifactUrls.get", `is`(notNullValue()),
-          "artifacts.existing-hash.artifactUrls.put", `is`(notNullValue()),
-          "artifacts.new-hash.artifactUrls.get", `is`(nullValue()),
-          "artifacts.new-hash.artifactUrls.put", `is`(notNullValue()),
+          "artifacts.size()",
+          `is`(2),
+          "artifacts.existing-hash.artifactUrls.get",
+          `is`(notNullValue()),
+          "artifacts.existing-hash.artifactUrls.put",
+          `is`(notNullValue()),
+          "artifacts.new-hash.artifactUrls.get",
+          `is`(nullValue()),
+          "artifacts.new-hash.artifactUrls.put",
+          `is`(notNullValue()),
         )
     }
 
@@ -168,6 +173,19 @@ class RunControllerTest {
           "status",
           `is`("success"),
         )
+    }
+
+  @Test
+  fun `should return a healthy response when workspace is authenticated`() =
+    runTest {
+      val token = prepareWorkspaceAndAccessToken()
+
+      given()
+        .header("authorization", token)
+        .`when`()
+        .get("/runs/workspace-status")
+        .then()
+        .statusCode(200)
     }
 
   private suspend fun prepareWorkspaceAndAccessToken(): String {

@@ -11,7 +11,7 @@ quarkus:
     api-key-parameter-name: authorization
 
 nx-server:
-  client-bundle-version: 2402.27.3.hotfix2
+  client-bundle-version: 2403.21.3.hotfix2
   client-bundle-path: nx-cloud/static/client-bundle
 
 "%dev":

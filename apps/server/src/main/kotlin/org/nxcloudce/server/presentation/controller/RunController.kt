@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import io.quarkus.security.Authenticated
 import io.quarkus.security.identity.CurrentIdentityAssociation
 import io.smallrye.mutiny.coroutines.awaitSuspending
-import jakarta.ws.rs.Consumes
-import jakarta.ws.rs.POST
-import jakarta.ws.rs.Path
-import jakarta.ws.rs.Produces
+import jakarta.ws.rs.*
 import jakarta.ws.rs.core.MediaType
 import kotlinx.coroutines.*
 import org.eclipse.microprofile.openapi.annotations.Operation
@@ -53,6 +50,9 @@ class RunController(
       RemoteArtifactListDto.from(response)
     }
 
+  @Operation(
+    summary = "Stores information about a run",
+  )
   @POST
   @Path("/runs/end")
   @Consumes(MediaType.APPLICATION_OCTET_STREAM)
@@ -69,6 +69,14 @@ class RunController(
           RunSummaryDto.from(response, serverConfiguration.applicationUrl())
         }
       }
+
+  @Operation(
+    summary = "Indicates if the workspace for the authentication token is enabled",
+  )
+  @GET
+  @Path("/runs/workspace-status")
+  @Produces(MediaType.TEXT_PLAIN)
+  suspend fun workspaceStatus() = "" // hopefully, all authenticated workspaces are enabled :)
 
   private suspend fun isReadWriteContext(): Boolean = identity.deferredIdentity.awaitSuspending().hasRole(AccessLevel.READ_WRITE.value)
 
