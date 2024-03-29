@@ -38,7 +38,7 @@ sealed class RunDto {
     val linkId: String?,
     val run: RunData,
     val projectGraph: ProjectGraph?,
-    val hashedContributors: String?,
+    val hashedContributors: Collection<String>?,
   ) : RunDto() {
     companion object {
       fun buildLinkId(): String {

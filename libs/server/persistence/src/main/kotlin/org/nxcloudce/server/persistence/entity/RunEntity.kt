@@ -23,7 +23,7 @@ data class RunEntity(
   var vcsContext: VcsContext?,
   var linkId: String,
   var projectGraph: ProjectGraph?,
-  var hashedContributors: String?,
+  var hashedContributors: Collection<String>?,
   var sha: String?,
 ) {
   data class MachineInfo(

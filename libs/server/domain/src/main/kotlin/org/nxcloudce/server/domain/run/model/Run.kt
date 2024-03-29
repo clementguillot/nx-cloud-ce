@@ -32,7 +32,7 @@ class Run private constructor(builder: Builder) {
   val tasks: Collection<Task>
   val linkId: String
   val projectGraph: ProjectGraph?
-  val hashedContributors: String?
+  val hashedContributors: Collection<String>?
   val sha: String?
 
   init {
@@ -89,7 +89,7 @@ class Run private constructor(builder: Builder) {
     var tasks: Collection<Task>? = null
     var linkId: String? = null
     var projectGraph: ProjectGraph? = null
-    var hashedContributors: String? = null
+    var hashedContributors: Collection<String>? = null
     var sha: String? = null
 
     fun build(): Run = Run(this)

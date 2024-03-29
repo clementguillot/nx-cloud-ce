@@ -27,7 +27,7 @@ data class EndRunRequest(
     val vcsContext: VcsContext?,
     val linkId: String,
     val projectGraph: ProjectGraph?,
-    val hashedContributors: String?,
+    val hashedContributors: Collection<String>?,
     val sha: String?,
   )
 

@@ -73,7 +73,7 @@ class RunPanacheRepositoryTest {
                     ),
                 ),
             ),
-          hashedContributors = "test hashed contributors",
+          hashedContributors = listOf("test hashed contributors"),
           sha = "test sha",
         )
       runPanacheRepository.persist(runEntity).awaitSuspending()
