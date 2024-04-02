@@ -12,7 +12,7 @@ import org.nxcloudce.server.presentation.dto.CreateOrgAndWorkspaceDto
 import org.nxcloudce.server.presentation.dto.CreateWorkspaceDto
 import org.nxcloudce.server.presentation.dto.IdDto
 import org.nxcloudce.server.presentation.dto.InitWorkspaceDto
-import org.nxcloudce.server.presentation.infrastructure.ServerConfiguration
+import org.nxcloudce.server.technical.ServerConfiguration
 
 @Path("")
 @Produces(MediaType.APPLICATION_JSON)

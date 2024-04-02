@@ -5,7 +5,7 @@ import jakarta.ws.rs.Path
 import org.eclipse.microprofile.openapi.annotations.Operation
 import org.jboss.resteasy.reactive.RestQuery
 import org.nxcloudce.server.presentation.dto.VerifyClientBundleDto
-import org.nxcloudce.server.presentation.infrastructure.ServerConfiguration
+import org.nxcloudce.server.technical.ServerConfiguration
 
 @Path("/client/verify")
 class ClientController(private val serverConfiguration: ServerConfiguration) {

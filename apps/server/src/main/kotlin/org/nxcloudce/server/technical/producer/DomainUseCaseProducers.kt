@@ -1,4 +1,4 @@
-package org.nxcloudce.server.technical
+package org.nxcloudce.server.technical.producer
 
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.inject.Produces
@@ -18,7 +18,7 @@ import org.nxcloudce.server.persistence.gateway.*
 import org.nxcloudce.server.storage.gateway.StorageServiceImpl
 
 @ApplicationScoped
-class DomainUseCaseConfiguration(
+class DomainUseCaseProducers(
   private val accessTokenRepository: AccessTokenRepositoryImpl,
   private val artifactRepository: ArtifactRepositoryImpl,
   private val organizationRepository: OrganizationRepositoryImpl,

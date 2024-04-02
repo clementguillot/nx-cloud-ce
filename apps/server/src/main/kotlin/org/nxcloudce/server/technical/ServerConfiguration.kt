@@ -1,4 +1,4 @@
-package org.nxcloudce.server.presentation.infrastructure
+package org.nxcloudce.server.technical
 
 import io.smallrye.config.ConfigMapping
 

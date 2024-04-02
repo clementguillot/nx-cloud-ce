@@ -1,12 +1,10 @@
 package org.nxcloudce.server.presentation.controller
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import io.quarkus.security.Authenticated
 import io.quarkus.security.identity.CurrentIdentityAssociation
 import io.smallrye.mutiny.coroutines.awaitSuspending
 import jakarta.ws.rs.*
 import jakarta.ws.rs.core.MediaType
-import kotlinx.coroutines.*
 import org.eclipse.microprofile.openapi.annotations.Operation
 import org.nxcloudce.server.domain.run.model.Hash
 import org.nxcloudce.server.domain.run.usecase.EndRun
@@ -18,16 +16,14 @@ import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 import org.nxcloudce.server.presentation.dto.RemoteArtifactListDto
 import org.nxcloudce.server.presentation.dto.RunDto
 import org.nxcloudce.server.presentation.dto.RunSummaryDto
-import org.nxcloudce.server.presentation.infrastructure.ServerConfiguration
-import java.util.zip.GZIPInputStream
-import kotlin.text.Charsets.UTF_8
+import org.nxcloudce.server.technical.GzipJsonDecoder
+import org.nxcloudce.server.technical.ServerConfiguration
 
 @Path("")
 @Produces(MediaType.APPLICATION_JSON)
 @Authenticated
 class RunController(
-  private val dispatcher: CoroutineDispatcher,
-  private val objectMapper: ObjectMapper,
+  private val gzipJsonDecoder: GzipJsonDecoder,
   private val identity: CurrentIdentityAssociation,
   private val serverConfiguration: ServerConfiguration,
   private val startRun: StartRun,
@@ -57,7 +53,7 @@ class RunController(
   @Path("/runs/end")
   @Consumes(MediaType.APPLICATION_OCTET_STREAM)
   suspend fun end(request: ByteArray): RunSummaryDto =
-    getEndRunDtoFromRequest(request)
+    gzipJsonDecoder.from(request, RunDto.End::class)
       .let { dto ->
         endRun(
           EndRunRequest(
@@ -79,19 +75,4 @@ class RunController(
   suspend fun workspaceStatus() = "" // hopefully, all authenticated workspaces are enabled :)
 
   private suspend fun isReadWriteContext(): Boolean = identity.deferredIdentity.awaitSuspending().hasRole(AccessLevel.READ_WRITE.value)
-
-  private suspend fun getEndRunDtoFromRequest(request: ByteArray): RunDto.End =
-    coroutineScope {
-      withContext(dispatcher) {
-        request.inputStream().use { byteStream ->
-          GZIPInputStream(byteStream).use { gzipStream ->
-            gzipStream.bufferedReader(UTF_8).use { reader ->
-              reader.readLine().let {
-                objectMapper.readValue(it, RunDto.End::class.java)
-              }
-            }
-          }
-        }
-      }
-    }
 }

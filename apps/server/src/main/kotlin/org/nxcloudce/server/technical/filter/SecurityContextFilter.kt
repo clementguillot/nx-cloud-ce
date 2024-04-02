@@ -1,4 +1,4 @@
-package org.nxcloudce.server.presentation.infrastructure.filter
+package org.nxcloudce.server.technical.filter
 
 import io.quarkus.runtime.Startup
 import jakarta.ws.rs.container.ContainerRequestContext

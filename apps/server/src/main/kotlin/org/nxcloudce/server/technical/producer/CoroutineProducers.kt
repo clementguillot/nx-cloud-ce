@@ -1,4 +1,4 @@
-package org.nxcloudce.server.presentation.infrastructure
+package org.nxcloudce.server.technical.producer
 
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.inject.Produces

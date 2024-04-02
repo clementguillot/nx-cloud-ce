@@ -6,26 +6,26 @@ import io.restassured.RestAssured.given
 import io.smallrye.mutiny.coroutines.awaitSuspending
 import jakarta.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.withContext
 import org.hamcrest.CoreMatchers.*
 import org.junit.jupiter.api.Test
 import org.nxcloudce.server.domain.run.model.HashDetails
 import org.nxcloudce.server.domain.run.model.MachineInfo
 import org.nxcloudce.server.persistence.entity.ArtifactEntity
+import org.nxcloudce.server.persistence.repository.AccessTokenPanacheRepository
 import org.nxcloudce.server.persistence.repository.ArtifactPanacheRepository
 import org.nxcloudce.server.persistence.repository.WorkspacePanacheRepository
-import org.nxcloudce.server.presentation.dto.CreateOrgAndWorkspaceDto
-import org.nxcloudce.server.presentation.dto.InitWorkspaceDto
+import org.nxcloudce.server.prepareWorkspaceAndAccessToken
 import org.nxcloudce.server.presentation.dto.RunDto
-import java.io.ByteArrayOutputStream
+import org.nxcloudce.server.serializeAndCompress
 import java.time.LocalDateTime
 import java.util.*
-import java.util.zip.GZIPOutputStream
 
 @QuarkusTest
 class RunControllerTest {
+  @Inject
+  lateinit var accessTokenPanacheRepository: AccessTokenPanacheRepository
+
   @Inject
   lateinit var workspacePanacheRepository: WorkspacePanacheRepository
 
@@ -42,7 +42,7 @@ class RunControllerTest {
   fun `should start a new run and return a list of URLs to access cached artifact`() =
     runTest {
       val token = prepareWorkspaceAndAccessToken()
-      prepareExistingArtifact()
+      prepareExistingArtifact(token)
 
       given()
         .header("authorization", token)
@@ -69,6 +69,7 @@ class RunControllerTest {
         .`when`()
         .post("/v2/runs/start")
         .then()
+        .log().body()
         .statusCode(200)
         .body(
           "artifacts.size()",
@@ -93,7 +94,7 @@ class RunControllerTest {
         .header("authorization", token)
         .header("Content-Type", "application/octet-stream")
         .body(
-          gzipDto(
+          serializeAndCompress(
             buildEndRunDto(
               listOf(
                 buildTaskDto("1"),
@@ -101,6 +102,8 @@ class RunControllerTest {
               ),
               "test-link-id",
             ),
+            dispatcher,
+            objectMapper,
           ),
         )
         .`when`()
@@ -124,7 +127,7 @@ class RunControllerTest {
         .header("authorization", token)
         .header("Content-Type", "application/octet-stream")
         .body(
-          gzipDto(
+          serializeAndCompress(
             buildEndRunDto(
               listOf(
                 buildTaskDto("1"),
@@ -132,6 +135,8 @@ class RunControllerTest {
               ),
               "test-link-id",
             ),
+            dispatcher,
+            objectMapper,
           ),
         )
         .`when`()
@@ -155,7 +160,7 @@ class RunControllerTest {
         .header("authorization", token)
         .header("Content-Type", "application/octet-stream")
         .body(
-          gzipDto(
+          serializeAndCompress(
             buildEndRunDto(
               listOf(
                 buildTaskDto("1"),
@@ -163,6 +168,8 @@ class RunControllerTest {
               ),
               null,
             ),
+            dispatcher,
+            objectMapper,
           ),
         )
         .`when`()
@@ -188,25 +195,9 @@ class RunControllerTest {
         .statusCode(200)
     }
 
-  private suspend fun prepareWorkspaceAndAccessToken(): String {
-    val response =
-      given()
-        .header("Content-Type", "application/json")
-        .body(
-          CreateOrgAndWorkspaceDto(
-            workspaceName = "test-workspace",
-            installationSource = "junit",
-            nxInitDate = null,
-          ),
-        )
-        .post("/create-org-and-workspace")
-        .`as`(InitWorkspaceDto::class.java)
-
-    return response.token
-  }
-
-  private suspend fun prepareExistingArtifact() {
-    val workspace = workspacePanacheRepository.findAll().firstResult().awaitSuspending()
+  private suspend fun prepareExistingArtifact(token: String) {
+    val accessToken = accessTokenPanacheRepository.find("encodedValue", token).firstResult().awaitSuspending()
+    val workspace = workspacePanacheRepository.findById(accessToken?.workspaceId!!).awaitSuspending()
     val existingArtifact =
       ArtifactEntity(
         id = null,
@@ -216,16 +207,6 @@ class RunControllerTest {
       )
     artifactPanacheRepository.persist(existingArtifact).awaitSuspending()
   }
-
-  private suspend fun gzipDto(dto: RunDto): ByteArray =
-    coroutineScope {
-      withContext(dispatcher) {
-        val json = objectMapper.writeValueAsString(dto)
-        val outputStream = ByteArrayOutputStream()
-        GZIPOutputStream(outputStream).bufferedWriter().use { it.write(json) }
-        outputStream.toByteArray()
-      }
-    }
 
   private fun buildEndRunDto(
     tasks: Collection<RunDto.End.Task>,
