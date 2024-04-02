@@ -1,4 +1,4 @@
-package org.nxcloudce.server.presentation.infrastructure.filter
+package org.nxcloudce.server.technical.filter
 
 import ch.tutteli.atrium.api.fluent.en_GB.toEqual
 import ch.tutteli.atrium.api.verbs.expect
@@ -26,7 +26,8 @@ class GlobalErrorFilterTest {
     }
   private val rootLogger: Logger = LogManager.getLogManager().getLogger(GlobalErrorFilter::class.qualifiedName)
 
-  @Inject lateinit var globalErrorFilter: GlobalErrorFilter
+  @Inject
+  lateinit var globalErrorFilter: GlobalErrorFilter
 
   @BeforeEach
   fun setupLogger() {

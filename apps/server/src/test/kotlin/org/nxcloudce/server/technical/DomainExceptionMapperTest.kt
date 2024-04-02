@@ -1,4 +1,4 @@
-package org.nxcloudce.server.presentation.infrastructure
+package org.nxcloudce.server.technical
 
 import ch.tutteli.atrium.api.fluent.en_GB.toEqual
 import ch.tutteli.atrium.api.verbs.expect

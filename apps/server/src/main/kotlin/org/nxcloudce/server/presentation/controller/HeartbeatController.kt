@@ -1,0 +1,35 @@
+package org.nxcloudce.server.presentation.controller
+
+import io.quarkus.security.Authenticated
+import jakarta.ws.rs.Consumes
+import jakarta.ws.rs.POST
+import jakarta.ws.rs.Path
+import jakarta.ws.rs.core.MediaType
+import org.eclipse.microprofile.openapi.annotations.Operation
+import org.jboss.logging.Logger
+import org.nxcloudce.server.presentation.dto.HeartbeatDto
+import org.nxcloudce.server.technical.GzipJsonDecoder
+
+@Path("/heartbeat")
+@Authenticated
+class HeartbeatController(private val gzipJsonDecoder: GzipJsonDecoder) {
+  companion object {
+    private val logger = Logger.getLogger(HeartbeatController::class.java)
+  }
+
+  @Operation(summary = "Receives a heartbeat from a run group")
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  suspend fun receive(heartbeatDto: HeartbeatDto) {
+    logger.info("Received heartbeat from run group '${heartbeatDto.runGroup}' (CI ID: '${heartbeatDto.ciExecutionId}')")
+  }
+
+  @Operation(summary = "Receives a heartbeat logs from a run group")
+  @POST
+  @Path("/logs")
+  @Consumes(MediaType.APPLICATION_OCTET_STREAM)
+  suspend fun receiveLog(request: ByteArray) {
+    val dto = gzipJsonDecoder.from(request, HeartbeatDto::class)
+    logger.info("Received heartbeat from run group '${dto.runGroup}' (CI ID: '${dto.ciExecutionId}'). Logs: \n${dto.logs}")
+  }
+}

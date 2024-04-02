@@ -1,4 +1,4 @@
-package org.nxcloudce.server.presentation.infrastructure
+package org.nxcloudce.server.technical
 
 import jakarta.ws.rs.core.Response
 import jakarta.ws.rs.ext.ExceptionMapper
