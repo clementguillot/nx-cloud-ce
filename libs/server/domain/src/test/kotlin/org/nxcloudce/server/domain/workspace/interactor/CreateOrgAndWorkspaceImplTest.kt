@@ -21,10 +21,10 @@ import java.time.LocalDateTime
 
 @QuarkusTest
 class CreateOrgAndWorkspaceImplTest {
-  private var mockWorkspaceRepository = mockk<WorkspaceRepository>()
-  private var mockOrgCreation = mockk<OrganizationCreationService>()
-  private var mockAccessTokenRepository = mockk<AccessTokenRepository>()
-  private var createOrgAndWorkspace = CreateOrgAndWorkspaceImpl(mockWorkspaceRepository, mockOrgCreation, mockAccessTokenRepository)
+  private val mockWorkspaceRepository = mockk<WorkspaceRepository>()
+  private val mockOrgCreation = mockk<OrganizationCreationService>()
+  private val mockAccessTokenRepository = mockk<AccessTokenRepository>()
+  private val createOrgAndWorkspace = CreateOrgAndWorkspaceImpl(mockWorkspaceRepository, mockOrgCreation, mockAccessTokenRepository)
 
   @Test
   @RunOnVertxContext

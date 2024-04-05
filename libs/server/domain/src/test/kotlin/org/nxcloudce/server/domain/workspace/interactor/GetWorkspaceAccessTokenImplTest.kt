@@ -10,8 +10,8 @@ import org.nxcloudce.server.domain.workspace.model.AccessToken
 import org.nxcloudce.server.domain.workspace.usecase.GetWorkspaceAccessTokenRequest
 
 class GetWorkspaceAccessTokenImplTest {
-  private var mockAccessTokenRepository = mockk<AccessTokenRepository>()
-  private var getWorkspaceAccessToken = GetWorkspaceAccessTokenImpl(mockAccessTokenRepository)
+  private val mockAccessTokenRepository = mockk<AccessTokenRepository>()
+  private val getWorkspaceAccessToken = GetWorkspaceAccessTokenImpl(mockAccessTokenRepository)
 
   @Test
   fun `should return the access token`() =

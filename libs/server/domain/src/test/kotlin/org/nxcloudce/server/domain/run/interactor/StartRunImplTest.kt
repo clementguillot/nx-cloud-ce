@@ -18,9 +18,9 @@ import org.nxcloudce.server.domain.run.usecase.StartRunRequest
 import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 
 class StartRunImplTest {
-  private var mockArtifactRepository = mockk<ArtifactRepository>()
-  private var mockStorageService = mockk<StorageService>()
-  private var startRunImpl = StartRunImpl(mockArtifactRepository, mockStorageService)
+  private val mockArtifactRepository = mockk<ArtifactRepository>()
+  private val mockStorageService = mockk<StorageService>()
+  private val startRunImpl = StartRunImpl(mockArtifactRepository, mockStorageService)
 
   @Test
   fun `should return an existing artifact for a known hash`() =

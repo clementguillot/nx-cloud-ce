@@ -16,10 +16,10 @@ import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 import java.time.LocalDateTime
 
 class EndRunImplTest {
-  private var mockRunRepository = mockk<RunRepository>()
-  private var mockTaskRepository = mockk<TaskRepository>()
-  private var mockArtifactRepository = mockk<ArtifactRepository>()
-  private var endRunImpl = EndRunImpl(mockRunRepository, mockTaskRepository, mockArtifactRepository)
+  private val mockRunRepository = mockk<RunRepository>()
+  private val mockTaskRepository = mockk<TaskRepository>()
+  private val mockArtifactRepository = mockk<ArtifactRepository>()
+  private val endRunImpl = EndRunImpl(mockRunRepository, mockTaskRepository, mockArtifactRepository)
 
   @Test
   fun `should return a success run if all tasks are OK`() =

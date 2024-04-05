@@ -19,9 +19,9 @@ import org.nxcloudce.server.domain.workspace.usecase.CreateWorkspaceRequest
 import org.nxcloudce.server.domain.workspace.usecase.CreateWorkspaceResponse
 
 class CreateWorkspaceImplTest {
-  private var mockWorkspaceRepository = mockk<WorkspaceRepository>()
-  private var mockOrgValidationService = mockk<OrganizationValidationService>()
-  private var createWorkspace = CreateWorkspaceImpl(mockWorkspaceRepository, mockOrgValidationService)
+  private val mockWorkspaceRepository = mockk<WorkspaceRepository>()
+  private val mockOrgValidationService = mockk<OrganizationValidationService>()
+  private val createWorkspace = CreateWorkspaceImpl(mockWorkspaceRepository, mockOrgValidationService)
 
   @Test
   fun `should throw if request Org ID is not found`() =

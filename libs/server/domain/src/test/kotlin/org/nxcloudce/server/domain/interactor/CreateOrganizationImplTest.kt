@@ -15,8 +15,8 @@ import org.nxcloudce.server.domain.organization.usecase.CreateOrganizationReques
 import org.nxcloudce.server.domain.organization.usecase.CreateOrganizationResponse
 
 class CreateOrganizationImplTest {
-  private var mockOrgRepository = mockk<OrganizationRepository>()
-  private var createOrganization = CreateOrganizationImpl(mockOrgRepository)
+  private val mockOrgRepository = mockk<OrganizationRepository>()
+  private val createOrganization = CreateOrganizationImpl(mockOrgRepository)
 
   @Test
   fun `should return the newly created organization`() =
