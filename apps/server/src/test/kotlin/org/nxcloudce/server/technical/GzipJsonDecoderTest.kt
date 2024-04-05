@@ -17,7 +17,7 @@ class GzipJsonDecoderTest {
   lateinit var gzipDecoder: GzipJsonDecoder
 
   @Test
-  fun `Test GzipDecoder when input is valid`() =
+  fun `should uncompress and map a strongly-typed object from JSON`() =
     runTest {
       val dummyObject = DummyClass("test value", 42)
 
@@ -38,7 +38,7 @@ class GzipJsonDecoderTest {
     }
 
   @Test
-  fun `Test GzipDecoder when input is invalid`() =
+  fun `should throw an error if input JSON does not match supplied type`() =
     runTest {
       val outputStream = ByteArrayOutputStream()
       GZIPOutputStream(outputStream).bufferedWriter().use {

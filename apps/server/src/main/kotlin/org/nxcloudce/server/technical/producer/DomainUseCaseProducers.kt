@@ -2,6 +2,8 @@ package org.nxcloudce.server.technical.producer
 
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.inject.Produces
+import org.nxcloudce.server.domain.metric.interactor.SaveMetricsImpl
+import org.nxcloudce.server.domain.metric.usecase.SaveMetrics
 import org.nxcloudce.server.domain.organization.interactor.CreateOrganizationImpl
 import org.nxcloudce.server.domain.organization.usecase.CreateOrganization
 import org.nxcloudce.server.domain.run.interactor.EndRunImpl
@@ -24,9 +26,14 @@ class DomainUseCaseProducers(
   private val organizationRepository: OrganizationRepositoryImpl,
   private val runRepository: RunRepositoryImpl,
   private val taskRepository: TaskRepositoryImpl,
+  private val taskRunnerMetricRepository: TaskRunnerMetricRepositoryImpl,
   private val workspaceRepository: WorkspaceRepositoryImpl,
   private val storageService: StorageServiceImpl,
 ) {
+  @Produces
+  @ApplicationScoped
+  fun saveMetrics(): SaveMetrics = SaveMetricsImpl(taskRunnerMetricRepository)
+
   @Produces
   @ApplicationScoped
   fun createOrganization(): CreateOrganization = CreateOrganizationImpl(organizationRepository)

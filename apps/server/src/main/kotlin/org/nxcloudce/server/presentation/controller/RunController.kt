@@ -18,6 +18,7 @@ import org.nxcloudce.server.presentation.dto.RunDto
 import org.nxcloudce.server.presentation.dto.RunSummaryDto
 import org.nxcloudce.server.technical.GzipJsonDecoder
 import org.nxcloudce.server.technical.ServerConfiguration
+import org.nxcloudce.server.technical.getWorkspaceId
 
 @Path("")
 @Produces(MediaType.APPLICATION_JSON)
@@ -59,7 +60,7 @@ class RunController(
           EndRunRequest(
             run = dto.toRunRequest(),
             tasks = dto.toTaskRequests(),
-            workspaceId = WorkspaceId(identity.deferredIdentity.awaitSuspending().principal.name),
+            workspaceId = identity.getWorkspaceId(),
           ),
         ) { response ->
           RunSummaryDto.from(response, serverConfiguration.applicationUrl())
