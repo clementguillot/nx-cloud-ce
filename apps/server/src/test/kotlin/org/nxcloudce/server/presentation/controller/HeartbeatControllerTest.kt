@@ -20,7 +20,7 @@ class HeartbeatControllerTest {
   lateinit var objectMapper: ObjectMapper
 
   @Test
-  fun `should return a success code on heartbeat`() =
+  fun `should return a OK code on heartbeat`() =
     runTest {
       val token = prepareWorkspaceAndAccessToken()
 
@@ -37,11 +37,11 @@ class HeartbeatControllerTest {
         .`when`()
         .post("/heartbeat")
         .then()
-        .statusCode(204)
+        .statusCode(200)
     }
 
   @Test
-  fun `should return a success code when receiving heartbeat logs`() =
+  fun `should return a OK code when receiving heartbeat logs`() =
     runTest {
       val token = prepareWorkspaceAndAccessToken()
 
@@ -62,6 +62,6 @@ class HeartbeatControllerTest {
         .`when`()
         .post("/heartbeat/logs")
         .then()
-        .statusCode(204)
+        .statusCode(200)
     }
 }

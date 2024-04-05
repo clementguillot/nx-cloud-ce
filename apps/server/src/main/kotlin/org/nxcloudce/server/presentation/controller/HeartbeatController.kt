@@ -5,6 +5,7 @@ import jakarta.ws.rs.Consumes
 import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
 import jakarta.ws.rs.core.MediaType
+import jakarta.ws.rs.core.Response
 import org.eclipse.microprofile.openapi.annotations.Operation
 import org.jboss.logging.Logger
 import org.nxcloudce.server.presentation.dto.HeartbeatDto
@@ -20,16 +21,18 @@ class HeartbeatController(private val gzipJsonDecoder: GzipJsonDecoder) {
   @Operation(summary = "Receives a heartbeat from a run group")
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  suspend fun receive(heartbeatDto: HeartbeatDto) {
+  suspend fun receive(heartbeatDto: HeartbeatDto): Response {
     logger.info("Received heartbeat from run group '${heartbeatDto.runGroup}' (CI ID: '${heartbeatDto.ciExecutionId}')")
+    return Response.ok().build()
   }
 
   @Operation(summary = "Receives a heartbeat logs from a run group")
   @POST
   @Path("/logs")
   @Consumes(MediaType.APPLICATION_OCTET_STREAM)
-  suspend fun receiveLog(request: ByteArray) {
+  suspend fun receiveLog(request: ByteArray): Response {
     val dto = gzipJsonDecoder.from(request, HeartbeatDto::class)
     logger.info("Received heartbeat from run group '${dto.runGroup}' (CI ID: '${dto.ciExecutionId}'). Logs: \n${dto.logs}")
+    return Response.ok().build()
   }
 }
