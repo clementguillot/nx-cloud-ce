@@ -1,0 +1,51 @@
+{
+  "name": "apps/helm-chart",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/helm-chart/src",
+  "targets": {
+    "dependency-build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/helm-chart",
+        "commands": [
+          "helm repo add bitnami https://charts.bitnami.com/bitnami",
+          "helm dependency build src"
+        ],
+        "parallel": false
+      },
+      "outputs": [
+        "{projectRoot}/src/charts"
+      ]
+    },
+    "build": {
+      "dependsOn": ["dependency-build"],
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/helm-chart",
+        "commands": [
+          "mkdir -p dist",
+          "helm dependency build src",
+          "helm package src --destination dist"
+        ],
+        "parallel": false
+      },
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
+    },
+    "lint": {
+      "dependsOn": ["dependency-build"],
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/helm-chart",
+        "commands": [
+          "helm dependency build src",
+          "helm lint src"
+        ],
+        "parallel": false
+      }
+    }
+  },
+  "tags": []
+}

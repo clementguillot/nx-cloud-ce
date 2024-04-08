@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  {{- with (mergeOverwrite (deepCopy .Values.global.deploymentAnnotations) .Values.server.deploymentAnnotations) }}
+  annotations:
+    {{- range $key, $value := . }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
+  name: {{ template "nx-cloud-ce.server.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "nx-cloud-ce.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 4 }}
+
+spec:
+  {{- with include "nx-cloud-ce.strategy" (mergeOverwrite (deepCopy .Values.global.deploymentStrategy) .Values.server.deploymentStrategy) }}
+  strategy:
+    {{- trim . | nindent 4 }}
+  {{- end }}
+  replicas: {{ .Values.server.replicas }}
+  revisionHistoryLimit: {{ .Values.global.revisionHistoryLimit }}
+  selector:
+    matchLabels:
+       {{- include "nx-cloud-ce.selectorLabels" (dict "context" . "name" .Values.server.name) | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        {{- with (mergeOverwrite (deepCopy .Values.global.podAnnotations) .Values.server.podAnnotations) }}
+        {{- range $key, $value := . }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
+        {{- end }}
+      labels:
+        {{- include "nx-cloud-ce.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 8 }}
+        {{- with (mergeOverwrite (deepCopy .Values.global.podLabels) .Values.server.podLabels) }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      automountServiceAccountToken: false
+      {{- with .Values.server.imagePullSecrets | default .Values.global.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.global.securityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.server.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ .Values.server.terminationGracePeriodSeconds }}
+      {{- end }}
+      containers:
+      - name: {{ .Values.server.name }}
+        image: {{ .Values.server.image.repository }}:{{ default (include "nx-cloud-ce.defaultTag" .) .Values.server.image.tag }}
+        imagePullPolicy: {{ default .Values.global.image.imagePullPolicy .Values.server.image.imagePullPolicy }}
+        env:
+          {{- with (concat .Values.global.env .Values.server.env) }}
+            {{- toYaml . | nindent 10 }}
+          {{- end }}
+          - name: NX_SERVER_APPLICATION_URL
+            value: {{ .Values.global.domain }}
+          - name: QUARKUS_MONGODB_CONNECTION_STRING
+            {{- include "nx-cloud-ce.server.database.connection-string" . | nindent 12 }}
+          - name: QUARKUS_MONGODB_DATABASE
+            value: {{ .Values.server.name }}
+        {{- with .Values.server.envFrom }}
+        envFrom:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        volumeMounts:
+          - mountPath: /tmp
+            name: tmp
+        ports:
+          - name: server
+            containerPort: {{ .Values.server.containerPorts.server }}
+            protocol: TCP
+        resources:
+          {{- toYaml .Values.server.resources | nindent 10 }}
+        {{- with .Values.server.containerSecurityContext }}
+        securityContext:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+      {{- with include "nx-cloud-ce.affinity" (dict "context" . "component" .Values.server) }}
+      affinity:
+        {{- trim . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.server.nodeSelector | default .Values.global.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.server.tolerations | default .Values.global.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: tmp
+          {{- if .Values.server.emptyDir.sizeLimit }}
+          emptyDir:
+            sizeLimit: {{ .Values.server.emptyDir.sizeLimit }}
+                {{- else }}
+          emptyDir: { }
+          {{- end }}

@@ -1,0 +1,23 @@
+apiVersion: v2
+name: nx-cloud-ce
+description: Nx Cloud Community Edition Helm Chart
+type: application
+version: "0.0.1"
+appVersion: "0.0.1"
+keywords:
+  - nx-cloud-ce
+home: https://github.com/clementguillot/nx-cloud-ce
+maintainers:
+  - name: clementguillot
+    email: clement1.guillot@gmail.com
+sources:
+  - https://github.com/clementguillot/nx-cloud-ce
+dependencies:
+  - name: mongodb
+    version: 15.1.3
+    repository: https://charts.bitnami.com/bitnami
+    condition: mongodb.enabled
+  - name: nginx
+    version: 16.0.1
+    repository: https://charts.bitnami.com/bitnami
+    condition: nginx.enabled

@@ -1,0 +1,238 @@
+## Nx Cloud CE configuration
+## Ref: https://github.com/clementguillot/nx-cloud-ce
+##
+
+# -- Provide a name in place of `nx-cloud-ce`
+nameOverride: nx-cloud-ce
+# -- String to fully override `"nx-cloud-ce.fullname"`
+fullnameOverride: ""
+
+## Globally shared configuration
+global:
+  # -- Default domain used by all components
+  domain: https://nx-cloud-ce.example.com
+
+  # -- Common labels for the all resources
+  additionalLabels: {}
+    # app: nx-cloud-ce
+
+  # -- Number of old deployment ReplicaSets to retain. The rest will be garbage collected.
+  revisionHistoryLimit: 3
+
+  # Default image used by all components
+  image:
+    # -- Overrides the global Nx Cloud CE image tag whose default is the chart appVersion
+    tag: ""
+    # -- If defined, a imagePullPolicy applied to all Nx Cloud CE deployments
+    imagePullPolicy: IfNotPresent
+
+  # -- Secrets with credentials to pull images from a private registry
+  imagePullSecrets: []
+
+  # -- Annotations for the all deployed Deployments
+  deploymentAnnotations: {}
+
+  # -- Annotations for the all deployed pods
+  podAnnotations: {}
+
+  # -- Labels for the all deployed pods
+  podLabels: {}
+
+  # -- Toggle and define pod-level security context.
+  # @default -- `{}` (See [values.yaml])
+  securityContext: {}
+  #  runAsUser: 999
+  #  runAsGroup: 999
+  #  fsGroup: 999
+
+  # -- Default node selector for all components
+  nodeSelector: {}
+
+  # -- Default tolerations for all components
+  tolerations: []
+
+  # Default affinity preset for all components
+  affinity:
+    # -- Default pod anti-affinity rules. Either: `none`, `soft` or `hard`
+    podAntiAffinity: soft
+    # Node affinity rules
+    nodeAffinity:
+      # -- Default node affinity rules. Either: `none`, `soft` or `hard`
+      type: hard
+      # -- Default match expressions for node affinity
+      matchExpressions: []
+        # - key: topology.kubernetes.io/zone
+        #   operator: In
+        #   values:
+        #    - antarctica-east1
+        #    - antarctica-west1
+
+  # -- Deployment strategy for the all deployed Deployments
+  deploymentStrategy: {}
+    # type: RollingUpdate
+    # rollingUpdate:
+    #   maxSurge: 25%
+    #   maxUnavailable: 25%
+
+  # -- Environment variables to pass to all deployed Deployments
+  env: []
+
+## Server
+server:
+  # -- Nx Cloud CE server name string
+  name: server
+
+  # -- The number of server pods to run
+  replicas: 1
+
+  ## Nx Cloud CE server image
+  image:
+    # -- Repository to use for the Nx Cloud CE server
+    repository: ghcr.io/clementguillot/nx-cloud-ce-server
+    # -- Tag to use for the Nx Cloud CE server
+    # @default -- `""` (defaults to global.image.tag)
+    tag: ""
+    # -- Image pull policy for the Nx Cloud CE server
+    # @default -- `""` (defaults to global.image.imagePullPolicy)
+    imagePullPolicy: ""
+
+  # -- Secrets with credentials to pull images from a private registry
+  # @default -- `[]` (defaults to global.imagePullSecrets)
+  imagePullSecrets: [ ]
+
+  # -- DB configuration when using external MongoDB
+  database:
+    # @default -- `""` (defaults to mongodb.enabled=true)
+    connectionStringSecretName: ""
+    # @default -- `""` (defaults to mongodb.enabled=true)
+    connectionStringSecretKeyRef: ""
+
+  # -- Additional command line arguments to pass to Nx Cloud CE server
+  extraArgs: []
+
+  # -- Environment variables to pass to Nx Cloud CE server
+  env: []
+
+  # -- envFrom to pass to Nx Cloud CE server
+  # @default -- `[]` (See [values.yaml])
+  envFrom: []
+  # - configMapRef:
+  #     name: config-map-name
+  # - secretRef:
+  #     name: secret-name
+
+  # -- Annotations to be added to server Deployment
+  deploymentAnnotations: {}
+
+  # -- Annotations to be added to server pods
+  podAnnotations: {}
+
+  # -- Labels to be added to server pods
+  podLabels: {}
+
+  # -- Resource limits and requests for the Nx Cloud CE server
+  resources: {}
+  #  limits:
+  #    cpu: 500m
+  #    memory: 512Mi
+  #  requests:
+  #    cpu: 250m
+  #    memory: 256Mi
+
+  # Server container ports
+  containerPorts:
+    # -- Server container port
+    server: 8080
+
+  # -- Nx Cloud CE server container-level security context
+  # @default -- See [values.yaml]
+  containerSecurityContext:
+    runAsNonRoot: true
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
+    seccompProfile:
+      type: RuntimeDefault
+    capabilities:
+      drop:
+        - ALL
+  # -- terminationGracePeriodSeconds for container lifecycle hook
+  terminationGracePeriodSeconds: 30
+
+  # -- [Node selector]
+  # @default -- `{}` (defaults to global.nodeSelector)
+  nodeSelector: {}
+
+  # -- [Tolerations] for use with node taints
+  # @default -- `[]` (defaults to global.tolerations)
+  tolerations: []
+
+  # -- Assign custom [affinity] rules to the deployment
+  # @default -- `{}` (defaults to global.affinity preset)
+  affinity: {}
+
+  # -- Deployment strategy to be added to the server Deployment
+  deploymentStrategy: {}
+    # type: RollingUpdate
+    # rollingUpdate:
+    #   maxSurge: 25%
+    #   maxUnavailable: 25%
+
+  ## Server service configuration
+  service:
+    # -- Server service annotations
+    annotations: {}
+    # -- Server service labels
+    labels: {}
+    # -- Server service type
+    type: ClusterIP
+    # -- Server service http port
+    servicePortHttp: 80
+    # -- Server service http port name, can be used to route traffic via istio
+    servicePortHttpName: http
+
+  ## Nx Cloud CE server emptyDir volumes
+  emptyDir:
+    # -- EmptyDir size limit for the Argo CD server
+    # @default -- `""` (defaults not set if not specified i.e. no size limit)
+    sizeLimit: ""
+    # sizeLimit: "1Gi"
+
+## Embedded MongoDB configuration (Bitnami Helm Chart)
+mongodb:
+  # If `enabled`, Bitnami's chart is installed.
+  enabled: true
+
+  # MANDATORY: set this value to `replicaset` to use MongoDB transactions
+  architecture: replicaset
+
+  # Default credentials
+  auth:
+    databases:
+      - server
+    usernames:
+      - server
+    passwords:
+      - server
+
+  serviceBindings:
+    # MANDATORY: enable this "experimental" feature to create a secret for service binding
+    enabled: true
+
+## Embedded NGINX configuration (Bitnami Helm Chart)
+nginx:
+  # If `enabled`, Bitnami's chart is installed.
+  enabled: true
+
+  # NGINX Service properties
+  service:
+    # Service type
+    type: ClusterIP
+    # Service HTTP port
+    ports:
+      http: 80
+
+  # ConfigMap with custom server block to be added to NGINX configuration
+  existingServerBlockConfigmap: '{{ template "nx-cloud-ce.fullname" . }}'
+
+  # Configuration to add to NGINX server block
+  extraServerBlockConfiguration: ""
