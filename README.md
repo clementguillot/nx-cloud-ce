@@ -21,9 +21,10 @@ Since Nx Cloud is a proprietary software from Narwhal Technologies Inc., it is h
 
 ## Project structure
 
-| Application/library          | Summary                                                       |
-|------------------------------|---------------------------------------------------------------|
-| [`apps/server`](apps/server) | Backend of Nx Cloud CE, handles requests from Nx Cloud client |
+| Application/library                  | Summary                                                       |
+|--------------------------------------|---------------------------------------------------------------|
+| [`apps/helm-chart`](apps/helm-chart) | Helm Chart to deploy Nx Cloud CE on Kubernetes                |
+| [`apps/server`](apps/server)         | Backend of Nx Cloud CE, handles requests from Nx Cloud client |
 
 ## External Code and Licenses
 
