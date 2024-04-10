@@ -22,11 +22,10 @@
       "dependsOn": ["dependency-build"],
       "executor": "nx:run-commands",
       "options": {
-        "cwd": "apps/helm-chart",
         "commands": [
-          "mkdir -p dist",
-          "helm dependency build src",
-          "helm package src --destination dist"
+          "mkdir -p .cr-release-packages",
+          "helm dependency build apps/helm-chart/src",
+          "helm package apps/helm-chart/src --destination .cr-release-packages"
         ],
         "parallel": false
       },
