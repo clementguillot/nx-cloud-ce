@@ -1,0 +1,65 @@
+name: Init Nx Cloud CE Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      TARGET_BRANCH:
+        description: 'TARGET_BRANCH to checkout (e.g. main or release-2.5)'
+        required: true
+        type: string
+
+      TARGET_VERSION:
+        description: 'TARGET_VERSION to build artifacts (e.g. 2.5.0-rc1) Note: the `v` prefix is not used'
+        required: true
+        type: string
+
+permissions: {}
+
+jobs:
+  prepare-release:
+    permissions:
+      contents: write  # for peter-evans/create-pull-request to create branch
+      pull-requests: write  # for peter-evans/create-pull-request to create a PR
+    name: Automatically generate version and artifacts on ${{ inputs.TARGET_BRANCH }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ inputs.TARGET_BRANCH }}
+
+      - name: Check if TARGET_VERSION is well formed.
+        run: |
+          set -xue
+          # Target version must not contain 'v' prefix
+          if echo "${{ inputs.TARGET_VERSION }}" | grep -e '^v'; then
+            echo "::error::Target version '${{ inputs.TARGET_VERSION }}' should not begin with a 'v' prefix, refusing to continue." >&2
+            exit 1
+          fi
+
+      - name: Create VERSION information
+        run: |
+          set -ue
+          echo "Bumping version from $(cat VERSION) to ${{ inputs.TARGET_VERSION }}"
+          echo "${{ inputs.TARGET_VERSION }}" > VERSION
+
+      - name: Generate new set of artifacts
+        run: |
+          set -ue
+          find . -type f -name 'build.gradle.kts' -exec sed -i -E 's/version = "([0-9]+\.[0-9]+\.[0-9]+(-SNAPSHOT)?)"/version = "${{ inputs.TARGET_VERSION }}"/g' {} +
+          find . -type f -name 'Chart.yaml' -exec sed -i -E 's/version: "[0-9]+\.[0-9]+\.[0-9]"/version: "${{ inputs.TARGET_VERSION }}"/g' {} +
+          find . -type f -name 'Chart.yaml' -exec sed -i -E 's/appVersion: "[0-9]+\.[0-9]+\.[0-9]"/version: "${{ inputs.TARGET_VERSION }}"/g' {} +
+          git diff
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38  # v5.0.2
+        with:
+          commit-message: "Bump version to ${{ inputs.TARGET_VERSION }}"
+          title: "Bump version to ${{ inputs.TARGET_VERSION }} on ${{ inputs.TARGET_BRANCH }} branch"
+          body: Updating VERSION and artifacts to ${{ inputs.TARGET_VERSION }}
+          branch: update-version
+          branch-suffix: random
+          signoff: true
+          labels: release

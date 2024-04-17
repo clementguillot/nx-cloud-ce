@@ -86,7 +86,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
+      packages: write # used to push images to `ghcr.io` if used.
     steps:
       - uses: actions/checkout@v4
         with:

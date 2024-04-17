@@ -43,3 +43,4 @@ Thumbs.db
 build
 
 .nx/cache
+.cr-release-packages
