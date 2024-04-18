@@ -16,6 +16,17 @@
       ]
     },
     {
+      "description": "Group @nx-tools dependencies",
+      "groupName": "@nx-tools",
+      "matchFileNames": [
+        "package.json"
+      ],
+      "matchPackagePatterns": [
+        "@nx-tools/nx-container",
+        "@nx-tools/container-metadata"
+      ]
+    },
+    {
       "description": "Keep major/minor versions in Quarkus dockerfiles",
       "matchFileNames": ["**/src/main/docker/Dockerfile.*"],
       "matchPackageNames": [
