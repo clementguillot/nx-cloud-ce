@@ -21,6 +21,28 @@ nx build apps/helm-chart
 
 It will download dependencies and create a tgz package at `apps/helm-chart/dist`.
 
+## Install from Helm Repository
+
+For production (or stable) environments, you can install this chart from GHCR, using `helm`.
+
+First, you need to add this Helm repository:
+
+```shell script
+helm repo add nx-cloud-ce https://clementguillot.github.io/nx-cloud-ce
+```
+
+And then, you can install the chart:
+
+```shell script
+helm install [release name] nx-cloud-ce/nx-cloud-ce [-n [namespace]]
+```
+
+You need to replace `[release name]` by the desired release name, e.g. `nx-cloud-ce`.
+
+You can optionally specify a destination namespace with `-n [dest-namespace]`, otherwise, chart will be installed in namespace `default`.
+
+Also, You can specify values using `--set ...` or `-f [values.yaml]`. Useful when using an external MongoDB.
+
 ## Install from source using Helm
 
 For development purpose, you can install this chart using `helm`:
