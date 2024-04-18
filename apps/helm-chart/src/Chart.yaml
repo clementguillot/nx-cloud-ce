@@ -2,8 +2,8 @@ apiVersion: v2
 name: nx-cloud-ce
 description: Nx Cloud Community Edition Helm Chart
 type: application
-version: "0.1.0"
-appVersion: "v0.1.0"
+version: "0.1.1"
+appVersion: "v0.1.1"
 keywords:
   - nx-cloud-ce
 home: https://github.com/clementguillot/nx-cloud-ce
