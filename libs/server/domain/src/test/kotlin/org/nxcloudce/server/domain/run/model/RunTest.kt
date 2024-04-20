@@ -29,7 +29,6 @@ class RunTest {
         machineInfo = MachineInfo("machine-id", "linux", "1.0", 4)
         meta = mapOf("nxCloudVersion" to "123")
         vcsContext = buildVcsContext()
-        tasks = emptyList()
         linkId = "link-id"
         projectGraph = buildProjectGraph()
         hashedContributors = null
@@ -52,7 +51,6 @@ class RunTest {
       its { machineInfo }.toEqual(MachineInfo("machine-id", "linux", "1.0", 4))
       its { meta }.toEqual(mapOf("nxCloudVersion" to "123"))
       its { vcsContext }.toEqual(buildVcsContext())
-      its { tasks }.toEqual(emptyList())
       its { linkId }.toEqual("link-id")
       its { projectGraph }.toEqual(buildProjectGraph())
       its { hashedContributors }.toEqual(null)

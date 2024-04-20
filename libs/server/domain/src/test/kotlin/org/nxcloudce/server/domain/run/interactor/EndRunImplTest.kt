@@ -165,7 +165,6 @@ class EndRunImplTest {
       machineInfo = run.machineInfo
       meta = run.meta
       vcsContext = run.vcsContext
-      tasks = emptyList()
       linkId = run.linkId
     }
 

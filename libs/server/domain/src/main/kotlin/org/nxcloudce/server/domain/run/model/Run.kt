@@ -29,7 +29,6 @@ class Run private constructor(builder: Builder) {
   val machineInfo: MachineInfo
   val meta: Map<String, String>
   val vcsContext: VcsContext?
-  val tasks: Collection<Task>
   val linkId: String
   val projectGraph: ProjectGraph?
   val hashedContributors: Collection<String>?
@@ -46,7 +45,6 @@ class Run private constructor(builder: Builder) {
     requireNotNull(builder.runGroup)
     requireNotNull(builder.inner)
     requireNotNull(builder.meta)
-    requireNotNull(builder.tasks)
     requireNotNull(builder.linkId)
     id = builder.id!!
     workspaceId = builder.workspaceId!!
@@ -63,7 +61,6 @@ class Run private constructor(builder: Builder) {
     machineInfo = builder.machineInfo!!
     meta = builder.meta!!
     vcsContext = builder.vcsContext
-    tasks = builder.tasks!!
     linkId = builder.linkId!!
     projectGraph = builder.projectGraph
     hashedContributors = builder.hashedContributors
@@ -86,7 +83,6 @@ class Run private constructor(builder: Builder) {
     var machineInfo: MachineInfo? = null
     var meta: Map<String, String>? = null
     var vcsContext: VcsContext? = null
-    var tasks: Collection<Task>? = null
     var linkId: String? = null
     var projectGraph: ProjectGraph? = null
     var hashedContributors: Collection<String>? = null

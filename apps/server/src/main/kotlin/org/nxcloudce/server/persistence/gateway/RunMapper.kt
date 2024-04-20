@@ -28,7 +28,6 @@ fun RunEntity.toDomain(): Run =
         cpuCores = this@toDomain.machineInfo.cpuCores,
       )
     meta = this@toDomain.meta
-    tasks = emptyList()
     vcsContext =
       this@toDomain.vcsContext?.let { vcsContext ->
         VcsContext(
