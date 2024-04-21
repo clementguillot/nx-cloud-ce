@@ -1,6 +1,7 @@
 package org.nxcloudce.server.storage.s3
 
 import aws.sdk.kotlin.services.s3.S3Client
+import aws.sdk.kotlin.services.s3.model.DeleteObjectRequest
 import aws.sdk.kotlin.services.s3.model.GetObjectRequest
 import aws.sdk.kotlin.services.s3.model.PutObjectRequest
 import aws.sdk.kotlin.services.s3.presigners.presignGetObject
@@ -38,5 +39,14 @@ class S3Repository(
       .presignPutObject(putRequest, presignExpiration)
       .url
       .toString()
+  }
+
+  override suspend fun deleteFile(objectPath: String) {
+    val deleteRequest =
+      DeleteObjectRequest {
+        bucket = this@S3Repository.bucketName
+        key = objectPath
+      }
+    s3Client.deleteObject(deleteRequest)
   }
 }

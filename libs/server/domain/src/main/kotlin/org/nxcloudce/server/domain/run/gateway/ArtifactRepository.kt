@@ -20,4 +20,6 @@ interface ArtifactRepository {
     artifact: Map<ArtifactId, Hash>,
     workspaceId: WorkspaceId,
   ): Collection<Artifact.Exist>
+
+  suspend fun delete(artifact: Artifact.Exist): Boolean
 }

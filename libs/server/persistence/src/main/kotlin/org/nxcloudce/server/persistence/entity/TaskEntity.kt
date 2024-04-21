@@ -23,6 +23,7 @@ data class TaskEntity(
   var hashDetails: HashDetails,
   var artifactId: String?,
 ) {
+  @MongoEntity
   data class HashDetails(
     val nodes: Map<String, String>,
     val runtime: Map<String, String>?,

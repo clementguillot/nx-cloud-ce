@@ -5,10 +5,14 @@ import org.nxcloudce.server.domain.run.model.Task
 import org.nxcloudce.server.domain.run.usecase.EndRunRequest
 import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 
-fun interface TaskRepository {
+interface TaskRepository {
   suspend fun create(
     tasks: Collection<EndRunRequest.Task>,
     runId: RunId,
     workspaceId: WorkspaceId,
   ): Collection<Task>
+
+  suspend fun findAllByRunId(runId: RunId): Collection<Task>
+
+  suspend fun deleteAllByRunId(runId: RunId): Long
 }

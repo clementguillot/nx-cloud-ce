@@ -74,4 +74,29 @@ class ArtifactPanacheRepositoryTest {
       expect(result.size).toEqual(3)
       expect(result.map { it.hash }).toContainExactly("hash1", "hash2", "hash3")
     }
+
+  @Test
+  fun `should delete entities by their Artifact ID`() =
+    runTest {
+      artifactPanacheRepository.persist(
+        ArtifactEntity(
+          id = null,
+          artifactId = "artifact-id",
+          hash = "has",
+          workspaceId = ObjectId(),
+        ),
+        ArtifactEntity(
+          id = null,
+          artifactId = "artifact-id-2",
+          hash = "has",
+          workspaceId = ObjectId(),
+        ),
+      ).awaitSuspending()
+
+      val result = artifactPanacheRepository.deleteByArtifactId("artifact-id").awaitSuspending()
+      val totalCount = artifactPanacheRepository.count().awaitSuspending()
+
+      expect(result).toEqual(1)
+      expect(totalCount).toEqual(1)
+    }
 }

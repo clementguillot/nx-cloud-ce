@@ -4,6 +4,8 @@ import ch.tutteli.atrium.api.fluent.en_GB.toEqual
 import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.just
+import io.mockk.runs
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
 import jakarta.inject.Inject
@@ -46,5 +48,18 @@ class StorageServiceImplTest {
       // Then
       expect(result).toEqual("put-presigned-url")
       coVerify(exactly = 1) { fileRepository.generatePutUrl("dummy-workspace/dummy-artifact") }
+    }
+
+  @Test
+  fun `should delete an object from file repository`() =
+    runTest {
+      // Given
+      coEvery { fileRepository.deleteFile("dummy-workspace/dummy-artifact") } just runs
+
+      // When
+      storageServiceImpl.deleteArtifact(ArtifactId("dummy-artifact"), WorkspaceId("dummy-workspace"))
+
+      // Then
+      coVerify(exactly = 1) { fileRepository.deleteFile("dummy-workspace/dummy-artifact") }
     }
 }

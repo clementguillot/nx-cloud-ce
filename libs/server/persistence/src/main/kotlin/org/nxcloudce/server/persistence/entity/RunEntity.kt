@@ -26,6 +26,7 @@ data class RunEntity(
   var hashedContributors: Collection<String>?,
   var sha: String?,
 ) {
+  @MongoEntity
   data class MachineInfo(
     var machineId: String = "",
     var platform: String = "",
@@ -33,6 +34,7 @@ data class RunEntity(
     var cpuCores: Short = 0,
   )
 
+  @MongoEntity
   data class VcsContext(
     val branch: String,
     val ref: String?,
@@ -47,16 +49,19 @@ data class RunEntity(
     val platformName: String?,
   )
 
+  @MongoEntity
   data class ProjectGraph(
     val nodes: Map<String, Node>,
     val dependencies: Map<String, List<Dependency>>,
   ) {
+    @MongoEntity
     data class Node(
       val type: String,
       val name: String,
       val data: Map<String, String>,
     )
 
+    @MongoEntity
     data class Dependency(
       val source: String,
       val target: String,

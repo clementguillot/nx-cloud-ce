@@ -88,4 +88,59 @@ class TaskRepositoryImplTest {
       // Then
       expect(result.size).toEqual(tasks.size)
     }
+
+  @Test
+  fun `should find tasks by their run ID`() =
+    runTest {
+      // Given
+      val dummyRunId = ObjectId()
+      val dummyTaskEntities = listOf(buildTaskEntity(dummyRunId))
+      every { mockTaskPanacheRepository.findAllByRunId(dummyRunId) } returns Uni.createFrom().item(dummyTaskEntities)
+
+      // When
+      val result = taskRepository.findAllByRunId(RunId(dummyRunId.toString()))
+
+      // Then
+      expect(result.size).toEqual(1)
+      expect(result.toList()[0].taskId.value).toEqual(dummyTaskEntities[0].taskId)
+    }
+
+  @Test
+  fun `should delete tasks by their run ID`() =
+    runTest {
+      // Given
+      val dummyRunId = ObjectId()
+      every { mockTaskPanacheRepository.deleteAllByRunId(dummyRunId) } returns Uni.createFrom().item(1)
+
+      // When
+      val result = taskRepository.deleteAllByRunId(RunId(dummyRunId.toString()))
+
+      // Then
+      expect(result).toEqual(1)
+    }
+
+  private fun buildTaskEntity(runId: ObjectId = ObjectId()): TaskEntity =
+    TaskEntity(
+      id = null,
+      runId = runId,
+      workspaceId = ObjectId(),
+      taskId = "task123",
+      hash = "hash123",
+      projectName = "project",
+      target = "target",
+      startTime = LocalDateTime.now(),
+      endTime = LocalDateTime.now(),
+      cacheStatus = "cache-miss",
+      status = 1,
+      uploadedToStorage = true,
+      params = "params",
+      terminalOutput = "output",
+      hashDetails =
+        TaskEntity.HashDetails(
+          nodes = mapOf("node1" to "hash1", "node2" to "hash2"),
+          runtime = mapOf("runtime1" to "hash1", "runtime2" to "hash2"),
+          implicitDeps = mapOf("dep1" to "hash1", "dep2" to "hash2"),
+        ),
+      artifactId = null,
+    )
 }

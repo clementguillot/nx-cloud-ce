@@ -88,6 +88,10 @@ class Run private constructor(builder: Builder) {
     var hashedContributors: Collection<String>? = null
     var sha: String? = null
 
+    fun id(value: String) = apply { id = RunId(value) }
+
+    fun workspaceId(value: String) = apply { workspaceId = WorkspaceId(value) }
+
     fun build(): Run = Run(this)
   }
 }

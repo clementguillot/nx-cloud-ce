@@ -3,6 +3,7 @@ package org.nxcloudce.server.persistence.gateway
 import io.smallrye.mutiny.coroutines.awaitSuspending
 import jakarta.enterprise.context.ApplicationScoped
 import org.bson.types.ObjectId
+import org.jboss.logging.Logger
 import org.nxcloudce.server.domain.run.gateway.ArtifactRepository
 import org.nxcloudce.server.domain.run.model.Artifact
 import org.nxcloudce.server.domain.run.model.ArtifactId
@@ -15,6 +16,10 @@ import org.nxcloudce.server.persistence.repository.ArtifactPanacheRepository
 class ArtifactRepositoryImpl(
   private val artifactPanacheRepository: ArtifactPanacheRepository,
 ) : ArtifactRepository {
+  companion object {
+    private val logger = Logger.getLogger(ArtifactRepositoryImpl::class.java)
+  }
+
   override suspend fun findByHash(
     hashes: Collection<Hash>,
     workspaceId: WorkspaceId,
@@ -54,4 +59,16 @@ class ArtifactRepositoryImpl(
 
     return entities.map { it.toDomain() }
   }
+
+  override suspend fun delete(artifact: Artifact.Exist): Boolean =
+    artifactPanacheRepository.deleteByArtifactId(artifact.id.value).awaitSuspending().let {
+      when (it) {
+        0L -> false
+        1L -> true
+        else -> {
+          logger.warn("$it artifacts were deleted, was expecting only 1, DB indexes should be checked")
+          true
+        }
+      }
+    }
 }
