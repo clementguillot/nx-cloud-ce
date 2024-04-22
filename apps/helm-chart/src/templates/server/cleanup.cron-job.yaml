@@ -1,0 +1,104 @@
+{{- if .Values.server.cleanup.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+
+metadata:
+  {{- with (mergeOverwrite (deepCopy .Values.global.cronJobAnnotations) .Values.server.cronJobAnnotations) }}
+  annotations:
+    {{- range $key, $value := . }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+  {{- end }}
+  name: {{ template "nx-cloud-ce.server.fullname" . }}-cleanup
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "nx-cloud-ce.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 4 }}
+
+spec:
+  schedule: {{ .Values.server.cleanup.schedule }}
+  successfulJobsHistoryLimit: {{ .Values.server.cleanup.successfulJobsHistoryLimit }}
+  failedJobsHistoryLimit: {{ .Values.server.cleanup.failedJobsHistoryLimit }}
+  concurrencyPolicy: "{{ .Values.server.cleanup.concurrencyPolicy }}"
+  jobTemplate:
+    spec:
+      {{- if .Values.server.cleanup.activeDeadlineSeconds }}
+      activeDeadlineSeconds: {{ .Values.server.cleanup.activeDeadlineSeconds }}
+      {{- end}}
+      template:
+        metadata:
+          annotations:
+            {{- with (mergeOverwrite (deepCopy .Values.global.podAnnotations) .Values.server.podAnnotations) }}
+            {{- range $key, $value := . }}
+            {{ $key }}: {{ $value | quote }}
+            {{- end }}
+            {{- end }}
+          labels:
+            {{- include "nx-cloud-ce.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 8 }}
+            {{- with (mergeOverwrite (deepCopy .Values.global.podLabels) .Values.server.podLabels) }}
+              {{- toYaml . | nindent 14 }}
+            {{- end }}
+        spec:
+          {{- with .Values.server.imagePullSecrets | default .Values.global.imagePullSecrets }}
+          imagePullSecrets:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.global.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          restartPolicy: Never
+          {{- if .Values.server.terminationGracePeriodSeconds }}
+          terminationGracePeriodSeconds: {{ .Values.server.terminationGracePeriodSeconds }}
+          {{- end }}
+          containers:
+            - name: {{ .Values.server.name }}-cleanup
+              image: {{ .Values.server.image.repository }}:{{ default (include "nx-cloud-ce.defaultTag" .) .Values.server.image.tag }}
+              imagePullPolicy: {{ default .Values.global.image.imagePullPolicy .Values.server.image.imagePullPolicy }}
+              args:
+                - "cleanup"
+                - "--days"
+                - {{ .Values.server.cleanup.days | quote }}
+              env:
+                {{- with (concat .Values.global.env .Values.server.env) }}
+                  {{- toYaml . | nindent 16 }}
+                {{- end }}
+                - name: NX_SERVER_APPLICATION_URL
+                  value: {{ .Values.global.domain }}
+                - name: QUARKUS_MONGODB_CONNECTION_STRING
+                  {{- include "nx-cloud-ce.server.database.connection-string" . | nindent 18 }}
+                - name: QUARKUS_MONGODB_DATABASE
+                  value: {{ .Values.server.name }}
+              {{- with .Values.server.envFrom }}
+              envFrom:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+              volumeMounts:
+                - mountPath: /tmp
+                  name: tmp
+              resources:
+                {{- toYaml .Values.server.resources | nindent 16 }}
+              {{- with .Values.server.containerSecurityContext }}
+              securityContext:
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+          {{- with include "nx-cloud-ce.affinity" (dict "context" . "component" .Values.server) }}
+          affinity:
+            {{- trim . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.server.nodeSelector | default .Values.global.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.server.tolerations | default .Values.global.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumes:
+            - name: tmp
+              {{- if .Values.server.emptyDir.sizeLimit }}
+              emptyDir:
+                sizeLimit: {{ .Values.server.emptyDir.sizeLimit }}
+                    {{- else }}
+              emptyDir: { }
+              {{- end }}
+{{- end }}

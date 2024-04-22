@@ -32,6 +32,9 @@ global:
   # -- Annotations for the all deployed Deployments
   deploymentAnnotations: {}
 
+  # -- Annotations for the all deployed Cron Jobs
+  cronJobAnnotations: {}
+
   # -- Annotations for the all deployed pods
   podAnnotations: {}
 
@@ -124,6 +127,9 @@ server:
   # -- Annotations to be added to server Deployment
   deploymentAnnotations: {}
 
+  # -- Annotations to be added to server Cron Jobs
+  cronJobAnnotations: {}
+
   # -- Annotations to be added to server pods
   podAnnotations: {}
 
@@ -196,6 +202,25 @@ server:
     # @default -- `""` (defaults not set if not specified i.e. no size limit)
     sizeLimit: ""
     # sizeLimit: "1Gi"
+
+  ## Server clean-up cron job configuration
+  cleanup:
+    # -- Server clean-up enabled
+    enabled: true
+    # -- Server clean-up cron schedule expression
+    schedule: 0 0 * * *
+    # -- Server clean-up successful jobs history limit
+    successfulJobsHistoryLimit: 5
+    # -- Server clean-up failed jobs history limit
+    failedJobsHistoryLimit: 5
+    # -- Server clean-up active deadline seconds
+    activeDeadlineSeconds: 300
+    # -- Server clean-up concurrent policy
+    concurrencyPolicy: Forbid
+    #-- Server clean-up concurrency
+    concurrency: 1
+    # -- Server clean-up numbers of days to truncate on
+    days: 30
 
 ## Embedded MongoDB configuration (Bitnami Helm Chart)
 mongodb:
