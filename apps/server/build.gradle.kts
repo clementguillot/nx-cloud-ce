@@ -21,6 +21,7 @@ val quarkusAwsS3Version: String by project
 val quarkusMockkVersion: String by project
 val atriumVersion: String by project
 val awsSdkKotlinVersion: String by project
+val cliktVersion: String by project
 val jacksonDatatypeJsr310Version: String by project
 val okhttp3Version: String by project
 
@@ -40,6 +41,7 @@ dependencies {
   implementation("io.quarkus:quarkus-smallrye-openapi")
   implementation("aws.sdk.kotlin:s3:$awsSdkKotlinVersion")
   implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDatatypeJsr310Version")
+  implementation("com.github.ajalt.clikt:clikt:$cliktVersion")
 
   implementation(project(":libs:server:domain"))
   implementation(project(":libs:server:persistence"))

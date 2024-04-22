@@ -25,8 +25,8 @@ data class TaskEntity(
 ) {
   @MongoEntity
   data class HashDetails(
-    val nodes: Map<String, String>,
-    val runtime: Map<String, String>?,
-    val implicitDeps: Map<String, String>?,
+    var nodes: Map<String, String>,
+    var runtime: Map<String, String>?,
+    var implicitDeps: Map<String, String>?,
   )
 }
