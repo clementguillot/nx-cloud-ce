@@ -6,8 +6,10 @@ import org.nxcloudce.server.domain.metric.interactor.SaveMetricsImpl
 import org.nxcloudce.server.domain.metric.usecase.SaveMetrics
 import org.nxcloudce.server.domain.organization.interactor.CreateOrganizationImpl
 import org.nxcloudce.server.domain.organization.usecase.CreateOrganization
+import org.nxcloudce.server.domain.run.interactor.CleanupRunImpl
 import org.nxcloudce.server.domain.run.interactor.EndRunImpl
 import org.nxcloudce.server.domain.run.interactor.StartRunImpl
+import org.nxcloudce.server.domain.run.usecase.CleanupRun
 import org.nxcloudce.server.domain.run.usecase.EndRun
 import org.nxcloudce.server.domain.run.usecase.StartRun
 import org.nxcloudce.server.domain.workspace.interactor.CreateOrgAndWorkspaceImpl
@@ -37,6 +39,10 @@ class DomainUseCaseProducers(
   @Produces
   @ApplicationScoped
   fun createOrganization(): CreateOrganization = CreateOrganizationImpl(organizationRepository)
+
+  @Produces
+  @ApplicationScoped
+  fun cleanupRun(): CleanupRun = CleanupRunImpl(runRepository, taskRepository, artifactRepository, storageService)
 
   @Produces
   @ApplicationScoped

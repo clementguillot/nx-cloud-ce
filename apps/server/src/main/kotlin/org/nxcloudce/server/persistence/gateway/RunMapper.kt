@@ -28,7 +28,6 @@ fun RunEntity.toDomain(): Run =
         cpuCores = this@toDomain.machineInfo.cpuCores,
       )
     meta = this@toDomain.meta
-    tasks = emptyList()
     vcsContext =
       this@toDomain.vcsContext?.let { vcsContext ->
         VcsContext(
@@ -50,21 +49,25 @@ fun RunEntity.toDomain(): Run =
       this@toDomain.projectGraph?.let { projectGraph ->
         ProjectGraph(
           nodes =
-            projectGraph.nodes.mapValues { (_, node) ->
-              ProjectGraph.Node(
-                type = node.type,
-                name = node.name,
-                data = node.data,
-              )
+            projectGraph.nodes?.let {
+              it.mapValues { (_, node) ->
+                ProjectGraph.Node(
+                  type = node.type,
+                  name = node.name,
+                  data = node.data,
+                )
+              }
             },
           dependencies =
-            projectGraph.dependencies.mapValues { (_, dependencies) ->
-              dependencies.map { dependency ->
-                ProjectGraph.Dependency(
-                  source = dependency.source,
-                  target = dependency.target,
-                  type = dependency.type,
-                )
+            projectGraph.dependencies?.let {
+              it.mapValues { (_, dependencies) ->
+                dependencies.map { dependency ->
+                  ProjectGraph.Dependency(
+                    source = dependency.source,
+                    target = dependency.target,
+                    type = dependency.type,
+                  )
+                }
               }
             },
         )
@@ -119,7 +122,7 @@ fun EndRunRequest.Run.toEntity(
       projectGraph?.let { projectGraph ->
         RunEntity.ProjectGraph(
           nodes =
-            projectGraph.nodes.mapValues { (_, node) ->
+            projectGraph.nodes!!.mapValues { (_, node) ->
               RunEntity.ProjectGraph.Node(
                 type = node.type,
                 name = node.name,
@@ -127,7 +130,7 @@ fun EndRunRequest.Run.toEntity(
               )
             },
           dependencies =
-            projectGraph.dependencies.mapValues { (_, dependencies) ->
+            projectGraph.dependencies!!.mapValues { (_, dependencies) ->
               dependencies.map { dependency ->
                 RunEntity.ProjectGraph.Dependency(
                   source = dependency.source,

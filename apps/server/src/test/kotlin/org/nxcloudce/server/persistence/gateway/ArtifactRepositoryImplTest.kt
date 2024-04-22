@@ -113,4 +113,40 @@ class ArtifactRepositoryImplTest {
       // Then
       expect(result).toContainExactly(expectedArtifacts[0], expectedArtifacts[1])
     }
+
+  @Test
+  fun `should indicate if an artifact has been deleted from the DB`() =
+    runTest {
+      // Given
+      val validArtifact =
+        Artifact.Exist(
+          id = ArtifactId("valid-id"),
+          hash = Hash("hash"),
+          workspaceId = WorkspaceId("workspaceId"),
+          put = "put",
+          get = "get",
+        )
+      coEvery {
+        mockArtifactPanacheRepository.deleteByArtifactId(validArtifact.id.value)
+      } returns Uni.createFrom().item(1)
+      val invalidArtifact =
+        Artifact.Exist(
+          id = ArtifactId("invalid-id"),
+          hash = Hash("hash"),
+          workspaceId = WorkspaceId("workspaceId"),
+          put = "put",
+          get = "get",
+        )
+      coEvery {
+        mockArtifactPanacheRepository.deleteByArtifactId(invalidArtifact.id.value)
+      } returns Uni.createFrom().item(0)
+
+      // When
+      val validResult = artifactRepository.delete(validArtifact)
+      val invalidResult = artifactRepository.delete(invalidArtifact)
+
+      // Then
+      expect(validResult).toEqual(true)
+      expect(invalidResult).toEqual(false)
+    }
 }

@@ -31,7 +31,7 @@ class TaskRunnerMetricTest {
       its { success }.toEqual(true)
       its { statusCode }.toEqual(200)
       its { entryType }.toEqual("type")
-      its { payloadSize }.toEqual(100L)
+      its { payloadSize }.toEqual(100)
     }
   }
 }

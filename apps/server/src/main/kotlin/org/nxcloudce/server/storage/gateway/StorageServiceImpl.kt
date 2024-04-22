@@ -18,4 +18,9 @@ class StorageServiceImpl(
     artifactId: ArtifactId,
     workspaceId: WorkspaceId,
   ): String = fileRepository.generatePutUrl("${workspaceId.value}/${artifactId.value}")
+
+  override suspend fun deleteArtifact(
+    artifactId: ArtifactId,
+    workspaceId: WorkspaceId,
+  ) = fileRepository.deleteFile("${workspaceId.value}/${artifactId.value}")
 }

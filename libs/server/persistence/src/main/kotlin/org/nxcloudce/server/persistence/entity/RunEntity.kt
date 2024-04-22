@@ -26,6 +26,7 @@ data class RunEntity(
   var hashedContributors: Collection<String>?,
   var sha: String?,
 ) {
+  @MongoEntity
   data class MachineInfo(
     var machineId: String = "",
     var platform: String = "",
@@ -33,34 +34,40 @@ data class RunEntity(
     var cpuCores: Short = 0,
   )
 
+  @MongoEntity
   data class VcsContext(
-    val branch: String,
-    val ref: String?,
-    val title: String?,
-    val headSha: String?,
-    val baseSha: String?,
-    val commitLink: String?,
-    val author: String?,
-    val authorUrl: String?,
-    val authorAvatarUrl: String?,
-    val repositoryUrl: String?,
-    val platformName: String?,
+    var branch: String,
+    var ref: String?,
+    var title: String?,
+    var headSha: String?,
+    var baseSha: String?,
+    var commitLink: String?,
+    var author: String?,
+    var authorUrl: String?,
+    var authorAvatarUrl: String?,
+    var repositoryUrl: String?,
+    var platformName: String?,
   )
 
+  // TODO: we should not use `val`, otherwise, values can't be late-initialized
+  // https://github.com/clementguillot/nx-cloud-ce/issues/118
+  @MongoEntity
   data class ProjectGraph(
     val nodes: Map<String, Node>,
     val dependencies: Map<String, List<Dependency>>,
   ) {
+    @MongoEntity
     data class Node(
-      val type: String,
-      val name: String,
-      val data: Map<String, String>,
+      var type: String,
+      var name: String,
+      var data: Map<String, String>,
     )
 
+    @MongoEntity
     data class Dependency(
-      val source: String,
-      val target: String,
-      val type: String,
+      var source: String,
+      var target: String,
+      var type: String,
     )
   }
 }

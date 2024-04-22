@@ -13,4 +13,9 @@ interface StorageService {
     artifactId: ArtifactId,
     workspaceId: WorkspaceId,
   ): String
+
+  suspend fun deleteArtifact(
+    artifactId: ArtifactId,
+    workspaceId: WorkspaceId,
+  )
 }
