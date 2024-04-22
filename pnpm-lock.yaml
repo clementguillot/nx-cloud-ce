@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@jnxplus/nx-gradle':
-        specifier: 0.42.1
-        version: 0.42.1
+        specifier: 0.45.0
+        version: 0.45.0
       '@nx-tools/container-metadata':
         specifier: 5.3.0
         version: 5.3.0(@nx/devkit@18.3.2(nx@18.3.1))(dotenv@16.4.5)(tslib@2.6.2)
@@ -53,11 +53,11 @@ packages:
     resolution: {integrity: sha512-mo5j5X+jIZmJQveBKeS/clAueipV7KgiX1vMgCxam1RNYiqE1w62n0/tJJnHtjW8ZHcQco5gY85jA3mi0L+nSA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  '@jnxplus/common@0.42.1':
-    resolution: {integrity: sha512-R3+6tNCtyHO/H6Vnjb4DID5kO1xu5aaZJBHbFjGgSYezrhKqiTEI3ILjag0kcYP7VqsPfVjFm3aKyhNVdh/1Iw==}
+  '@jnxplus/common@0.45.0':
+    resolution: {integrity: sha512-8fI+qAfcu3HrGWz4LqMr2swk/IL+eV3L990XU50FxMBFSrOqKW+vmu9JOoU1qGrdDpL2DBW80ZG/4VGu8u5Pvw==}
 
-  '@jnxplus/nx-gradle@0.42.1':
-    resolution: {integrity: sha512-kgo9Lbxe5bdhVqLE826p2jvYbXAyZgJlMBB+dNP3LDP+Co1xyoXB2JJp+GQJ/C7A1DtLd5SpcbBoKJhVyF7rvw==}
+  '@jnxplus/nx-gradle@0.45.0':
+    resolution: {integrity: sha512-9gJZANY0wFEFnn7591P19MHJO6UokJnYepNTamTbZTxTz8f3sFz3Pj3zqfIDUlrPiTqCiWzmP32qQ2jY0Rmf+g==}
 
   '@nrwl/devkit@18.3.1':
     resolution: {integrity: sha512-GanGBjkJbe2J63Ntzi7L66Z1O0Ck9UI07pep9HM5d7lrscbJi80Sr8EoLKbOz2gBXXpRoxARA0ZehmCgyrSxdA==}
@@ -780,16 +780,16 @@ snapshots:
     dependencies:
       '@sinclair/typebox': 0.27.8
 
-  '@jnxplus/common@0.42.1(nx@18.3.1)':
+  '@jnxplus/common@0.45.0(nx@18.3.1)':
     dependencies:
       '@nx/devkit': 18.3.2(nx@18.3.1)
       tslib: 2.6.2
     transitivePeerDependencies:
       - nx
 
-  '@jnxplus/nx-gradle@0.42.1':
+  '@jnxplus/nx-gradle@0.45.0':
     dependencies:
-      '@jnxplus/common': 0.42.1(nx@18.3.1)
+      '@jnxplus/common': 0.45.0(nx@18.3.1)
       '@nx/devkit': 18.3.2(nx@18.3.1)
       nx: 18.3.1
       smol-toml: 1.1.4
