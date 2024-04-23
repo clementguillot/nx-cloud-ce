@@ -33,7 +33,7 @@ spec:
             {{- end }}
             {{- end }}
           labels:
-            {{- include "nx-cloud-ce.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 8 }}
+            {{- include "nx-cloud-ce.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 12 }}
             {{- with (mergeOverwrite (deepCopy .Values.global.podLabels) .Values.server.podLabels) }}
               {{- toYaml . | nindent 14 }}
             {{- end }}
