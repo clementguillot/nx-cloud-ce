@@ -62,7 +62,7 @@ spec:
           - name: QUARKUS_MONGODB_CONNECTION_STRING
             {{- include "nx-cloud-ce.server.database.connection-string" . | nindent 12 }}
           - name: QUARKUS_MONGODB_DATABASE
-            value: {{ .Values.server.name }}
+            value: {{  default .Values.server.name .Values.server.database.dbName }}
         {{- with .Values.server.envFrom }}
         envFrom:
           {{- toYaml . | nindent 10 }}
