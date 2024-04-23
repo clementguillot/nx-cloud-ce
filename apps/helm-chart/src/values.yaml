@@ -105,6 +105,8 @@ server:
 
   # -- DB configuration when using external MongoDB
   database:
+    # @default -- `""` (defaults to server.name=server)
+    dbName: ""
     # @default -- `""` (defaults to mongodb.enabled=true)
     connectionStringSecretName: ""
     # @default -- `""` (defaults to mongodb.enabled=true)
