@@ -14,7 +14,7 @@ sources:
   - https://github.com/clementguillot/nx-cloud-ce
 dependencies:
   - name: mongodb
-    version: 15.1.4
+    version: 15.6.1
     repository: https://charts.bitnami.com/bitnami
     condition: mongodb.enabled
   - name: nginx
