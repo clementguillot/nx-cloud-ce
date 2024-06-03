@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@jnxplus/nx-gradle':
-        specifier: 1.0.0
-        version: 1.0.0
+        specifier: 1.1.0
+        version: 1.1.0
       '@nx-tools/container-metadata':
         specifier: 6.0.1
         version: 6.0.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)
@@ -53,14 +53,11 @@ packages:
     resolution: {integrity: sha512-mo5j5X+jIZmJQveBKeS/clAueipV7KgiX1vMgCxam1RNYiqE1w62n0/tJJnHtjW8ZHcQco5gY85jA3mi0L+nSA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  '@jnxplus/common@1.0.0':
-    resolution: {integrity: sha512-ccq5qPMDm4HnW5yu6xPwVyDGFbWIHBX+8lYqlnD+ulBUjCxl9aD05To9fXUd2U3/e121SzAB08xt07dbpkGCFg==}
+  '@jnxplus/common@1.1.0':
+    resolution: {integrity: sha512-F6ef14tUC5E2Tjko9HnygBnhFXwg/lD/2grskA/hqbdEJ3EgpIAF8XR4PJW9ervRESZtgMLZcmqlJxYtPLnDWA==}
 
-  '@jnxplus/nx-gradle@1.0.0':
-    resolution: {integrity: sha512-X5NeM0UctBKL5EFgsLjokCMvPXgdUdvl8kWlApVVRt+2HcsgkVWEv1BQfAHPo7ztNcP+Nn8PlW8EyL1xVB5/dw==}
-
-  '@nrwl/devkit@18.3.2':
-    resolution: {integrity: sha512-srguS6WNE/sP99OTfPqUdI22CNEocvxyz4TOB6Uj5zcFiKIFOlWn0NFwathdWVKwvsszY1Zvt/YiVjzYNUDqWw==}
+  '@jnxplus/nx-gradle@1.1.0':
+    resolution: {integrity: sha512-ELzxKw4JOoNcFtUD1i+u8/pZqHf10HRmrleUUbuB/oZW74cEuxNhhrJSmgKamAv1Cf6BT42bzAXIQSt7l/f0pw==}
 
   '@nrwl/devkit@19.1.1':
     resolution: {integrity: sha512-CrbEy4zBRPPV8gGtwpSgfxJUElXRxEGvvxQlrhoCKmzH7v9407jFjXpzYOipwa9u65a7raCCtsSKYuRdecRglQ==}
@@ -95,11 +92,6 @@ packages:
       '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       dotenv: '>=16.0.0'
       tslib: ^2.5.0
-
-  '@nx/devkit@18.3.2':
-    resolution: {integrity: sha512-H55m7R6zKteZ5DE0o2IOwpwo8RQXiH4RkBELWn9YkSQPvps8K7psyMzPQofP37qD5S0u7pYjGIWiJDzij+OeEQ==}
-    peerDependencies:
-      nx: '>= 16 <= 19'
 
   '@nx/devkit@19.1.1':
     resolution: {integrity: sha512-YMt5vFaNMeIKgBwQ3RIFQG7AoYOksd8vNxwunirN95q/70HMIoJQsnRCMT45jVd9D/GIWASgY8QsGTMJfcO0qQ==}
@@ -764,17 +756,17 @@ snapshots:
     dependencies:
       '@sinclair/typebox': 0.27.8
 
-  '@jnxplus/common@1.0.0(nx@19.1.1)':
+  '@jnxplus/common@1.1.0(nx@19.1.1)':
     dependencies:
-      '@nx/devkit': 18.3.2(nx@19.1.1)
+      '@nx/devkit': 19.1.1(nx@19.1.1)
       tslib: 2.6.2
     transitivePeerDependencies:
       - nx
 
-  '@jnxplus/nx-gradle@1.0.0':
+  '@jnxplus/nx-gradle@1.1.0':
     dependencies:
-      '@jnxplus/common': 1.0.0(nx@19.1.1)
-      '@nx/devkit': 18.3.2(nx@19.1.1)
+      '@jnxplus/common': 1.1.0(nx@19.1.1)
+      '@nx/devkit': 19.1.1(nx@19.1.1)
       nx: 19.1.1
       smol-toml: 1.1.4
       tslib: 2.6.2
@@ -782,12 +774,6 @@ snapshots:
       - '@swc-node/register'
       - '@swc/core'
       - debug
-
-  '@nrwl/devkit@18.3.2(nx@19.1.1)':
-    dependencies:
-      '@nx/devkit': 18.3.2(nx@19.1.1)
-    transitivePeerDependencies:
-      - nx
 
   '@nrwl/devkit@19.1.1(nx@19.1.1)':
     dependencies:
@@ -856,18 +842,6 @@ snapshots:
       semver: 7.6.0
       tmp: 0.2.3
       tslib: 2.6.2
-
-  '@nx/devkit@18.3.2(nx@19.1.1)':
-    dependencies:
-      '@nrwl/devkit': 18.3.2(nx@19.1.1)
-      ejs: 3.1.10
-      enquirer: 2.3.6
-      ignore: 5.3.1
-      nx: 19.1.1
-      semver: 7.6.0
-      tmp: 0.2.3
-      tslib: 2.6.2
-      yargs-parser: 21.1.1
 
   '@nx/devkit@19.1.1(nx@19.1.1)':
     dependencies:
