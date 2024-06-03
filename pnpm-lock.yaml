@@ -12,11 +12,11 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
       '@nx-tools/container-metadata':
-        specifier: 5.3.1
-        version: 5.3.1(@nx/devkit@19.1.1(nx@19.1.1))(dotenv@16.4.5)(tslib@2.6.2)
+        specifier: 6.0.1
+        version: 6.0.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)
       '@nx-tools/nx-container':
-        specifier: 5.3.1
-        version: 5.3.1(@nx/devkit@19.1.1(nx@19.1.1))(dotenv@16.4.5)(tslib@2.6.2)
+        specifier: 6.0.1
+        version: 6.0.1(@nx/devkit@19.1.1(nx@19.1.1))(dotenv@16.4.5)(tslib@2.6.2)
       '@nx/workspace':
         specifier: 19.1.1
         version: 19.1.1
@@ -32,8 +32,8 @@ packages:
   '@actions/exec@1.1.1':
     resolution: {integrity: sha512-+sCcHHbVdk93a0XT19ECtO/gIXoxvdsgQLzb2fE2/5sIZmWQuluYyjPQtrtTHdU1YzTZ7bAPN4sITq2xi1679w==}
 
-  '@actions/github@5.1.1':
-    resolution: {integrity: sha512-Nk59rMDoJaV+mHCOJPXuvB1zIbomlKS0dmSIqPGxd0enAXBnOfn4VWF+CGtRCwXZG9Epa54tZA7VIRlJDS8A6g==}
+  '@actions/github@6.0.0':
+    resolution: {integrity: sha512-alScpSVnYmjNEXboZjarjukQEzgCRmjMv6Xj47fsdnqGS73bjJNDpiiXmp8jr0UZLdUB6d9jW63IcmddUP+l0g==}
 
   '@actions/http-client@2.2.1':
     resolution: {integrity: sha512-KhC/cZsq7f8I4LfZSJKgCvEwfkE8o1538VoBeoGzokVLLnbFDEAdFD3UhoMklxo2un9NJVBdANOresx7vTHlHw==}
@@ -72,30 +72,29 @@ packages:
   '@nrwl/workspace@19.1.1':
     resolution: {integrity: sha512-lWmz9tVX1ShKOugdn/A0PbP40Pzq5MsWdkLMwpiKCZLF4WMNzX+cb5W05VvCagHKRAovgZT9Ao9qY2CTD9482Q==}
 
-  '@nx-tools/ci-context@5.3.1':
-    resolution: {integrity: sha512-4eChxDeN2mLaZNmDvPuOr56j26qDlB9GVAjDAm91tYqbeAwAXPF4YMFk6tLFhmkfDLFTB37h0gNU4qgPQn2vVA==}
+  '@nx-tools/ci-context@6.0.1':
+    resolution: {integrity: sha512-+nZqVr6rZvSpqqbf9cZkiwvpixPx7EjJWAbIixueclakyYU8okZ20wVy30wd4wOmcnOcb4VxCdSAY4AqsUgseg==}
     peerDependencies:
-      tslib: ^2.5.3
+      tslib: ^2.5.0
 
-  '@nx-tools/container-metadata@5.3.1':
-    resolution: {integrity: sha512-dvJ7WWZR8XZYZ9T65b6g+yWSXNNHO/c7XWgsSxiEVaeCQxhxsife6i1BSryvauLgTU1TonyUStIE0lwLCFACyg==}
+  '@nx-tools/container-metadata@6.0.1':
+    resolution: {integrity: sha512-I8zlTpGwfiUIyulYVKBnmnRXGx/wFjBADpGKmGAYrLD8wTcB/j0YbyUg2bz88XVFGF8TifT+eSBlxko755oVWA==}
     peerDependencies:
-      '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0
-      dotenv: '>=10.0.0'
-      tslib: ^2.5.3
+      '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      tslib: ^2.5.0
 
-  '@nx-tools/core@5.3.1':
-    resolution: {integrity: sha512-eOLwHqzMh9lLOJev4/7hBQ1tszLU7okyX+1UY6cRyRHGiEmwaivI2u3TjGHLttRvZzCfw+KlktXXirhALO1i+g==}
+  '@nx-tools/core@6.0.1':
+    resolution: {integrity: sha512-Uj0H5XWmOj60rTuRGe4JO6z0nO9sDZ76xrZJKkityWQl7KYjAM8KYIK4jbIgq9GdumK1pTAqv8GnzWNe15Uixw==}
     peerDependencies:
-      '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0
-      tslib: ^2.5.3
+      '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      tslib: ^2.5.0
 
-  '@nx-tools/nx-container@5.3.1':
-    resolution: {integrity: sha512-xv5yn8LkJTk2SMLe0M37nwdnW9ohqG1TR7j7LrO+mZWd17epjdzAVqdO2nS8x+pB/fdEmKSRNhwpr8eUg6gtFw==}
+  '@nx-tools/nx-container@6.0.1':
+    resolution: {integrity: sha512-u230ZwKkP9YCroEhVNu8gdiMJwbKtFvyG7viQWuVioo5L31jwiqcFKTzXAhg6GMYnrP1SBNdNy1xf2Lq/wkg/w==}
     peerDependencies:
-      '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0
-      dotenv: '>=10.0.0'
-      tslib: ^2.5.3
+      '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      dotenv: '>=16.0.0'
+      tslib: ^2.5.0
 
   '@nx/devkit@18.3.2':
     resolution: {integrity: sha512-H55m7R6zKteZ5DE0o2IOwpwo8RQXiH4RkBELWn9YkSQPvps8K7psyMzPQofP37qD5S0u7pYjGIWiJDzij+OeEQ==}
@@ -170,39 +169,53 @@ packages:
   '@nx/workspace@19.1.1':
     resolution: {integrity: sha512-aTOAGotI8tbQiYp1jx+n0+SK18fpmPeRNA95y7xH8uMZLcm7zfOZiE0r450nbAVwU62JWncCvxwdB2weBVkY4w==}
 
-  '@octokit/auth-token@2.5.0':
-    resolution: {integrity: sha512-r5FVUJCOLl19AxiuZD2VRZ/ORjp/4IN98Of6YJoJOkY75CIBuYfmiNHGrDwXr+aLGG55igl9QrxX3hbiXlLb+g==}
+  '@octokit/auth-token@4.0.0':
+    resolution: {integrity: sha512-tY/msAuJo6ARbK6SPIxZrPBms3xPbfwBrulZe0Wtr/DIY9lje2HeV1uoebShn6mx7SjCHif6EjMvoREj+gZ+SA==}
+    engines: {node: '>= 18'}
 
-  '@octokit/core@3.6.0':
-    resolution: {integrity: sha512-7RKRKuA4xTjMhY+eG3jthb3hlZCsOwg3rztWh75Xc+ShDWOfDDATWbeZpAHBNRpm4Tv9WgBMOy1zEJYXG6NJ7Q==}
+  '@octokit/core@5.2.0':
+    resolution: {integrity: sha512-1LFfa/qnMQvEOAdzlQymH0ulepxbxnCYAKJZfMci/5XJyIHWgEYnDmgnKakbTh7CH2tFQ5O60oYDvns4i9RAIg==}
+    engines: {node: '>= 18'}
 
-  '@octokit/endpoint@6.0.12':
-    resolution: {integrity: sha512-lF3puPwkQWGfkMClXb4k/eUT/nZKQfxinRWJrdZaJO85Dqwo/G0yOC434Jr2ojwafWJMYqFGFa5ms4jJUgujdA==}
+  '@octokit/endpoint@9.0.5':
+    resolution: {integrity: sha512-ekqR4/+PCLkEBF6qgj8WqJfvDq65RH85OAgrtnVp1mSxaXF03u2xW/hUdweGS5654IlC0wkNYC18Z50tSYTAFw==}
+    engines: {node: '>= 18'}
 
-  '@octokit/graphql@4.8.0':
-    resolution: {integrity: sha512-0gv+qLSBLKF0z8TKaSKTsS39scVKF9dbMxJpj3U0vC7wjNWFuIpL/z76Qe2fiuCbDRcJSavkXsVtMS6/dtQQsg==}
+  '@octokit/graphql@7.1.0':
+    resolution: {integrity: sha512-r+oZUH7aMFui1ypZnAvZmn0KSqAUgE1/tUXIWaqUCa1758ts/Jio84GZuzsvUkme98kv0WFY8//n0J1Z+vsIsQ==}
+    engines: {node: '>= 18'}
 
-  '@octokit/openapi-types@12.11.0':
-    resolution: {integrity: sha512-VsXyi8peyRq9PqIz/tpqiL2w3w80OgVMwBHltTml3LmVvXiphgeqmY9mvBw9Wu7e0QWk/fqD37ux8yP5uVekyQ==}
+  '@octokit/openapi-types@20.0.0':
+    resolution: {integrity: sha512-EtqRBEjp1dL/15V7WiX5LJMIxxkdiGJnabzYx5Apx4FkQIFgAfKumXeYAqqJCj1s+BMX4cPFIFC4OLCR6stlnA==}
 
-  '@octokit/plugin-paginate-rest@2.21.3':
-    resolution: {integrity: sha512-aCZTEf0y2h3OLbrgKkrfFdjRL6eSOo8komneVQJnYecAxIej7Bafor2xhuDJOIFau4pk0i/P28/XgtbyPF0ZHw==}
+  '@octokit/openapi-types@22.2.0':
+    resolution: {integrity: sha512-QBhVjcUa9W7Wwhm6DBFu6ZZ+1/t/oYxqc2tp81Pi41YNuJinbFRx8B133qVOrAaBbF7D/m0Et6f9/pZt9Rc+tg==}
+
+  '@octokit/plugin-paginate-rest@9.2.1':
+    resolution: {integrity: sha512-wfGhE/TAkXZRLjksFXuDZdmGnJQHvtU/joFQdweXUgzo1XwvBCD4o4+75NtFfjfLK5IwLf9vHTfSiU3sLRYpRw==}
+    engines: {node: '>= 18'}
     peerDependencies:
-      '@octokit/core': '>=2'
+      '@octokit/core': '5'
 
-  '@octokit/plugin-rest-endpoint-methods@5.16.2':
-    resolution: {integrity: sha512-8QFz29Fg5jDuTPXVtey05BLm7OB+M8fnvE64RNegzX7U+5NUXcOcnpTIK0YfSHBg8gYd0oxIq3IZTe9SfPZiRw==}
+  '@octokit/plugin-rest-endpoint-methods@10.4.1':
+    resolution: {integrity: sha512-xV1b+ceKV9KytQe3zCVqjg+8GTGfDYwaT1ATU5isiUyVtlVAO3HNdzpS4sr4GBx4hxQ46s7ITtZrAsxG22+rVg==}
+    engines: {node: '>= 18'}
     peerDependencies:
-      '@octokit/core': '>=3'
+      '@octokit/core': '5'
 
-  '@octokit/request-error@2.1.0':
-    resolution: {integrity: sha512-1VIvgXxs9WHSjicsRwq8PlR2LR2x6DwsJAaFgzdi0JfJoGSO8mYI/cHJQ+9FbN21aa+DrgNLnwObmyeSC8Rmpg==}
+  '@octokit/request-error@5.1.0':
+    resolution: {integrity: sha512-GETXfE05J0+7H2STzekpKObFe765O5dlAKUTLNGeH+x47z7JjXHfsHKo5z21D/o/IOZTUEI6nyWyR+bZVP/n5Q==}
+    engines: {node: '>= 18'}
 
-  '@octokit/request@5.6.3':
-    resolution: {integrity: sha512-bFJl0I1KVc9jYTe9tdGGpAMPy32dLBXXo1dS/YwSCTL/2nd9XeHsY616RE3HPXDVk+a+dBuzyz5YdlXwcDTr2A==}
+  '@octokit/request@8.4.0':
+    resolution: {integrity: sha512-9Bb014e+m2TgBeEJGEbdplMVWwPmL1FPtggHQRkV+WVsMggPtEkLKPlcVYm/o8xKLkpJ7B+6N8WfQMtDLX2Dpw==}
+    engines: {node: '>= 18'}
 
-  '@octokit/types@6.41.0':
-    resolution: {integrity: sha512-eJ2jbzjdijiL3B4PrSQaSjuF2sPEQPVCPzBvTHJD9Nz+9dw2SGH4K4xeQJ77YfTq5bRQ+bD8wT11JbeDPmxmGg==}
+  '@octokit/types@12.6.0':
+    resolution: {integrity: sha512-1rhSOfRa6H9w4YwK0yrf5faDaDTb+yLyBUKOCV4xtCDB5VmIPqd/v9yr9o6SAzOAlRxMiRiCic6JVM1/kunVkw==}
+
+  '@octokit/types@13.5.0':
+    resolution: {integrity: sha512-HdqWTf5Z3qwDVlzCrP8UJquMwunpDiMPt5er+QjGzL4hqr/vBVY/MauQgS1xWxCDT1oMx1EULyqxncdCY/NVSQ==}
 
   '@renovate/pep440@1.0.0':
     resolution: {integrity: sha512-k3pZVxGEGpU7rpH507/9vxfFjuxX7qx4MSj9Fk+6zBsf/uZmAy8x97dNtZacbge7gP9TazbW1d7SEb5vsOmKlw==}
@@ -277,8 +290,8 @@ packages:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
 
-  ci-info@3.9.0:
-    resolution: {integrity: sha512-NIxF55hv4nSqQswkAeiOi1r83xy8JldOFDTWiug55KBu9Jnblncd2U6ViHmYgHf01TPZS77NJBhBMKdWj9HQMQ==}
+  ci-info@4.0.0:
+    resolution: {integrity: sha512-TdHqgGf9odd8SXNuxtUBVx8Nv+qZOejE6qyqiy5NtbYYQOeFa6zmHkxlPzmaLxWWHsU6nJmB7AETdVPi+2NBUg==}
     engines: {node: '>=8'}
 
   cli-cursor@3.1.0:
@@ -448,10 +461,6 @@ packages:
     resolution: {integrity: sha512-2HvIEKRoqS62guEC+qBjpvRubdX910WCMuJTZ+I9yvqKU2/12eSL549HMwtabb4oupdj2sMP50k+XJfB/8JE6w==}
     engines: {node: '>=8'}
 
-  is-plain-object@5.0.0:
-    resolution: {integrity: sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==}
-    engines: {node: '>=0.10.0'}
-
   is-unicode-supported@0.1.0:
     resolution: {integrity: sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==}
     engines: {node: '>=10'}
@@ -535,15 +544,6 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  node-fetch@2.7.0:
-    resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
-    engines: {node: 4.x || >=6.0.0}
-    peerDependencies:
-      encoding: ^0.1.0
-    peerDependenciesMeta:
-      encoding:
-        optional: true
-
   node-machine-id@1.1.12:
     resolution: {integrity: sha512-QNABxbrPa3qEIfrE6GOJ7BYIuignnJw7iQ2YPbc3Nla1HzRJjXzZOiikfF8m7eAMfichLt3M4VgLOetqgDmgGQ==}
 
@@ -591,9 +591,8 @@ packages:
     resolution: {integrity: sha512-Pdlw/oPxN+aXdmM9R00JVC9WVFoCLTKJvDVLgmJ+qAffBMxsV85l/Lu7sNx4zSzPyoL2euImuEwHhOXdEgNFZQ==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  properties-file@2.2.4:
-    resolution: {integrity: sha512-+DOHK/QgbEeyu96G5MB1Sc1dfdPr/E5dpD6BexTn0XYVLn6VZhfYmWQRaz7sMjrj4nEdIaWX+tYaDboEnk50GQ==}
-    engines: {node: ^14.18.1 || >=16.0.0}
+  properties-file@3.5.4:
+    resolution: {integrity: sha512-OGQPWZ4j9ENDKBl+wUHqNtzayGF5sLlVcmjcqEMUUHeCbUSggDndii+kjcBDPj3GQvqYB9sUEc4siX36wx4glw==}
 
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
@@ -673,9 +672,6 @@ packages:
     resolution: {integrity: sha512-nZD7m9iCPC5g0pYmcaxogYKggSfLsdxl8of3Q/oIbqCqLLIO9IAF0GWjX1z9NZRHPiXv8Wex4yDCaZsgEw0Y8w==}
     engines: {node: '>=14.14'}
 
-  tr46@0.0.3:
-    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
-
   tsconfig-paths@4.2.0:
     resolution: {integrity: sha512-NoZ4roiN7LnbKn9QqE1amc9DJfzvZXxF4xDavcOWt1BPkdx+m+0gJuPM+S0vCe7zTJMYUP0R8pO2XMr+Y8oLIg==}
     engines: {node: '>=6'}
@@ -708,12 +704,6 @@ packages:
 
   wcwidth@1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}
-
-  webidl-conversions@3.0.1:
-    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
-
-  whatwg-url@5.0.0:
-    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
 
   wordwrap@1.0.0:
     resolution: {integrity: sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==}
@@ -749,14 +739,12 @@ snapshots:
     dependencies:
       '@actions/io': 1.1.3
 
-  '@actions/github@5.1.1':
+  '@actions/github@6.0.0':
     dependencies:
       '@actions/http-client': 2.2.1
-      '@octokit/core': 3.6.0
-      '@octokit/plugin-paginate-rest': 2.21.3(@octokit/core@3.6.0)
-      '@octokit/plugin-rest-endpoint-methods': 5.16.2(@octokit/core@3.6.0)
-    transitivePeerDependencies:
-      - encoding
+      '@octokit/core': 5.2.0
+      '@octokit/plugin-paginate-rest': 9.2.1(@octokit/core@5.2.0)
+      '@octokit/plugin-rest-endpoint-methods': 10.4.1(@octokit/core@5.2.0)
 
   '@actions/http-client@2.2.1':
     dependencies:
@@ -824,44 +812,43 @@ snapshots:
       - '@swc/core'
       - debug
 
-  '@nx-tools/ci-context@5.3.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)':
+  '@nx-tools/ci-context@6.0.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)':
     dependencies:
-      '@actions/github': 5.1.1
-      '@nx-tools/core': 5.3.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)
-      '@octokit/openapi-types': 12.11.0
-      ci-info: 3.9.0
-      properties-file: 2.2.4
+      '@actions/github': 6.0.0
+      '@nx-tools/core': 6.0.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)
+      '@octokit/openapi-types': 22.2.0
+      ci-info: 4.0.0
+      properties-file: 3.5.4
       tslib: 2.6.2
     transitivePeerDependencies:
       - '@nx/devkit'
-      - encoding
 
-  '@nx-tools/container-metadata@5.3.1(@nx/devkit@19.1.1(nx@19.1.1))(dotenv@16.4.5)(tslib@2.6.2)':
+  '@nx-tools/container-metadata@6.0.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)':
     dependencies:
-      '@nx-tools/ci-context': 5.3.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)
-      '@nx-tools/core': 5.3.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)
+      '@nx-tools/ci-context': 6.0.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)
+      '@nx-tools/core': 6.0.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)
       '@nx/devkit': 19.1.1(nx@19.1.1)
       '@renovate/pep440': 1.0.0
       csv-parse: 5.5.5
-      dotenv: 16.4.5
       handlebars: 4.7.8
       moment-timezone: 0.5.45
       semver: 7.6.0
       tslib: 2.6.2
-    transitivePeerDependencies:
-      - encoding
 
-  '@nx-tools/core@5.3.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)':
+  '@nx-tools/core@6.0.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)':
     dependencies:
       '@actions/exec': 1.1.1
+      '@actions/io': 1.1.3
       '@nx/devkit': 19.1.1(nx@19.1.1)
       chalk: 4.1.2
-      ci-info: 3.9.0
+      ci-info: 4.0.0
+      csv-parse: 5.5.5
       tslib: 2.6.2
 
-  '@nx-tools/nx-container@5.3.1(@nx/devkit@19.1.1(nx@19.1.1))(dotenv@16.4.5)(tslib@2.6.2)':
+  '@nx-tools/nx-container@6.0.1(@nx/devkit@19.1.1(nx@19.1.1))(dotenv@16.4.5)(tslib@2.6.2)':
     dependencies:
-      '@nx-tools/core': 5.3.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)
+      '@nx-tools/container-metadata': 6.0.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)
+      '@nx-tools/core': 6.0.1(@nx/devkit@19.1.1(nx@19.1.1))(tslib@2.6.2)
       '@nx/devkit': 19.1.1(nx@19.1.1)
       csv-parse: 5.5.5
       dotenv: 16.4.5
@@ -939,69 +926,63 @@ snapshots:
       - '@swc/core'
       - debug
 
-  '@octokit/auth-token@2.5.0':
-    dependencies:
-      '@octokit/types': 6.41.0
+  '@octokit/auth-token@4.0.0': {}
 
-  '@octokit/core@3.6.0':
+  '@octokit/core@5.2.0':
     dependencies:
-      '@octokit/auth-token': 2.5.0
-      '@octokit/graphql': 4.8.0
-      '@octokit/request': 5.6.3
-      '@octokit/request-error': 2.1.0
-      '@octokit/types': 6.41.0
+      '@octokit/auth-token': 4.0.0
+      '@octokit/graphql': 7.1.0
+      '@octokit/request': 8.4.0
+      '@octokit/request-error': 5.1.0
+      '@octokit/types': 13.5.0
       before-after-hook: 2.2.3
       universal-user-agent: 6.0.1
-    transitivePeerDependencies:
-      - encoding
 
-  '@octokit/endpoint@6.0.12':
+  '@octokit/endpoint@9.0.5':
     dependencies:
-      '@octokit/types': 6.41.0
-      is-plain-object: 5.0.0
+      '@octokit/types': 13.5.0
       universal-user-agent: 6.0.1
 
-  '@octokit/graphql@4.8.0':
+  '@octokit/graphql@7.1.0':
     dependencies:
-      '@octokit/request': 5.6.3
-      '@octokit/types': 6.41.0
+      '@octokit/request': 8.4.0
+      '@octokit/types': 13.5.0
       universal-user-agent: 6.0.1
-    transitivePeerDependencies:
-      - encoding
 
-  '@octokit/openapi-types@12.11.0': {}
+  '@octokit/openapi-types@20.0.0': {}
 
-  '@octokit/plugin-paginate-rest@2.21.3(@octokit/core@3.6.0)':
+  '@octokit/openapi-types@22.2.0': {}
+
+  '@octokit/plugin-paginate-rest@9.2.1(@octokit/core@5.2.0)':
     dependencies:
-      '@octokit/core': 3.6.0
-      '@octokit/types': 6.41.0
+      '@octokit/core': 5.2.0
+      '@octokit/types': 12.6.0
 
-  '@octokit/plugin-rest-endpoint-methods@5.16.2(@octokit/core@3.6.0)':
+  '@octokit/plugin-rest-endpoint-methods@10.4.1(@octokit/core@5.2.0)':
     dependencies:
-      '@octokit/core': 3.6.0
-      '@octokit/types': 6.41.0
-      deprecation: 2.3.1
+      '@octokit/core': 5.2.0
+      '@octokit/types': 12.6.0
 
-  '@octokit/request-error@2.1.0':
+  '@octokit/request-error@5.1.0':
     dependencies:
-      '@octokit/types': 6.41.0
+      '@octokit/types': 13.5.0
       deprecation: 2.3.1
       once: 1.4.0
 
-  '@octokit/request@5.6.3':
+  '@octokit/request@8.4.0':
     dependencies:
-      '@octokit/endpoint': 6.0.12
-      '@octokit/request-error': 2.1.0
-      '@octokit/types': 6.41.0
-      is-plain-object: 5.0.0
-      node-fetch: 2.7.0
+      '@octokit/endpoint': 9.0.5
+      '@octokit/request-error': 5.1.0
+      '@octokit/types': 13.5.0
       universal-user-agent: 6.0.1
-    transitivePeerDependencies:
-      - encoding
 
-  '@octokit/types@6.41.0':
+  '@octokit/types@12.6.0':
     dependencies:
-      '@octokit/openapi-types': 12.11.0
+      '@octokit/openapi-types': 20.0.0
+
+  '@octokit/types@13.5.0':
+    dependencies:
+      '@octokit/openapi-types': 22.2.0
 
   '@renovate/pep440@1.0.0':
     dependencies:
@@ -1079,7 +1060,7 @@ snapshots:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
-  ci-info@3.9.0: {}
+  ci-info@4.0.0: {}
 
   cli-cursor@3.1.0:
     dependencies:
@@ -1204,8 +1185,6 @@ snapshots:
 
   is-interactive@1.0.0: {}
 
-  is-plain-object@5.0.0: {}
-
   is-unicode-supported@0.1.0: {}
 
   is-wsl@2.2.0:
@@ -1283,10 +1262,6 @@ snapshots:
   moment@2.30.1: {}
 
   neo-async@2.6.2: {}
-
-  node-fetch@2.7.0:
-    dependencies:
-      whatwg-url: 5.0.0
 
   node-machine-id@1.1.12: {}
 
@@ -1378,7 +1353,7 @@ snapshots:
       ansi-styles: 5.2.0
       react-is: 18.2.0
 
-  properties-file@2.2.4: {}
+  properties-file@3.5.4: {}
 
   proxy-from-env@1.1.0: {}
 
@@ -1451,8 +1426,6 @@ snapshots:
 
   tmp@0.2.3: {}
 
-  tr46@0.0.3: {}
-
   tsconfig-paths@4.2.0:
     dependencies:
       json5: 2.2.3
@@ -1479,13 +1452,6 @@ snapshots:
   wcwidth@1.0.1:
     dependencies:
       defaults: 1.0.4
-
-  webidl-conversions@3.0.1: {}
-
-  whatwg-url@5.0.0:
-    dependencies:
-      tr46: 0.0.3
-      webidl-conversions: 3.0.1
 
   wordwrap@1.0.0: {}
 
