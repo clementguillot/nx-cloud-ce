@@ -9,14 +9,14 @@ importers:
   .:
     devDependencies:
       '@jnxplus/nx-gradle':
-        specifier: 1.1.0
-        version: 1.1.0
+        specifier: 1.3.0
+        version: 1.3.0
       '@nx-tools/container-metadata':
         specifier: 6.0.1
-        version: 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.2)
+        version: 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.3)
       '@nx-tools/nx-container':
         specifier: 6.0.1
-        version: 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(dotenv@16.4.5)(tslib@2.6.2)
+        version: 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(dotenv@16.4.5)(tslib@2.6.3)
       '@nx/workspace':
         specifier: 19.2.2
         version: 19.2.2
@@ -41,8 +41,8 @@ packages:
   '@actions/io@1.1.3':
     resolution: {integrity: sha512-wi9JjgKLYS7U/z8PPbco+PvTb/nRWjeoFlJ1Qer83k/3C5PHQi28hiVdeE2kHXmIL99mQFawx8qt/JPjZilJ8Q==}
 
-  '@babel/runtime-corejs3@7.24.4':
-    resolution: {integrity: sha512-VOQOexSilscN24VEY810G/PqtpFvx/z6UqDIjIWbDe2368HhDLkYN5TYwaEz/+eRCUkhJ2WaNLLmQAlxzfWj4w==}
+  '@babel/runtime-corejs3@7.24.7':
+    resolution: {integrity: sha512-eytSX6JLBY6PVAeQa2bFlDx/7Mmln/gaEpsit5a3WEvjGfiIytEsgAwuIXCPM0xvw0v0cJn3ilq0/TvXrW0kgA==}
     engines: {node: '>=6.9.0'}
 
   '@fastify/busboy@2.1.1':
@@ -53,14 +53,11 @@ packages:
     resolution: {integrity: sha512-mo5j5X+jIZmJQveBKeS/clAueipV7KgiX1vMgCxam1RNYiqE1w62n0/tJJnHtjW8ZHcQco5gY85jA3mi0L+nSA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  '@jnxplus/common@1.1.0':
-    resolution: {integrity: sha512-F6ef14tUC5E2Tjko9HnygBnhFXwg/lD/2grskA/hqbdEJ3EgpIAF8XR4PJW9ervRESZtgMLZcmqlJxYtPLnDWA==}
+  '@jnxplus/common@1.3.0':
+    resolution: {integrity: sha512-7CSvIey7Y8dVsnt8dt24ximIXmcUrxFKvVy9Am3K80MRW44frw/ZVzYPMmSRuRQeYV2JFXYBbenokyLr7CvN0w==}
 
-  '@jnxplus/nx-gradle@1.1.0':
-    resolution: {integrity: sha512-ELzxKw4JOoNcFtUD1i+u8/pZqHf10HRmrleUUbuB/oZW74cEuxNhhrJSmgKamAv1Cf6BT42bzAXIQSt7l/f0pw==}
-
-  '@nrwl/devkit@19.1.1':
-    resolution: {integrity: sha512-CrbEy4zBRPPV8gGtwpSgfxJUElXRxEGvvxQlrhoCKmzH7v9407jFjXpzYOipwa9u65a7raCCtsSKYuRdecRglQ==}
+  '@jnxplus/nx-gradle@1.3.0':
+    resolution: {integrity: sha512-ktCPbNRCI8ihGgWn24RxvdhTsBkPH9xifUEjRKiFMW7kmUeRvIZtD34Feql5vw+iaH7PdUWP5VPjyTUeSdxaaQ==}
 
   '@nrwl/devkit@19.2.2':
     resolution: {integrity: sha512-NWB3OAm6/oHaF2h7isUXpK9J2XF097mfaiENHj1GzH9JwjB2YoFaD7v033er6+Hb6FEZtOPZpVH1kEQjVaYJLA==}
@@ -95,11 +92,6 @@ packages:
       '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       dotenv: '>=16.0.0'
       tslib: ^2.5.0
-
-  '@nx/devkit@19.1.1':
-    resolution: {integrity: sha512-YMt5vFaNMeIKgBwQ3RIFQG7AoYOksd8vNxwunirN95q/70HMIoJQsnRCMT45jVd9D/GIWASgY8QsGTMJfcO0qQ==}
-    peerDependencies:
-      nx: '>= 17 <= 20'
 
   '@nx/devkit@19.2.2':
     resolution: {integrity: sha512-6y+th5m1qVc+B0lXmKb3WRcfwNYD2B/bqGn1HiKLu8g6DDVJFn0mT+a872e4OtvgHyubZQm3HnPfjXobChpRuw==}
@@ -262,8 +254,8 @@ packages:
   asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
 
-  axios@1.6.8:
-    resolution: {integrity: sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==}
+  axios@1.7.2:
+    resolution: {integrity: sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==}
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -324,11 +316,11 @@ packages:
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
-  core-js-pure@3.37.0:
-    resolution: {integrity: sha512-d3BrpyFr5eD4KcbRvQ3FTUx/KWmaDesr7+a3+1+P46IUnNoEt+oiLijPINZMEon7w9oGkIINWxrBAU9DEciwFQ==}
+  core-js-pure@3.37.1:
+    resolution: {integrity: sha512-J/r5JTHSmzTxbiYYrzXg9w1VpqrYt+gexenBE9pugeyhwPZTAEJddyiReJWsLO6uNQ8xJZFbod6XC7KKwatCiA==}
 
-  csv-parse@5.5.5:
-    resolution: {integrity: sha512-erCk7tyU3yLWAhk6wvKxnyPtftuy/6Ak622gOO7BCJ05+TYffnPCJF905wmOQm+BpkX54OdAl8pveJwUdpnCXQ==}
+  csv-parse@5.5.6:
+    resolution: {integrity: sha512-uNpm30m/AGSkLxxy7d9yRXpJQFrZzVWLFBkS+6ngPcZkw/5k3L/jjFuj7tVnEpRn+QgmiXr21nDlhCiUK4ij2A==}
 
   defaults@1.0.4:
     resolution: {integrity: sha512-eFuaLoy/Rxalv2kr+lqMlUnrDWV+3j4pljOIJgLIhI058IQfWJ7vXhyEIHu+HtC738klGALYxOKDO0bQP3tg8A==}
@@ -472,8 +464,8 @@ packages:
     resolution: {integrity: sha512-fKzAra0rGJUUBwGBgNkHZuToZcn+TtXHpeCgmkMJMMYx1sQDYaCSyjJBSCa2nH1DGm7s3n1oBnohoVTBaN7Lww==}
     engines: {node: '>=8'}
 
-  jake@10.8.7:
-    resolution: {integrity: sha512-ZDi3aP+fG/LchyBzUM804VjddnwfSfsdeYkwt8NcbKRvo4rFkjhs456iLFn3k2ZUWvNe4i48WACDbza8fhq2+w==}
+  jake@10.9.1:
+    resolution: {integrity: sha512-61btcOHNnLnsOdtLgA5efqQWjnSi/vow5HbI7HMdKKWqvrKR1bLK3BPlJn9gcSaP2ewuamUSMB5XEy76KUIS2w==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -506,10 +498,6 @@ packages:
 
   log-symbols@4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
-    engines: {node: '>=10'}
-
-  lru-cache@6.0.0:
-    resolution: {integrity: sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==}
     engines: {node: '>=10'}
 
   mime-db@1.52.0:
@@ -600,8 +588,8 @@ packages:
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
-  react-is@18.2.0:
-    resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
+  react-is@18.3.1:
+    resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
   readable-stream@3.6.2:
     resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}
@@ -621,17 +609,17 @@ packages:
   safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
 
-  semver@7.6.0:
-    resolution: {integrity: sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==}
+  semver@7.6.2:
+    resolution: {integrity: sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==}
     engines: {node: '>=10'}
     hasBin: true
 
   signal-exit@3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
 
-  smol-toml@1.1.4:
-    resolution: {integrity: sha512-Y0OT8HezWsTNeEOSVxDnKOW/AyNXHQ4BwJNbAXlLTF5wWsBvrcHhIkE5Rf8kQMLmgf7nDX3PVOlgC6/Aiggu3Q==}
-    engines: {node: '>= 18', pnpm: '>= 8'}
+  smol-toml@1.2.1:
+    resolution: {integrity: sha512-OtZKrVrGIT+m++lxyF0z5n68nkwdgZotPhy89bfA4T7nSWe0xeQtfbjM1z5VLTilJdWXH46g8i0oAcpQNkzZTg==}
+    engines: {node: '>= 18', pnpm: '>= 9'}
 
   source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
@@ -679,15 +667,15 @@ packages:
     resolution: {integrity: sha512-NoZ4roiN7LnbKn9QqE1amc9DJfzvZXxF4xDavcOWt1BPkdx+m+0gJuPM+S0vCe7zTJMYUP0R8pO2XMr+Y8oLIg==}
     engines: {node: '>=6'}
 
-  tslib@2.6.2:
-    resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
+  tslib@2.6.3:
+    resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
 
   tunnel@0.0.6:
     resolution: {integrity: sha512-1h/Lnq9yajKY2PEbBadPXj3VxsDDu844OnaAo52UVmIzIvwwtBPIuNvkjuzBlTWpfJyUbG3ez0KSBibQkj4ojg==}
     engines: {node: '>=0.6.11 <=0.7.0 || >=0.7.3'}
 
-  uglify-js@3.17.4:
-    resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
+  uglify-js@3.18.0:
+    resolution: {integrity: sha512-SyVVbcNBCk0dzr9XL/R/ySrmYf0s372K6/hFklzgcp2lBFyXtw4I7BOdDjlLhE1aVqaI/SHWXWmYdlZxuyF38A==}
     engines: {node: '>=0.8.0'}
     hasBin: true
 
@@ -725,9 +713,6 @@ packages:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}
     engines: {node: '>=10'}
 
-  yallist@4.0.0:
-    resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
-
   yargs-parser@21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
@@ -756,9 +741,9 @@ snapshots:
 
   '@actions/io@1.1.3': {}
 
-  '@babel/runtime-corejs3@7.24.4':
+  '@babel/runtime-corejs3@7.24.7':
     dependencies:
-      core-js-pure: 3.37.0
+      core-js-pure: 3.37.1
       regenerator-runtime: 0.14.1
 
   '@fastify/busboy@2.1.1': {}
@@ -767,30 +752,24 @@ snapshots:
     dependencies:
       '@sinclair/typebox': 0.27.8
 
-  '@jnxplus/common@1.1.0(nx@19.2.2)':
+  '@jnxplus/common@1.3.0(nx@19.2.2)':
     dependencies:
-      '@nx/devkit': 19.1.1(nx@19.2.2)
-      tslib: 2.6.2
+      '@nx/devkit': 19.2.2(nx@19.2.2)
+      tslib: 2.6.3
     transitivePeerDependencies:
       - nx
 
-  '@jnxplus/nx-gradle@1.1.0':
+  '@jnxplus/nx-gradle@1.3.0':
     dependencies:
-      '@jnxplus/common': 1.1.0(nx@19.2.2)
-      '@nx/devkit': 19.1.1(nx@19.2.2)
+      '@jnxplus/common': 1.3.0(nx@19.2.2)
+      '@nx/devkit': 19.2.2(nx@19.2.2)
       nx: 19.2.2
-      smol-toml: 1.1.4
-      tslib: 2.6.2
+      smol-toml: 1.2.1
+      tslib: 2.6.3
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
       - debug
-
-  '@nrwl/devkit@19.1.1(nx@19.2.2)':
-    dependencies:
-      '@nx/devkit': 19.1.1(nx@19.2.2)
-    transitivePeerDependencies:
-      - nx
 
   '@nrwl/devkit@19.2.2(nx@19.2.2)':
     dependencies:
@@ -801,7 +780,7 @@ snapshots:
   '@nrwl/tao@19.2.2':
     dependencies:
       nx: 19.2.2
-      tslib: 2.6.2
+      tslib: 2.6.3
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
@@ -815,63 +794,50 @@ snapshots:
       - '@swc/core'
       - debug
 
-  '@nx-tools/ci-context@6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.2)':
+  '@nx-tools/ci-context@6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.3)':
     dependencies:
       '@actions/github': 6.0.0
-      '@nx-tools/core': 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.2)
+      '@nx-tools/core': 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.3)
       '@octokit/openapi-types': 22.2.0
       ci-info: 4.0.0
       properties-file: 3.5.4
-      tslib: 2.6.2
+      tslib: 2.6.3
     transitivePeerDependencies:
       - '@nx/devkit'
 
-  '@nx-tools/container-metadata@6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.2)':
+  '@nx-tools/container-metadata@6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.3)':
     dependencies:
-      '@nx-tools/ci-context': 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.2)
-      '@nx-tools/core': 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.2)
+      '@nx-tools/ci-context': 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.3)
+      '@nx-tools/core': 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.3)
       '@nx/devkit': 19.2.2(nx@19.2.2)
       '@renovate/pep440': 1.0.0
-      csv-parse: 5.5.5
+      csv-parse: 5.5.6
       handlebars: 4.7.8
       moment-timezone: 0.5.45
-      semver: 7.6.0
-      tslib: 2.6.2
+      semver: 7.6.2
+      tslib: 2.6.3
 
-  '@nx-tools/core@6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.2)':
+  '@nx-tools/core@6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.3)':
     dependencies:
       '@actions/exec': 1.1.1
       '@actions/io': 1.1.3
       '@nx/devkit': 19.2.2(nx@19.2.2)
       chalk: 4.1.2
       ci-info: 4.0.0
-      csv-parse: 5.5.5
-      tslib: 2.6.2
+      csv-parse: 5.5.6
+      tslib: 2.6.3
 
-  '@nx-tools/nx-container@6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(dotenv@16.4.5)(tslib@2.6.2)':
+  '@nx-tools/nx-container@6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(dotenv@16.4.5)(tslib@2.6.3)':
     dependencies:
-      '@nx-tools/container-metadata': 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.2)
-      '@nx-tools/core': 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.2)
+      '@nx-tools/container-metadata': 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.3)
+      '@nx-tools/core': 6.0.1(@nx/devkit@19.2.2(nx@19.2.2))(tslib@2.6.3)
       '@nx/devkit': 19.2.2(nx@19.2.2)
-      csv-parse: 5.5.5
+      csv-parse: 5.5.6
       dotenv: 16.4.5
       handlebars: 4.7.8
-      semver: 7.6.0
+      semver: 7.6.2
       tmp: 0.2.3
-      tslib: 2.6.2
-
-  '@nx/devkit@19.1.1(nx@19.2.2)':
-    dependencies:
-      '@nrwl/devkit': 19.1.1(nx@19.2.2)
-      ejs: 3.1.10
-      enquirer: 2.3.6
-      ignore: 5.3.1
-      minimatch: 9.0.3
-      nx: 19.2.2
-      semver: 7.6.0
-      tmp: 0.2.3
-      tslib: 2.6.2
-      yargs-parser: 21.1.1
+      tslib: 2.6.3
 
   '@nx/devkit@19.2.2(nx@19.2.2)':
     dependencies:
@@ -881,9 +847,9 @@ snapshots:
       ignore: 5.3.1
       minimatch: 9.0.3
       nx: 19.2.2
-      semver: 7.6.0
+      semver: 7.6.2
       tmp: 0.2.3
-      tslib: 2.6.2
+      tslib: 2.6.3
       yargs-parser: 21.1.1
 
   '@nx/nx-darwin-arm64@19.2.2':
@@ -923,7 +889,7 @@ snapshots:
       chalk: 4.1.2
       enquirer: 2.3.6
       nx: 19.2.2
-      tslib: 2.6.2
+      tslib: 2.6.3
       yargs-parser: 21.1.1
     transitivePeerDependencies:
       - '@swc-node/register'
@@ -999,7 +965,7 @@ snapshots:
   '@yarnpkg/parsers@3.0.0-rc.46':
     dependencies:
       js-yaml: 3.14.1
-      tslib: 2.6.2
+      tslib: 2.6.3
 
   '@zkochan/js-yaml@0.0.7':
     dependencies:
@@ -1025,7 +991,7 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  axios@1.6.8:
+  axios@1.7.2:
     dependencies:
       follow-redirects: 1.15.6
       form-data: 4.0.0
@@ -1092,9 +1058,9 @@ snapshots:
 
   concat-map@0.0.1: {}
 
-  core-js-pure@3.37.0: {}
+  core-js-pure@3.37.1: {}
 
-  csv-parse@5.5.5: {}
+  csv-parse@5.5.6: {}
 
   defaults@1.0.4:
     dependencies:
@@ -1118,7 +1084,7 @@ snapshots:
 
   ejs@3.1.10:
     dependencies:
-      jake: 10.8.7
+      jake: 10.9.1
 
   emoji-regex@8.0.0: {}
 
@@ -1177,7 +1143,7 @@ snapshots:
       source-map: 0.6.1
       wordwrap: 1.0.0
     optionalDependencies:
-      uglify-js: 3.17.4
+      uglify-js: 3.18.0
 
   has-flag@4.0.0: {}
 
@@ -1199,7 +1165,7 @@ snapshots:
     dependencies:
       is-docker: 2.2.1
 
-  jake@10.8.7:
+  jake@10.9.1:
     dependencies:
       async: 3.2.5
       chalk: 4.1.2
@@ -1236,10 +1202,6 @@ snapshots:
     dependencies:
       chalk: 4.1.2
       is-unicode-supported: 0.1.0
-
-  lru-cache@6.0.0:
-    dependencies:
-      yallist: 4.0.0
 
   mime-db@1.52.0: {}
 
@@ -1283,7 +1245,7 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.6.8
+      axios: 1.7.2
       chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
@@ -1304,13 +1266,13 @@ snapshots:
       npm-run-path: 4.0.1
       open: 8.4.2
       ora: 5.3.0
-      semver: 7.6.0
+      semver: 7.6.2
       string-width: 4.2.3
       strong-log-transformer: 2.1.0
       tar-stream: 2.2.0
       tmp: 0.2.3
       tsconfig-paths: 4.2.0
-      tslib: 2.6.2
+      tslib: 2.6.3
       yargs: 17.7.2
       yargs-parser: 21.1.1
     optionalDependencies:
@@ -1360,13 +1322,13 @@ snapshots:
     dependencies:
       '@jest/schemas': 29.6.3
       ansi-styles: 5.2.0
-      react-is: 18.2.0
+      react-is: 18.3.1
 
   properties-file@3.5.4: {}
 
   proxy-from-env@1.1.0: {}
 
-  react-is@18.2.0: {}
+  react-is@18.3.1: {}
 
   readable-stream@3.6.2:
     dependencies:
@@ -1385,13 +1347,11 @@ snapshots:
 
   safe-buffer@5.2.1: {}
 
-  semver@7.6.0:
-    dependencies:
-      lru-cache: 6.0.0
+  semver@7.6.2: {}
 
   signal-exit@3.0.7: {}
 
-  smol-toml@1.1.4: {}
+  smol-toml@1.2.1: {}
 
   source-map@0.6.1: {}
 
@@ -1441,11 +1401,11 @@ snapshots:
       minimist: 1.2.8
       strip-bom: 3.0.0
 
-  tslib@2.6.2: {}
+  tslib@2.6.3: {}
 
   tunnel@0.0.6: {}
 
-  uglify-js@3.17.4:
+  uglify-js@3.18.0:
     optional: true
 
   undici@5.28.4:
@@ -1474,11 +1434,9 @@ snapshots:
 
   xregexp@4.4.1:
     dependencies:
-      '@babel/runtime-corejs3': 7.24.4
+      '@babel/runtime-corejs3': 7.24.7
 
   y18n@5.0.8: {}
-
-  yallist@4.0.0: {}
 
   yargs-parser@21.1.1: {}
 
