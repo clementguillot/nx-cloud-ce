@@ -63,6 +63,7 @@ spec:
             {{- include "nx-cloud-ce.server.database.connection-string" . | nindent 12 }}
           - name: QUARKUS_MONGODB_DATABASE
             value: {{  default .Values.server.name .Values.server.database.dbName }}
+          {{- include "nx-cloud-ce.server.s3.settings" . | nindent 10 }}
         {{- with .Values.server.envFrom }}
         envFrom:
           {{- toYaml . | nindent 10 }}

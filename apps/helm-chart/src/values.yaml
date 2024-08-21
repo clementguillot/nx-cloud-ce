@@ -224,6 +224,14 @@ server:
     # -- Server clean-up numbers of days to truncate on
     days: 30
 
+## Embedded MinIO configuration (Bitnami Helm Chart)
+minio:
+  # If `enabled`, Bitnami's chart is installed.
+  enabled: true
+
+  # Comma, semi-colon or space separated list of buckets to create at initialization (only in standalone mode)
+  defaultBuckets: "nx-cloud-ce"
+
 ## Embedded MongoDB configuration (Bitnami Helm Chart)
 mongodb:
   # If `enabled`, Bitnami's chart is installed.
