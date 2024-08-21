@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
   kotlin("jvm")
   kotlin("plugin.allopen")
@@ -90,9 +92,12 @@ allOpen {
   annotation("io.quarkus.test.junit.QuarkusTest")
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-  kotlinOptions.jvmTarget = javaVersion
-  kotlinOptions.javaParameters = true
+kotlin {
+  compilerOptions {
+    freeCompilerArgs.add("-Xjsr305=strict")
+    jvmTarget = JvmTarget.fromTarget(javaVersion)
+    javaParameters = true
+  }
 }
 
 spotless {
