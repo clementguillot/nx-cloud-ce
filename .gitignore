@@ -42,6 +42,9 @@ Thumbs.db
 .gradle
 build
 
+# Kotlin
+.kotlin/sessions
+
 .nx/cache
 .nx/workspace-data
 .cr-release-packages
