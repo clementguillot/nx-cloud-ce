@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
   kotlin("jvm")
   kotlin("plugin.allopen")
-  kotlin("plugin.noarg")
   id("io.quarkus")
   id("com.diffplug.spotless")
   id("jacoco")
@@ -20,26 +19,28 @@ val quarkusPlatformArtifactId: String by project
 val quarkusPlatformVersion: String by project
 val ktlintVersion: String by project
 val atriumVersion: String by project
+val awsSdkKotlinVersion: String by project
 val mockkVersion: String by project
-val quarkusMockkVersion: String by project
+val quarkusAwsS3Version: String by project
 
 dependencies {
   implementation(enforcedPlatform("$quarkusPlatformGroupId:$quarkusPlatformArtifactId:$quarkusPlatformVersion"))
   implementation("io.quarkus:quarkus-arc")
   implementation("io.quarkus:quarkus-kotlin")
-  implementation("io.quarkus:quarkus-mongodb-panache-kotlin")
+  implementation("aws.sdk.kotlin:s3:$awsSdkKotlinVersion")
+
+  implementation(project(":libs:server:storage:core"))
 
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
   testImplementation("ch.tutteli.atrium:atrium-fluent:$atriumVersion")
   testImplementation("io.mockk:mockk:$mockkVersion")
-  testImplementation("io.quarkiverse.mockk:quarkus-junit5-mockk:$quarkusMockkVersion")
+  testImplementation("io.quarkus:quarkus-config-yaml")
   testImplementation("io.quarkus:quarkus-junit5")
   testImplementation("io.quarkus:quarkus-jacoco")
-  testImplementation("io.quarkus:quarkus-test-hibernate-reactive-panache")
-  testImplementation("io.quarkus:quarkus-jacoco")
+  testImplementation("io.quarkiverse.amazonservices:quarkus-amazon-s3:$quarkusAwsS3Version")
 }
 
-group = "org.nxcloudce.server"
+group = "org.nxcloudce.server.storage"
 version = "0.3.3"
 
 java {
@@ -66,12 +67,7 @@ tasks.jacocoTestReport {
 
 allOpen {
   annotation("jakarta.enterprise.context.ApplicationScoped")
-  annotation("jakarta.persistence.Entity")
   annotation("io.quarkus.test.junit.QuarkusTest")
-}
-
-noArg {
-  annotation("io.quarkus.mongodb.panache.common.MongoEntity")
 }
 
 kotlin {

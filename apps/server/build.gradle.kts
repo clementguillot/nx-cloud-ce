@@ -19,13 +19,10 @@ val quarkusPlatformArtifactId: String by project
 val quarkusPlatformVersion: String by project
 val ktlintVersion: String by project
 val mockkVersion: String by project
-val quarkusAwsS3Version: String by project
 val quarkusMockkVersion: String by project
 val atriumVersion: String by project
-val awsSdkKotlinVersion: String by project
 val cliktVersion: String by project
 val jacksonDatatypeJsr310Version: String by project
-val okhttp3Version: String by project
 
 dependencies {
   implementation(kotlin("stdlib-jdk8"))
@@ -41,21 +38,17 @@ dependencies {
   implementation("io.quarkus:quarkus-security")
   implementation("io.quarkus:quarkus-smallrye-context-propagation")
   implementation("io.quarkus:quarkus-smallrye-openapi")
-  implementation("aws.sdk.kotlin:s3:$awsSdkKotlinVersion")
   implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDatatypeJsr310Version")
   implementation("com.github.ajalt.clikt:clikt:$cliktVersion")
 
   implementation(project(":libs:server:domain"))
   implementation(project(":libs:server:persistence"))
-
-  implementation(platform("com.squareup.okhttp3:okhttp-bom:$okhttp3Version"))
-  implementation("com.squareup.okhttp3:okhttp")
-  implementation("com.squareup.okhttp3:logging-interceptor")
+  implementation(project(":libs:server:storage:core"))
+  implementation(project(":libs:server:storage:s3"))
 
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
   testImplementation("ch.tutteli.atrium:atrium-fluent:$atriumVersion")
   testImplementation("io.mockk:mockk:$mockkVersion")
-  testImplementation("io.quarkiverse.amazonservices:quarkus-amazon-s3:$quarkusAwsS3Version")
   testImplementation("io.quarkiverse.mockk:quarkus-junit5-mockk:$quarkusMockkVersion")
   testImplementation("io.quarkus:quarkus-junit5")
   testImplementation("io.quarkus:quarkus-junit5-internal")

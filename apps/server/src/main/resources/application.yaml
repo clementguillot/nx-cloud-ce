@@ -11,16 +11,19 @@ quarkus:
     api-key-parameter-name: authorization
 
 nx-server:
-  client-bundle-version: 2403.21.3.hotfix2
-  client-bundle-path: nx-cloud/static/client-bundle
+  configuration:
+    client-bundle-version: 2403.21.3.hotfix2
+    client-bundle-path: nx-cloud/static/client-bundle
 
 "%dev":
   quarkus:
     mongodb:
       connection-string: mongodb://localhost:27017
   nx-server:
-    application-url: http://localhost:8080
+    configuration:
+      application-url: http://localhost:8080
     storage:
+      type: s3
       s3:
         endpoint: http://localhost:9000
         region: us-east-1

@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
   kotlin("jvm")
   kotlin("plugin.allopen")
-  kotlin("plugin.noarg")
   id("io.quarkus")
   id("com.diffplug.spotless")
   id("jacoco")
@@ -25,9 +24,7 @@ val quarkusMockkVersion: String by project
 
 dependencies {
   implementation(enforcedPlatform("$quarkusPlatformGroupId:$quarkusPlatformArtifactId:$quarkusPlatformVersion"))
-  implementation("io.quarkus:quarkus-arc")
   implementation("io.quarkus:quarkus-kotlin")
-  implementation("io.quarkus:quarkus-mongodb-panache-kotlin")
 
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
   testImplementation("ch.tutteli.atrium:atrium-fluent:$atriumVersion")
@@ -35,11 +32,9 @@ dependencies {
   testImplementation("io.quarkiverse.mockk:quarkus-junit5-mockk:$quarkusMockkVersion")
   testImplementation("io.quarkus:quarkus-junit5")
   testImplementation("io.quarkus:quarkus-jacoco")
-  testImplementation("io.quarkus:quarkus-test-hibernate-reactive-panache")
-  testImplementation("io.quarkus:quarkus-jacoco")
 }
 
-group = "org.nxcloudce.server"
+group = "org.nxcloudce.server.storage"
 version = "0.3.3"
 
 java {
@@ -66,12 +61,7 @@ tasks.jacocoTestReport {
 
 allOpen {
   annotation("jakarta.enterprise.context.ApplicationScoped")
-  annotation("jakarta.persistence.Entity")
   annotation("io.quarkus.test.junit.QuarkusTest")
-}
-
-noArg {
-  annotation("io.quarkus.mongodb.panache.common.MongoEntity")
 }
 
 kotlin {

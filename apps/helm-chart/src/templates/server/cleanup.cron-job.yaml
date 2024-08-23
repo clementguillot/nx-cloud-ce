@@ -62,12 +62,13 @@ spec:
                 {{- with (concat .Values.global.env .Values.server.env) }}
                   {{- toYaml . | nindent 16 }}
                 {{- end }}
-                - name: NX_SERVER_APPLICATION_URL
+                - name: NX_SERVER_CONFIGURATION_APPLICATION_URL
                   value: {{ .Values.global.domain }}
                 - name: QUARKUS_MONGODB_CONNECTION_STRING
                   {{- include "nx-cloud-ce.server.database.connection-string" . | nindent 18 }}
                 - name: QUARKUS_MONGODB_DATABASE
                   value: {{  default .Values.server.name .Values.server.database.dbName }}
+                {{- include "nx-cloud-ce.server.s3.settings" . | nindent 16 }}
               {{- with .Values.server.envFrom }}
               envFrom:
                 {{- toYaml . | nindent 16 }}

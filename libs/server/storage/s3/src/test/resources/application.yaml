@@ -1,15 +1,15 @@
 quarkus:
-  mongodb:
+  aws:
     devservices:
-      image-name: mongo:7.0.7
+      localstack:
+        image-name: localstack/localstack:3.7.1
+  s3:
+    devservices:
+      enabled: true
+      buckets: [nx-cloud-ce-test]
 
 nx-server:
-  configuration:
-    application-url: http://localtest
-    client-bundle-version: dummy-version
-    client-bundle-path: static/client-bundle.gz
   storage:
-    type: s3
     s3:
       endpoint: http://localhost:4566
       region: us-east-1

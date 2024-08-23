@@ -44,6 +44,10 @@ java {
   targetCompatibility = JavaVersion.toVersion(javaVersion)
 }
 
+tasks.withType<Jar> {
+  archiveBaseName = "${project.group}.${project.name}"
+}
+
 tasks.withType<Test> {
   systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
   finalizedBy("jacocoTestReport")

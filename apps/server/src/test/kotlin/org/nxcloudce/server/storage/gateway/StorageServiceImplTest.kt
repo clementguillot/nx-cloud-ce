@@ -13,6 +13,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 import org.nxcloudce.server.domain.run.model.ArtifactId
 import org.nxcloudce.server.domain.workspace.model.WorkspaceId
+import org.nxcloudce.server.storage.core.FileRepository
 
 @QuarkusTest
 class StorageServiceImplTest {

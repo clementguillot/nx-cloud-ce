@@ -1,4 +1,4 @@
-package org.nxcloudce.server.storage.gateway
+package org.nxcloudce.server.storage.core
 
 interface FileRepository {
   suspend fun generateGetUrl(objectPath: String): String
