@@ -1,0 +1,39 @@
+{
+  "name": "libs/server/storage/gcs",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/server/storage/gcs/src",
+  "targets": {
+    "build": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
+        "task": "build"
+      },
+      "outputs": ["{projectRoot}/build"]
+    },
+    "lint": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
+        "task": "spotlessCheck"
+      }
+    },
+    "format": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
+        "task": "spotlessApply"
+      }
+    },
+    "test": {
+      "executor": "@jnxplus/nx-gradle:run-task",
+      "options": {
+        "task": "test"
+      },
+      "outputs": [
+        "{projectRoot}/build/classes",
+        "{projectRoot}/build/reports",
+        "{projectRoot}/build/test-results"
+      ]
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,19 @@
+quarkus:
+  aws:
+    devservices:
+      localstack:
+        image-name: localstack/localstack:3.7.1
+  s3:
+    devservices:
+      enabled: true
+      buckets: [nx-cloud-ce-test]
+
+nx-server:
+  storage:
+    s3:
+      endpoint: http://localhost:4566
+      region: us-east-1
+      access-key-id: test-key
+      secret-access-key: test-secret
+      bucket: nx-cloud-ce-test
+      force-path-style: true

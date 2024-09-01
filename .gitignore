@@ -43,7 +43,7 @@ Thumbs.db
 build
 
 # Kotlin
-.kotlin/sessions
+/.kotlin
 
 .nx/cache
 .nx/workspace-data

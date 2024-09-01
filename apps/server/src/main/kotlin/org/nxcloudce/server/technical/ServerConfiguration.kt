@@ -2,7 +2,7 @@ package org.nxcloudce.server.technical
 
 import io.smallrye.config.ConfigMapping
 
-@ConfigMapping(prefix = "nx-server")
+@ConfigMapping(prefix = "nx-server.configuration")
 interface ServerConfiguration {
   /** Domain used to access to the application. */
   fun applicationUrl(): String

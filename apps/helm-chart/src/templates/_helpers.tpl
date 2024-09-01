@@ -37,6 +37,8 @@ Create the embedded MinIO S3 settings.
 */}}
 {{- define "nx-cloud-ce.server.s3.settings" -}}
 {{- if .Values.minio.enabled -}}
+- name: NX_SERVER_STORAGE_TYPE
+  value: "s3"
 - name: NX_SERVER_STORAGE_S3_ENDPOINT
   value: "http://{{ template "nx-cloud-ce.name" . }}-minio.{{ .Release.Namespace }}.svc.cluster.local:9000"
 - name: NX_SERVER_STORAGE_S3_REGION

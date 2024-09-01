@@ -1,12 +1,10 @@
 package org.nxcloudce.server.storage.s3
 
-import aws.sdk.kotlin.runtime.auth.credentials.StaticCredentialsProvider
 import aws.sdk.kotlin.services.s3.S3Client
 import aws.sdk.kotlin.services.s3.model.GetObjectRequest
 import aws.sdk.kotlin.services.s3.model.NoSuchKey
 import aws.sdk.kotlin.services.s3.model.PutObjectRequest
 import aws.smithy.kotlin.runtime.content.ByteStream
-import aws.smithy.kotlin.runtime.net.url.Url
 import ch.tutteli.atrium.api.fluent.en_GB.notToEqualNull
 import ch.tutteli.atrium.api.fluent.en_GB.toStartWith
 import ch.tutteli.atrium.api.fluent.en_GB.toThrow
@@ -17,6 +15,7 @@ import kotlinx.coroutines.test.runTest
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.util.Optional
 
 @QuarkusTest
 class S3RepositoryTest {
@@ -27,18 +26,21 @@ class S3RepositoryTest {
 
   @BeforeEach
   fun setUp() {
-    s3Client =
-      S3Client {
-        endpointUrl = Url.parse(s3EndpointOverride)
-        region = "us-east-1"
-        forcePathStyle = true
-        credentialsProvider =
-          StaticCredentialsProvider {
-            accessKeyId = "test-key"
-            secretAccessKey = "test-secret"
-          }
+    val s3Configuration =
+      S3Configuration(
+        endpoint = s3EndpointOverride,
+        region = "us-east-1",
+        accessKeyId = "test-key",
+        secretAccessKey = "test-secret",
+        bucket = "nx-cloud-ce-test",
+        forcePathStyle = Optional.of(true),
+      )
+    s3Client = s3Configuration.buildS3Client()
+    s3Repository =
+      S3Repository {
+        s3Client = s3Configuration.buildS3Client()
+        bucket = s3Configuration.bucket
       }
-    s3Repository = S3Repository(s3Client, "nx-cloud-ce-test")
   }
 
   @Test

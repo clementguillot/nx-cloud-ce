@@ -4,6 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped
 import org.nxcloudce.server.domain.run.gateway.StorageService
 import org.nxcloudce.server.domain.run.model.ArtifactId
 import org.nxcloudce.server.domain.workspace.model.WorkspaceId
+import org.nxcloudce.server.storage.core.FileRepository
 
 @ApplicationScoped
 class StorageServiceImpl(
