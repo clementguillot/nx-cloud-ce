@@ -12,11 +12,11 @@ importers:
         specifier: 1.9.0
         version: 1.9.0
       '@nx-tools/container-metadata':
-        specifier: 6.0.1
-        version: 6.0.1(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)
+        specifier: 6.0.2
+        version: 6.0.2(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)
       '@nx-tools/nx-container':
-        specifier: 6.0.1
-        version: 6.0.1(@nx/devkit@19.6.4(nx@19.6.4))(dotenv@16.4.5)(tslib@2.6.3)
+        specifier: 6.0.4
+        version: 6.0.4(@nx/devkit@19.6.4(nx@19.6.4))(@swc/helpers@0.5.13)(dotenv@16.4.5)(tslib@2.6.3)
       '@nx/workspace':
         specifier: 19.6.4
         version: 19.6.4
@@ -86,8 +86,8 @@ packages:
     peerDependencies:
       tslib: ^2.5.0
 
-  '@nx-tools/container-metadata@6.0.1':
-    resolution: {integrity: sha512-I8zlTpGwfiUIyulYVKBnmnRXGx/wFjBADpGKmGAYrLD8wTcB/j0YbyUg2bz88XVFGF8TifT+eSBlxko755oVWA==}
+  '@nx-tools/container-metadata@6.0.2':
+    resolution: {integrity: sha512-jAad8dEPaRX6SKvvTo6uIcPphD2ZEOuERtx0jb1YTxU7J7+1SF9wv+Em+7Xx3G08QJfnrNV8ZVoVaHWqFs7gqw==}
     peerDependencies:
       '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       tslib: ^2.5.0
@@ -98,12 +98,12 @@ packages:
       '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       tslib: ^2.5.0
 
-  '@nx-tools/nx-container@6.0.1':
-    resolution: {integrity: sha512-u230ZwKkP9YCroEhVNu8gdiMJwbKtFvyG7viQWuVioo5L31jwiqcFKTzXAhg6GMYnrP1SBNdNy1xf2Lq/wkg/w==}
+  '@nx-tools/nx-container@6.0.4':
+    resolution: {integrity: sha512-xYu2tGUdmfaBOZO431Uvo7v/s/oVUxVoeTbo5lzmq9PxODKFErP6jWyjfBUEX72S/NKQM2RT7lwxEuhhVyFy6A==}
     peerDependencies:
       '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      '@swc/helpers': ~0.5.11
       dotenv: '>=16.0.0'
-      tslib: ^2.5.0
 
   '@nx/devkit@19.6.4':
     resolution: {integrity: sha512-mBitFwb/gcz8MR7STt7KQG0vf+QcsasDXiSYcf3OWpc6lGE5wn1q5jg6Iabp49Bd/mdHXVLQnP1aV5A+QqFIOQ==}
@@ -226,6 +226,9 @@ packages:
 
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
+
+  '@swc/helpers@0.5.13':
+    resolution: {integrity: sha512-UoKGxQ3r5kYI9dALKJapMmuK+1zWM/H17Z1+iwnNmzcJRnfFuevZs375TA5rW31pu4BS4NoSy1fRsexDXfWn5w==}
 
   '@tybys/wasm-util@0.9.0':
     resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
@@ -835,7 +838,7 @@ snapshots:
     transitivePeerDependencies:
       - '@nx/devkit'
 
-  '@nx-tools/container-metadata@6.0.1(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)':
+  '@nx-tools/container-metadata@6.0.2(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)':
     dependencies:
       '@nx-tools/ci-context': 6.0.1(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)
       '@nx-tools/core': 6.0.1(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)
@@ -857,17 +860,19 @@ snapshots:
       csv-parse: 5.5.6
       tslib: 2.6.3
 
-  '@nx-tools/nx-container@6.0.1(@nx/devkit@19.6.4(nx@19.6.4))(dotenv@16.4.5)(tslib@2.6.3)':
+  '@nx-tools/nx-container@6.0.4(@nx/devkit@19.6.4(nx@19.6.4))(@swc/helpers@0.5.13)(dotenv@16.4.5)(tslib@2.6.3)':
     dependencies:
-      '@nx-tools/container-metadata': 6.0.1(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)
+      '@nx-tools/container-metadata': 6.0.2(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)
       '@nx-tools/core': 6.0.1(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)
       '@nx/devkit': 19.6.4(nx@19.6.4)
+      '@swc/helpers': 0.5.13
       csv-parse: 5.5.6
       dotenv: 16.4.5
       handlebars: 4.7.8
       semver: 7.6.2
       tmp: 0.2.3
-      tslib: 2.6.3
+    transitivePeerDependencies:
+      - tslib
 
   '@nx/devkit@19.6.4(nx@19.6.4)':
     dependencies:
@@ -989,6 +994,10 @@ snapshots:
       xregexp: 4.4.1
 
   '@sinclair/typebox@0.27.8': {}
+
+  '@swc/helpers@0.5.13':
+    dependencies:
+      tslib: 2.6.3
 
   '@tybys/wasm-util@0.9.0':
     dependencies:
