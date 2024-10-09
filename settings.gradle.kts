@@ -22,6 +22,7 @@ rootProject.name = "nx-cloud-ce"
 include(":apps:server")
 include(":libs:server:domain")
 include(":libs:server:persistence")
+include(":libs:server:storage:azure")
 include(":libs:server:storage:core")
 include(":libs:server:storage:gcs")
 include(":libs:server:storage:s3")
