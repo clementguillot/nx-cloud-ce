@@ -5,6 +5,8 @@ import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.inject.Produces
 import kotlinx.coroutines.CoroutineDispatcher
 import org.eclipse.microprofile.config.inject.ConfigProperty
+import org.nxcloudce.server.storage.azure.AzureBlobConfiguration
+import org.nxcloudce.server.storage.azure.AzureBlobRepository
 import org.nxcloudce.server.storage.core.FileRepository
 import org.nxcloudce.server.storage.gcs.GcsConfiguration
 import org.nxcloudce.server.storage.gcs.GcsRepository
@@ -16,6 +18,7 @@ class StorageProducers {
   enum class StorageType(val value: String) {
     S3("s3"),
     GCS("gcs"),
+    AZURE("azure"),
     ;
 
     companion object {
@@ -32,6 +35,10 @@ class StorageProducers {
     dispatcher: CoroutineDispatcher,
   ): FileRepository =
     when (StorageType.from(storageType)) {
+      StorageType.AZURE -> {
+        val azureBlobConfiguration = AzureBlobConfiguration.readFromConfig("nx-server.storage.azure")
+        AzureBlobRepository(azureBlobConfiguration.buildBlobServiceClient(), azureBlobConfiguration.containerName)
+      }
       StorageType.GCS -> {
         val gcsConfiguration = GcsConfiguration.readFromConfig("nx-server.storage.gcs")
         GcsRepository {
