@@ -44,6 +44,13 @@ dependencies {
   implementation("com.github.ajalt.clikt:clikt:$cliktVersion")
   implementation("com.azure:azure-storage-blob:$azureBlobStorageVersion")
   implementation("com.azure:azure-identity:$azureIdentityVersion")
+  implementation("com.azure:azure-sdk-bom:1.2.28")
+  implementation("com.microsoft.azure:msal4j:1.16.2")
+  implementation("io.projectreactor.netty:reactor-netty-http:1.0.45")
+  implementation("com.fasterxml.woodstox:woodstox-core:7.0.0")
+  implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonDatatypeJsr310Version")
+//  implementation("com.azure:azure-aot-graalvm-support:1.0.0-beta.3")
+//  implementation("com.azure:azure-aot-graalvm-support-netty:1.0.0-beta.3")
 
   implementation(project(":libs:server:domain"))
   implementation(project(":libs:server:persistence"))
