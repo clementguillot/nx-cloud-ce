@@ -9,6 +9,10 @@ quarkus:
     security-scheme: api-key
     api-key-parameter-in: header
     api-key-parameter-name: authorization
+  azure:
+    app:
+      configuration:
+        enabled: false
 
 nx-server:
   configuration:

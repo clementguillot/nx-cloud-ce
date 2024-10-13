@@ -1,0 +1,10 @@
+nx-server:
+  storage:
+    azure:
+      container-name: "nx-cloud-ce-test"
+
+quarkus:
+  azure:
+    app:
+      configuration:
+        enabled: false
