@@ -4,6 +4,7 @@ import com.google.cloud.NoCredentials
 import com.google.cloud.storage.BucketInfo
 import com.google.cloud.storage.StorageOptions
 import io.quarkus.test.common.QuarkusTestResourceLifecycleManager
+import org.eclipse.microprofile.config.ConfigProvider
 import org.testcontainers.containers.GenericContainer
 import java.net.URI
 import java.net.http.HttpClient
@@ -12,7 +13,6 @@ import java.net.http.HttpRequest.BodyPublishers
 import java.net.http.HttpResponse.BodyHandlers
 
 class GcsEmulatorResource : QuarkusTestResourceLifecycleManager {
-  private val bucket = "nx-cloud-ce-test"
   lateinit var container: GenericContainer<*>
 
   override fun start(): Map<String, String> {
@@ -24,12 +24,13 @@ class GcsEmulatorResource : QuarkusTestResourceLifecycleManager {
 
     val emulatorHost = "http://${container.host}:${container.firstMappedPort}"
 
+    val bucket = ConfigProvider.getConfig().getValue("nx-server.storage.gcs.bucket", String::class.java)
+
     updateExternalUrlWithContainerUrl(emulatorHost)
-    createBucket(emulatorHost)
+    createBucket(emulatorHost, bucket)
 
     return mapOf(
-      "gcs.emulator.host" to emulatorHost,
-      "gcs.emulator.bucket" to bucket,
+      "quarkus.google.cloud.storage.host-override" to emulatorHost,
     )
   }
 
@@ -63,7 +64,10 @@ class GcsEmulatorResource : QuarkusTestResourceLifecycleManager {
     }
   }
 
-  private fun createBucket(endpoint: String) {
+  private fun createBucket(
+    endpoint: String,
+    bucket: String,
+  ) {
     val storage =
       StorageOptions.newBuilder()
         .setHost(endpoint)

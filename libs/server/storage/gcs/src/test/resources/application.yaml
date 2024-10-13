@@ -1,23 +1,4 @@
 nx-server:
   storage:
     gcs:
-      project-id: "nx-cloud-ce"
-      credentials: >
-        {
-          "type": "service_account",
-          "project_id": "nx-cloud-ce",
-          "private_key_id": "1234567890123456789012345678901234567890",
-          "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDChboDZVgTnsl+\nJjHkcqWpObHbgDaXePOhW7YiznEyFtESbnYzvCmbqTUlVk0FHX9XIwMZ+Xv2cEs+\nKISpvXR5yZldTafZ0Y4GhI74MZxguUlnfB9CxUPoDaTN+Qzywv7r/T0eH+hs67Ur\n4oGcJPmdh9/Kc7QmGvcLicue6TF5p/4zvRDSZ6YAfGMarkyiZqicoN0CYnS+imDB\nz1RJiYmcZeP4yzGbL6AcFGHpGB6Fxms/7+Sg9X/6ltHuLAGSFlthvebFrarJvLG1\nYPyAf1YMRdNv2CuwpYECohe32kZn02/zLTG2ZpO+q+gOKpuIOJBRp/u2alP4pOYy\nedUzypv3AgMBAAECggEAC9oy37eySo/BEZ5C9mGqu/yEXJS1WG/J0hBQ5FIIp6RB\n3PBwfbp+g1OODDzAuKN34ArsF3SrtVpZdOu3GZ76x9wdK7tqX/7au1IiyMPZ4v+n\nL1ad+QC+bUpxIXO5WQyOLjoVGg7Lp+Dv/kDw4/i3+0pzu+9mdj2FkmU0/1vDsSvZ\nQS6cXzzZ/evfF4mYMeapplaCqL+mOgNSysXebb93ILiLxhT2z7E8W27FU7NRP7C3\nMT64/+aTqzlZEuQRMTiGy/zhyafME0+fPw2fWh3TdQkx3VL8wA6n8JBOZY7Xyjxz\nKB+UeAnZg89tou5U+orgeMREtWRcDmHQpYpQmwjPcQKBgQDklvMIiX2oeP20RQGA\ncR8HAHF2S/YHby8zCQ8Ta5vCepu9LkVzmDhyZSiPGBQqrxVXE5IiADLtrTeU1scU\n5zohbKbuAmROBAKqnvFR/Y0zz6geam9KwJpP0dW2Q7ml5n+VzMNvG/C/xp0yxC93\nx/LPXwwojioI6sua6VJZxI0p5QKBgQDZ2QJMHzC9N4Vwbi9KFWbKmfGjiRDePYl9\nmGXO7myoUnTa2Ice+q39E7rfWgN0qKNaq4nM3v+hfvp9035orJiuFwLbHCsRpHx/\npWujwiIQNJLNWWouhP5/rzSckiC+5o2W0xNUNN2VwPdBDJefZlLySH4wV5kBDOiC\n/9QuswcgqwKBgHTbUgy4NNvOVmw0pqrhqWnr6RT/ihuM1EUzyVg1N6A5C6qvn+OT\nGrAoVI6qUYzsim1EXP0yutZUKcjV71oZRtdVcxTTdjGHzVEqBdXTV7731ksOQCyn\nv3s0mxsdDifoaKrMzc/cKbvwLeaI8nc6aT9nqJCG9KgwV7uusWGgoEWdAoGAdxf/\n/YV/q7HSrWhPSfzxOQl35KNmKVkS9Sp/XeVSWaLaZ1nAZNs+iwBiRQB8qyYWR9dH\nekzfC3bTkj4w+SCCR4ok8Ywwr3Bw74eLlPbokFttdf3P4qaqSzuJU58/b52zAiVa\nh8pu6ROZGGK98VKLPhELi3oYF07rPdKGORF+cAkCgYEApFdJeG2jKeWmUX2bJ1mj\nJg2SdRy/pPNKuh7Ea4F0kvEfaIQKXcR3NRP1ph/KEO0sBITeLhoAqDSWxqhT9hmW\nyRbgd7/+Tu8jZsjbkmPGdl9pTev8e0YQr4HvPyCBasnkTzKV4IO26TKJuZM2iLdK\nO2UQ4Aq/sDyjsOHlPlic7ZU=\n-----END PRIVATE KEY-----\n",
-          "client_email": "nx-cloud-ce@nx-cloud-ce.iam.gserviceaccount.com",
-          "client_id": "123456789012345678901",
-          "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-          "token_uri": "https://oauth2.googleapis.com/token",
-          "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-          "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nx-cloud-ce%nx-cloud-ce.iam.gserviceaccount.com"
-        }
       bucket: "nx-cloud-ce-test"
-
-gcs:
-  emulator:
-    host: dummy
-    bucket: dummy
