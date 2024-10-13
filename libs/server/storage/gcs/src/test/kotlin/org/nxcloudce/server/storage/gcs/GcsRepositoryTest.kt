@@ -3,54 +3,31 @@ package org.nxcloudce.server.storage.gcs
 import ch.tutteli.atrium.api.fluent.en_GB.toEqual
 import ch.tutteli.atrium.api.fluent.en_GB.toStartWith
 import ch.tutteli.atrium.api.verbs.expect
-import com.google.auth.oauth2.ServiceAccountCredentials
 import com.google.cloud.storage.BlobId
 import com.google.cloud.storage.BlobInfo
 import com.google.cloud.storage.Storage
-import com.google.cloud.storage.StorageOptions
-import io.mockk.every
-import io.mockk.mockk
 import io.quarkus.test.common.WithTestResource
 import io.quarkus.test.junit.QuarkusTest
-import kotlinx.coroutines.Dispatchers
+import jakarta.inject.Inject
 import kotlinx.coroutines.test.runTest
 import org.eclipse.microprofile.config.inject.ConfigProperty
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayInputStream
 
 @QuarkusTest
 @WithTestResource(GcsEmulatorResource::class)
 class GcsRepositoryTest {
-  @ConfigProperty(name = "gcs.emulator.host")
+  @ConfigProperty(name = "quarkus.google.cloud.storage.host-override")
   lateinit var gcsEndpoint: String
 
-  @ConfigProperty(name = "gcs.emulator.bucket")
+  @ConfigProperty(name = "nx-server.storage.gcs.bucket")
   lateinit var gcsBucket: String
 
+  @Inject
   lateinit var storage: Storage
+
+  @Inject
   lateinit var gcsRepository: GcsRepository
-
-  @BeforeEach
-  fun setUp() {
-    val serviceAccountCredentials = mockk<ServiceAccountCredentials>(relaxed = true)
-    every { serviceAccountCredentials.account } returns "Account"
-    every { serviceAccountCredentials.sign(any()) } returns byteArrayOf(123456.toByte())
-    every { serviceAccountCredentials.universeDomain } returns "googleapis.com"
-
-    storage =
-      StorageOptions.newBuilder()
-        .setHost(gcsEndpoint)
-        .setCredentials(serviceAccountCredentials)
-        .build()
-        .service
-    gcsRepository =
-      GcsRepository {
-        dispatcher = Dispatchers.IO
-        storage = this@GcsRepositoryTest.storage
-        bucket = gcsBucket
-      }
-  }
 
   @Test
   fun `should presign a GET URL`() =

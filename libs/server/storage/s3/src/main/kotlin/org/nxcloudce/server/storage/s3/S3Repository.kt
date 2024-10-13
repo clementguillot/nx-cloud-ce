@@ -1,27 +1,47 @@
 package org.nxcloudce.server.storage.s3
 
+import aws.sdk.kotlin.runtime.auth.credentials.StaticCredentialsProvider
 import aws.sdk.kotlin.services.s3.S3Client
 import aws.sdk.kotlin.services.s3.model.DeleteObjectRequest
 import aws.sdk.kotlin.services.s3.model.GetObjectRequest
 import aws.sdk.kotlin.services.s3.model.PutObjectRequest
 import aws.sdk.kotlin.services.s3.presigners.presignGetObject
 import aws.sdk.kotlin.services.s3.presigners.presignPutObject
+import aws.smithy.kotlin.runtime.net.url.Url
+import io.quarkus.arc.lookup.LookupIfProperty
+import jakarta.enterprise.context.ApplicationScoped
 import org.nxcloudce.server.storage.core.FileRepository
 import kotlin.time.Duration.Companion.hours
 
-class S3Repository private constructor(
-  private val s3Client: S3Client,
-  private val bucket: String,
+@LookupIfProperty(name = "nx-server.storage.type", stringValue = "s3")
+@ApplicationScoped
+class S3Repository(
+  s3Configuration: S3Configuration,
 ) : FileRepository {
   companion object {
     private val presignExpiration = 1.hours
-
-    operator fun invoke(block: Builder.() -> Unit): S3Repository {
-      val builder = Builder()
-      block(builder)
-      return builder.build()
-    }
   }
+
+  init {
+    require(s3Configuration.endpoint().isPresent)
+    require(s3Configuration.region().isPresent)
+    require(s3Configuration.accessKeyId().isPresent)
+    require(s3Configuration.secretAccessKey().isPresent)
+    require(s3Configuration.bucket().isPresent)
+  }
+
+  private val s3Client =
+    S3Client {
+      endpointUrl = Url.parse(s3Configuration.endpoint().get())
+      region = s3Configuration.region().get()
+      forcePathStyle = s3Configuration.forcePathStyle().map { it }.orElse(null)
+      credentialsProvider =
+        StaticCredentialsProvider {
+          accessKeyId = s3Configuration.accessKeyId().get()
+          secretAccessKey = s3Configuration.secretAccessKey().get()
+        }
+    }
+  private val bucket = s3Configuration.bucket().get()
 
   override suspend fun generateGetUrl(objectPath: String): String {
     val getRequest =
@@ -41,6 +61,7 @@ class S3Repository private constructor(
         bucket = this@S3Repository.bucket
         key = objectPath
       }
+    println("coucou s3")
     return s3Client
       .presignPutObject(putRequest, presignExpiration)
       .url
@@ -54,20 +75,5 @@ class S3Repository private constructor(
         key = objectPath
       }
     s3Client.deleteObject(deleteRequest)
-  }
-
-  class Builder {
-    var s3Configuration: S3Configuration? = null
-    var s3Client: S3Client? = null
-    var bucket: String? = null
-
-    fun build(): S3Repository =
-      s3Configuration?.let {
-        S3Repository(it.buildS3Client(), it.bucket)
-      } ?: run {
-        requireNotNull(s3Client)
-        requireNotNull(bucket)
-        S3Repository(s3Client!!, bucket!!)
-      }
   }
 }

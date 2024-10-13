@@ -1,46 +1,64 @@
 package org.nxcloudce.server.storage.s3
 
+import aws.sdk.kotlin.runtime.auth.credentials.StaticCredentialsProvider
 import aws.sdk.kotlin.services.s3.S3Client
 import aws.sdk.kotlin.services.s3.model.GetObjectRequest
 import aws.sdk.kotlin.services.s3.model.NoSuchKey
 import aws.sdk.kotlin.services.s3.model.PutObjectRequest
 import aws.smithy.kotlin.runtime.content.ByteStream
+import aws.smithy.kotlin.runtime.net.url.Url
 import ch.tutteli.atrium.api.fluent.en_GB.notToEqualNull
 import ch.tutteli.atrium.api.fluent.en_GB.toStartWith
 import ch.tutteli.atrium.api.fluent.en_GB.toThrow
 import ch.tutteli.atrium.api.verbs.expect
 import io.quarkus.test.junit.QuarkusTest
+import jakarta.inject.Inject
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.util.Optional
+import java.util.*
 
 @QuarkusTest
 class S3RepositoryTest {
   @ConfigProperty(name = "quarkus.s3.endpoint-override")
   lateinit var s3EndpointOverride: String
+
+  @Inject
+  lateinit var s3Configuration: S3Configuration
   lateinit var s3Client: S3Client
   lateinit var s3Repository: S3Repository
 
   @BeforeEach
   fun setUp() {
-    val s3Configuration =
-      S3Configuration(
-        endpoint = s3EndpointOverride,
-        region = "us-east-1",
-        accessKeyId = "test-key",
-        secretAccessKey = "test-secret",
-        bucket = "nx-cloud-ce-test",
-        forcePathStyle = Optional.of(true),
-      )
-    s3Client = s3Configuration.buildS3Client()
-    s3Repository =
-      S3Repository {
-        s3Client = s3Configuration.buildS3Client()
-        bucket = s3Configuration.bucket
+    s3Client =
+      S3Client {
+        endpointUrl = Url.parse(s3EndpointOverride)
+        region = s3Configuration.region().get()
+        forcePathStyle = s3Configuration.forcePathStyle().map { it }.orElse(null)
+        credentialsProvider =
+          StaticCredentialsProvider {
+            accessKeyId = s3Configuration.accessKeyId().get()
+            secretAccessKey = s3Configuration.secretAccessKey().get()
+          }
       }
+    s3Repository =
+      S3Repository(
+        object : S3Configuration {
+          override fun endpoint(): Optional<String> = Optional.of(s3EndpointOverride)
+
+          override fun region(): Optional<String> = s3Configuration.region()
+
+          override fun accessKeyId(): Optional<String> = s3Configuration.accessKeyId()
+
+          override fun secretAccessKey(): Optional<String> = s3Configuration.secretAccessKey()
+
+          override fun bucket(): Optional<String> = s3Configuration.bucket()
+
+          override fun forcePathStyle(): Optional<Boolean> = s3Configuration.forcePathStyle()
+        },
+      )
   }
 
   @Test

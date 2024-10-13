@@ -17,7 +17,7 @@ val javaVersion: String by project
 val quarkusPlatformGroupId: String by project
 val quarkusPlatformArtifactId: String by project
 val quarkusPlatformVersion: String by project
-val gcpSdkVersion: String by project
+val quarkusGoogleCloudServicesVersion: String by project
 val ktlintVersion: String by project
 val atriumVersion: String by project
 val mockkVersion: String by project
@@ -27,11 +27,8 @@ dependencies {
   implementation(enforcedPlatform("$quarkusPlatformGroupId:$quarkusPlatformArtifactId:$quarkusPlatformVersion"))
   implementation("io.quarkus:quarkus-arc")
   implementation("io.quarkus:quarkus-kotlin")
-  implementation(platform("com.google.cloud:libraries-bom:$gcpSdkVersion"))
-  implementation("com.google.cloud:google-cloud-storage") {
-    exclude("commons-logging", "commons-logging")
-    exclude("io.grpc", "grpc-netty-shaded")
-  }
+  implementation(platform("io.quarkiverse.googlecloudservices:quarkus-google-cloud-services-bom:$quarkusGoogleCloudServicesVersion"))
+  implementation("io.quarkiverse.googlecloudservices:quarkus-google-cloud-storage")
 
   implementation(project(":libs:server:storage:core"))
 
