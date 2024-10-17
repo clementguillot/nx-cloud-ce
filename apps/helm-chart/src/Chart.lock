@@ -4,9 +4,9 @@ dependencies:
   version: 14.7.16
 - name: mongodb
   repository: https://charts.bitnami.com/bitnami
-  version: 15.6.22
+  version: 15.6.26
 - name: nginx
   repository: https://charts.bitnami.com/bitnami
   version: 18.1.11
-digest: sha256:e7550c8b368dca8221dfd3ec5b07de14919f18a85f62ebb807146d7f9743700c
-generated: "2024-10-16T09:48:48.004504055Z"
+digest: sha256:aba61f58b44df5435419b99943fb26613539697464e69b09f2658cb6dbbc8e40
+generated: "2024-10-17T15:59:56.576588894Z"
