@@ -61,7 +61,6 @@ class S3Repository(
         bucket = this@S3Repository.bucket
         key = objectPath
       }
-    println("coucou s3")
     return s3Client
       .presignPutObject(putRequest, presignExpiration)
       .url
