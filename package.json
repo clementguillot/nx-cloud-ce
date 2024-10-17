@@ -8,8 +8,8 @@
     "@jnxplus/nx-gradle": "1.9.0",
     "@nx-tools/container-metadata": "6.1.0",
     "@nx-tools/nx-container": "6.1.0",
-    "@nx/workspace": "19.6.4",
-    "nx": "19.6.4",
+    "@nx/workspace": "19.8.5",
+    "nx": "19.8.5",
     "prettier": "3.3.0"
   }
 }
