@@ -78,6 +78,9 @@ class TaskPanacheRepositoryTest {
       cacheStatus = "cache-miss",
       status = 1,
       uploadedToStorage = true,
+      terminalOutputUploadedToFileStorage = true,
+      isCacheable = true,
+      parallelism = true,
       params = "params",
       terminalOutput = "output",
       hashDetails =
@@ -87,5 +90,6 @@ class TaskPanacheRepositoryTest {
           implicitDeps = mapOf("dep1" to "hash1", "dep2" to "hash2"),
         ),
       artifactId = null,
+      meta = null,
     )
 }

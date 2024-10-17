@@ -25,6 +25,9 @@ class TaskTest {
         cacheStatus = CacheStatus.CACHE_MISS
         status = 0
         uploadedToStorage = true
+        terminalOutputUploadedToFileStorage = true
+        isCacheable = true
+        parallelism = true
         params = "params"
         terminalOutput = "terminal-output"
         hashDetails =
@@ -34,6 +37,7 @@ class TaskTest {
             implicitDeps = emptyMap(),
           )
         artifactId = ArtifactId("artifact-id")
+        meta = mapOf("nxCloudVersion" to "123")
       }
 
     expect(task) {
@@ -48,6 +52,9 @@ class TaskTest {
       its { cacheStatus }.toEqual(CacheStatus.CACHE_MISS)
       its { status }.toEqual(0)
       its { uploadedToStorage }.toEqual(true)
+      its { terminalOutputUploadedToFileStorage }.toEqual(true)
+      its { isCacheable }.toEqual(true)
+      its { parallelism }.toEqual(true)
       its { params }.toEqual("params")
       its { terminalOutput }.toEqual("terminal-output")
       its { hashDetails }.toEqual(
@@ -58,6 +65,7 @@ class TaskTest {
         ),
       )
       its { artifactId?.value }.toEqual("artifact-id")
+      its { meta }.toEqual(mapOf("nxCloudVersion" to "123"))
     }
   }
 }

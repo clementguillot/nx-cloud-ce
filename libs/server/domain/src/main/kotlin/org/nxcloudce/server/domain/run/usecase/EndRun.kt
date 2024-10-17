@@ -41,10 +41,14 @@ data class EndRunRequest(
     val cacheStatus: CacheStatus,
     val status: Int,
     val uploadedToStorage: Boolean,
+    val terminalOutputUploadedToFileStorage: Boolean,
+    val isCacheable: Boolean,
+    val parallelism: Boolean,
     val params: String,
     val terminalOutput: String,
     val hashDetails: HashDetails,
     val artifactId: ArtifactId?,
+    val meta: Map<String, String>?,
   )
 }
 

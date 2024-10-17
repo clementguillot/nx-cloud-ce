@@ -25,10 +25,14 @@ class Task private constructor(builder: Builder) {
   val cacheStatus: CacheStatus
   val status: Int
   val uploadedToStorage: Boolean
+  val terminalOutputUploadedToFileStorage: Boolean
+  val isCacheable: Boolean
+  val parallelism: Boolean
   val params: String
   val terminalOutput: String
   val hashDetails: HashDetails
   val artifactId: ArtifactId?
+  val meta: Map<String, String>?
 
   init {
     requireNotNull(builder.taskId)
@@ -42,6 +46,9 @@ class Task private constructor(builder: Builder) {
     requireNotNull(builder.cacheStatus)
     requireNotNull(builder.status)
     requireNotNull(builder.uploadedToStorage)
+    requireNotNull(builder.terminalOutputUploadedToFileStorage)
+    requireNotNull(builder.isCacheable)
+    requireNotNull(builder.parallelism)
     requireNotNull(builder.params)
     requireNotNull(builder.terminalOutput)
     requireNotNull(builder.hashDetails)
@@ -57,10 +64,14 @@ class Task private constructor(builder: Builder) {
     cacheStatus = builder.cacheStatus!!
     status = builder.status!!
     uploadedToStorage = builder.uploadedToStorage!!
+    terminalOutputUploadedToFileStorage = builder.terminalOutputUploadedToFileStorage!!
+    isCacheable = builder.isCacheable!!
+    parallelism = builder.parallelism!!
     params = builder.params!!
     hashDetails = builder.hashDetails!!
     terminalOutput = builder.terminalOutput!!
     artifactId = builder.artifactId
+    meta = builder.meta
   }
 
   class Builder {
@@ -75,10 +86,14 @@ class Task private constructor(builder: Builder) {
     var cacheStatus: CacheStatus? = null
     var status: Int? = null
     var uploadedToStorage: Boolean? = null
+    var terminalOutputUploadedToFileStorage: Boolean? = null
+    var isCacheable: Boolean? = null
+    var parallelism: Boolean? = null
     var params: String? = null
     var terminalOutput: String? = null
     var hashDetails: HashDetails? = null
     var artifactId: ArtifactId? = null
+    var meta: Map<String, String>? = null
 
     fun build(): Task = Task(this)
   }

@@ -133,6 +133,9 @@ class EndRunImplTest {
       cacheStatus = CacheStatus.from("cache-miss"),
       status = status,
       uploadedToStorage = uploadedToStorage,
+      terminalOutputUploadedToFileStorage = true,
+      isCacheable = true,
+      parallelism = true,
       params = "test params",
       terminalOutput = "test terminal output",
       hashDetails =
@@ -142,6 +145,7 @@ class EndRunImplTest {
           implicitDeps = emptyMap(),
         ),
       artifactId = ArtifactId("artifact$suffix"),
+      meta = null,
     )
 
   private fun runRequestToDomain(
@@ -185,9 +189,13 @@ class EndRunImplTest {
       cacheStatus = task.cacheStatus
       status = task.status
       uploadedToStorage = task.uploadedToStorage
+      terminalOutputUploadedToFileStorage = task.terminalOutputUploadedToFileStorage
+      isCacheable = task.isCacheable
+      parallelism = task.parallelism
       params = task.params
       terminalOutput = task.terminalOutput
       hashDetails = task.hashDetails
       artifactId = task.artifactId
+      meta = task.meta
     }
 }

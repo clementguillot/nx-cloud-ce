@@ -13,6 +13,8 @@ sealed class RunDto {
   abstract val machineInfo: MachineInfo
   abstract val meta: Map<String, String>
   abstract val vcsContext: VcsContext?
+  abstract val clientInstanceId: UUID
+  abstract val clientInstanceSource: String
 
   data class Start(
     override val branch: String?,
@@ -22,6 +24,8 @@ sealed class RunDto {
     override val machineInfo: MachineInfo,
     override val meta: Map<String, String>,
     override val vcsContext: VcsContext?,
+    override val clientInstanceId: UUID,
+    override val clientInstanceSource: String,
     val distributedExecutionId: String?,
     val hashes: Collection<String>,
   ) : RunDto()
@@ -34,10 +38,13 @@ sealed class RunDto {
     override val machineInfo: MachineInfo,
     override val meta: Map<String, String>,
     override val vcsContext: VcsContext?,
+    override val clientInstanceId: UUID,
+    override val clientInstanceSource: String,
     val tasks: Collection<Task>,
     val linkId: String?,
     val run: RunData,
     val projectGraph: ProjectGraph?,
+    val projectGraphSha: String?,
     val hashedContributors: Collection<String>?,
   ) : RunDto() {
     companion object {
@@ -79,10 +86,14 @@ sealed class RunDto {
           cacheStatus = CacheStatus.from(task.cacheStatus),
           status = task.status,
           uploadedToStorage = task.uploadedToStorage,
+          terminalOutputUploadedToFileStorage = task.terminalOutputUploadedToFileStorage,
+          isCacheable = task.isCacheable,
+          parallelism = task.parallelism,
           params = task.params,
           terminalOutput = task.terminalOutput,
           hashDetails = task.hashDetails,
           artifactId = task.artifactId?.let { ArtifactId(it.toString()) },
+          meta = task.meta,
         )
       }
 
@@ -96,10 +107,14 @@ sealed class RunDto {
       val cacheStatus: String,
       val status: Int,
       val uploadedToStorage: Boolean,
+      val terminalOutputUploadedToFileStorage: Boolean,
+      val isCacheable: Boolean,
+      val parallelism: Boolean,
       val params: String,
       val terminalOutput: String,
       val hashDetails: HashDetails,
       val artifactId: UUID?,
+      val meta: Map<String, String>?,
     )
 
     data class RunData(

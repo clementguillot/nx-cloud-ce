@@ -41,6 +41,9 @@ class TaskRepositoryImplTest {
             cacheStatus = CacheStatus.CACHE_MISS,
             status = 0,
             uploadedToStorage = true,
+            terminalOutputUploadedToFileStorage = true,
+            isCacheable = true,
+            parallelism = true,
             params = "params1",
             terminalOutput = "output1",
             hashDetails =
@@ -50,6 +53,7 @@ class TaskRepositoryImplTest {
                 implicitDeps = emptyMap(),
               ),
             artifactId = ArtifactId("artifact1"),
+            meta = null,
           ),
           EndRunRequest.Task(
             taskId = "task2",
@@ -61,6 +65,9 @@ class TaskRepositoryImplTest {
             cacheStatus = CacheStatus.LOCAL_CACHE_HIT,
             status = 1,
             uploadedToStorage = true,
+            terminalOutputUploadedToFileStorage = true,
+            isCacheable = true,
+            parallelism = true,
             params = "params2",
             terminalOutput = "output2",
             hashDetails =
@@ -70,6 +77,7 @@ class TaskRepositoryImplTest {
                 implicitDeps = emptyMap(),
               ),
             artifactId = null,
+            meta = null,
           ),
         )
       val runId = RunId(ObjectId().toString())
@@ -133,6 +141,9 @@ class TaskRepositoryImplTest {
       cacheStatus = "cache-miss",
       status = 1,
       uploadedToStorage = true,
+      terminalOutputUploadedToFileStorage = true,
+      isCacheable = true,
+      parallelism = true,
       params = "params",
       terminalOutput = "output",
       hashDetails =
@@ -142,5 +153,6 @@ class TaskRepositoryImplTest {
           implicitDeps = mapOf("dep1" to "hash1", "dep2" to "hash2"),
         ),
       artifactId = null,
+      meta = null,
     )
 }

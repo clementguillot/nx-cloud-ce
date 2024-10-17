@@ -18,10 +18,14 @@ data class TaskEntity(
   var cacheStatus: String,
   var status: Int,
   var uploadedToStorage: Boolean,
+  var terminalOutputUploadedToFileStorage: Boolean,
+  var isCacheable: Boolean,
+  var parallelism: Boolean,
   var params: String,
   var terminalOutput: String,
   var hashDetails: HashDetails,
   var artifactId: String?,
+  var meta: Map<String, String>?,
 ) {
   @MongoEntity
   data class HashDetails(

@@ -64,6 +64,8 @@ class RunControllerTest {
               ),
             meta = mapOf("nxCloudVersion" to "123"),
             vcsContext = null,
+            clientInstanceId = UUID.randomUUID(),
+            clientInstanceSource = "CLOUD_RUNNER",
           ),
         )
         .`when`()
@@ -228,6 +230,7 @@ class RunControllerTest {
       tasks = tasks,
       linkId = linkId,
       projectGraph = null,
+      projectGraphSha = null,
       hashedContributors = null,
       run =
         RunDto.End.RunData(
@@ -240,6 +243,8 @@ class RunControllerTest {
           distributedExecutionId = null,
           sha = null,
         ),
+      clientInstanceId = UUID.randomUUID(),
+      clientInstanceSource = "CLOUD_RUNNER",
     )
 
   private fun buildTaskDto(
@@ -256,6 +261,9 @@ class RunControllerTest {
       cacheStatus = "cache-miss",
       status = status,
       uploadedToStorage = true,
+      isCacheable = true,
+      parallelism = true,
+      terminalOutputUploadedToFileStorage = false,
       params = "params-$suffix",
       terminalOutput = "terminal output",
       hashDetails =
@@ -265,5 +273,6 @@ class RunControllerTest {
           implicitDeps = emptyMap(),
         ),
       artifactId = UUID.randomUUID(),
+      meta = null,
     )
 }

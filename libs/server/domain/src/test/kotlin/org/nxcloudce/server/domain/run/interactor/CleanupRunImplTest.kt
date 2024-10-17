@@ -95,10 +95,14 @@ class CleanupRunImplTest {
       cacheStatus = CacheStatus.CACHE_MISS
       status = 0
       uploadedToStorage = true
+      terminalOutputUploadedToFileStorage = true
+      isCacheable = true
+      parallelism = true
       params = "params"
       terminalOutput = "terminal output"
       hashDetails = HashDetails(emptyMap(), emptyMap(), emptyMap())
       artifactId = ArtifactId()
+      meta = null
     }
 
   private fun buildArtifact(

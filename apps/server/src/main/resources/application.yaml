@@ -16,7 +16,7 @@ quarkus:
 
 nx-server:
   configuration:
-    client-bundle-version: 2403.21.3.hotfix2
+    client-bundle-version: 2409.26.3.hotfix17
     client-bundle-path: nx-cloud/static/client-bundle
 
 "%dev":

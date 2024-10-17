@@ -19,6 +19,9 @@ fun TaskEntity.toDomain(): Task =
     cacheStatus = CacheStatus.from(this@toDomain.cacheStatus)
     status = this@toDomain.status
     uploadedToStorage = this@toDomain.uploadedToStorage
+    terminalOutputUploadedToFileStorage = this@toDomain.terminalOutputUploadedToFileStorage
+    isCacheable = this@toDomain.isCacheable
+    parallelism = this@toDomain.parallelism
     params = this@toDomain.params
     hashDetails =
       HashDetails(
@@ -28,6 +31,7 @@ fun TaskEntity.toDomain(): Task =
       )
     terminalOutput = this@toDomain.terminalOutput
     artifactId = this@toDomain.artifactId?.let { ArtifactId(it) }
+    meta = this@toDomain.meta
   }
 
 fun EndRunRequest.Task.toEntity(
@@ -47,6 +51,9 @@ fun EndRunRequest.Task.toEntity(
     cacheStatus = cacheStatus.value,
     status = status,
     uploadedToStorage = uploadedToStorage,
+    terminalOutputUploadedToFileStorage = terminalOutputUploadedToFileStorage,
+    isCacheable = isCacheable,
+    parallelism = parallelism,
     params = params,
     hashDetails =
       TaskEntity.HashDetails(
@@ -56,4 +63,5 @@ fun EndRunRequest.Task.toEntity(
       ),
     terminalOutput = terminalOutput,
     artifactId = artifactId?.value,
+    meta = meta,
   )
