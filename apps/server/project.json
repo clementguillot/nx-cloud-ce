@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "executor": "@jnxplus/nx-gradle:run-task",
-      "outputs": [
-        "{projectRoot}/build"
-      ],
+      "outputs": ["{projectRoot}/build"],
       "options": {
         "task": "quarkusBuild"
       }
