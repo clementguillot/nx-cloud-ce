@@ -1,5 +1,6 @@
 package org.nxcloudce.server
 
+import com.github.ajalt.clikt.core.main
 import com.github.ajalt.clikt.core.subcommands
 import io.quarkus.runtime.annotations.QuarkusMain
 

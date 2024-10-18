@@ -2,13 +2,8 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "production",
-        "^production"
-      ],
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"],
       "cache": true
     },
     "lint": {
@@ -22,19 +17,11 @@
     }
   },
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
-    "production": [
-      "default",
-      "!{projectRoot}/src/test/**/*"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": ["default", "!{projectRoot}/src/test/**/*"],
     "sharedGlobals": []
   },
-  "plugins": [
-    "@jnxplus/nx-gradle"
-  ],
+  "plugins": ["@jnxplus/nx-gradle"],
   "nxCloudAccessToken": "YzcwZTJjY2QtMDEzYS00NjAyLWE1OGQtYjZiNDU2ZWEwNTdmfHJlYWQtd3JpdGU=",
   "nxCloudUrl": "http://localhost:8080"
 }
