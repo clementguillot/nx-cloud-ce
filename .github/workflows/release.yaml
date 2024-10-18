@@ -3,7 +3,7 @@ name: Publish Nx Cloud CE Release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 permissions: {}
 
@@ -50,7 +50,7 @@ jobs:
     name: Publish Helm Charts
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # for helm/chart-releaser-action to push chart release and create a release
+      contents: write # for helm/chart-releaser-action to push chart release and create a release
       packages: write # to push OCI chart package to GitHub Registry
 
     steps:
@@ -71,7 +71,7 @@ jobs:
         run: pnpm exec nx build apps/helm-chart
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@a917fd15b20e8b64b94d9158ad54cd6345335584 # v1.6.0
+        uses: helm/chart-releaser-action@be16258da8010256c6e82849661221415f031968 # v1.5.0
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
@@ -94,12 +94,11 @@ jobs:
             helm push "${pkg}" "oci://ghcr.io/${GITHUB_REPOSITORY_OWNER}/charts"
           done
 
-
   release:
     name: Create Release
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # for softprops/action-gh-release to create a release
+      contents: write # for softprops/action-gh-release to create a release
 
     steps:
       - name: Checkout
