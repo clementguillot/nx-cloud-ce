@@ -9,14 +9,14 @@ importers:
   .:
     devDependencies:
       '@jnxplus/nx-gradle':
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.14.1
+        version: 1.14.1(@nx/devkit@19.6.4(nx@19.6.4))(nx@19.6.4)
       '@nx-tools/container-metadata':
         specifier: 6.1.0
-        version: 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)
+        version: 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.8.0)
       '@nx-tools/nx-container':
         specifier: 6.1.0
-        version: 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(@swc/helpers@0.5.13)(dotenv@16.4.5)(tslib@2.6.3)
+        version: 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(@swc/helpers@0.5.13)(dotenv@16.4.5)(tslib@2.8.0)
       '@nx/workspace':
         specifier: 19.6.4
         version: 19.6.4
@@ -62,11 +62,16 @@ packages:
     resolution: {integrity: sha512-mo5j5X+jIZmJQveBKeS/clAueipV7KgiX1vMgCxam1RNYiqE1w62n0/tJJnHtjW8ZHcQco5gY85jA3mi0L+nSA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  '@jnxplus/common@1.9.0':
-    resolution: {integrity: sha512-AO0iVCbjiWs2/1NwBAkl3L2T0OmYrgrrJeeORXq12+AOAT6lPnoNcxs2AnrDW0xCVihgPnWqwVkDOb8yb+fLhQ==}
+  '@jnxplus/common@1.14.1':
+    resolution: {integrity: sha512-Z0ONNYLnO9vkDM9vA4OoZl2q/P1crD/J6mt2T1ZVmI5voGadMYAF4NSVgl/zfkGICt3FHuwn19w6coXSg9c0RA==}
+    peerDependencies:
+      '@nx/devkit': '>= 19'
 
-  '@jnxplus/nx-gradle@1.9.0':
-    resolution: {integrity: sha512-4BVwBESK8DfQGOaGgZ+nrj3Y+jMLPsxhrFLBauojbJ1ET1nQYE4B+M97ie5Oka9GmWf0IjzRL6t1iBLF18sm8A==}
+  '@jnxplus/nx-gradle@1.14.1':
+    resolution: {integrity: sha512-+Ajgbbm36ejMzEG6cih8oCYHraIN7vc/PKDgak20/3aWItuCtTFSPB5MQm/sdZxDT4y7aHiwCXsXP/IRAzct/A==}
+    peerDependencies:
+      '@nx/devkit': '>= 19'
+      nx: '>= 19'
 
   '@napi-rs/wasm-runtime@0.2.4':
     resolution: {integrity: sha512-9zESzOO5aDByvhIAsOy9TbpZ0Ur2AJbUI7UT73kcUTS2mxAMHOBaa1st/jAymNoCtvrit99kkzT1FZuXVcgfIQ==}
@@ -631,9 +636,9 @@ packages:
   signal-exit@3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
 
-  smol-toml@1.2.1:
-    resolution: {integrity: sha512-OtZKrVrGIT+m++lxyF0z5n68nkwdgZotPhy89bfA4T7nSWe0xeQtfbjM1z5VLTilJdWXH46g8i0oAcpQNkzZTg==}
-    engines: {node: '>= 18', pnpm: '>= 9'}
+  smol-toml@1.3.0:
+    resolution: {integrity: sha512-tWpi2TsODPScmi48b/OQZGi2lgUmBCHy6SZrhi/FdnnHiU1GwebbCfuQuxsC3nHaLwtYeJGPrDZDIeodDOc4pA==}
+    engines: {node: '>= 18'}
 
   source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
@@ -683,6 +688,9 @@ packages:
 
   tslib@2.6.3:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
+
+  tslib@2.8.0:
+    resolution: {integrity: sha512-jWVzBLplnCmoaTr13V9dYbiQ99wvZRd0vNWaDRg+aVYRcjDF3nDksxFDE/+fkXnKhpnUUkmx5pK/v8mCtLVqZA==}
 
   tunnel@0.0.6:
     resolution: {integrity: sha512-1h/Lnq9yajKY2PEbBadPXj3VxsDDu844OnaAo52UVmIzIvwwtBPIuNvkjuzBlTWpfJyUbG3ez0KSBibQkj4ojg==}
@@ -779,24 +787,18 @@ snapshots:
     dependencies:
       '@sinclair/typebox': 0.27.8
 
-  '@jnxplus/common@1.9.0(nx@19.6.4)':
+  '@jnxplus/common@1.14.1(@nx/devkit@19.6.4(nx@19.6.4))':
     dependencies:
       '@nx/devkit': 19.6.4(nx@19.6.4)
-      tslib: 2.6.3
-    transitivePeerDependencies:
-      - nx
+      tslib: 2.8.0
 
-  '@jnxplus/nx-gradle@1.9.0':
+  '@jnxplus/nx-gradle@1.14.1(@nx/devkit@19.6.4(nx@19.6.4))(nx@19.6.4)':
     dependencies:
-      '@jnxplus/common': 1.9.0(nx@19.6.4)
+      '@jnxplus/common': 1.14.1(@nx/devkit@19.6.4(nx@19.6.4))
       '@nx/devkit': 19.6.4(nx@19.6.4)
       nx: 19.6.4
-      smol-toml: 1.2.1
-      tslib: 2.6.3
-    transitivePeerDependencies:
-      - '@swc-node/register'
-      - '@swc/core'
-      - debug
+      smol-toml: 1.3.0
+      tslib: 2.8.0
 
   '@napi-rs/wasm-runtime@0.2.4':
     dependencies:
@@ -827,30 +829,30 @@ snapshots:
       - '@swc/core'
       - debug
 
-  '@nx-tools/ci-context@6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)':
+  '@nx-tools/ci-context@6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.8.0)':
     dependencies:
       '@actions/github': 6.0.0
-      '@nx-tools/core': 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)
+      '@nx-tools/core': 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.8.0)
       '@octokit/openapi-types': 22.2.0
       ci-info: 4.0.0
       properties-file: 3.5.4
-      tslib: 2.6.3
+      tslib: 2.8.0
     transitivePeerDependencies:
       - '@nx/devkit'
 
-  '@nx-tools/container-metadata@6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)':
+  '@nx-tools/container-metadata@6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.8.0)':
     dependencies:
-      '@nx-tools/ci-context': 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)
-      '@nx-tools/core': 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)
+      '@nx-tools/ci-context': 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.8.0)
+      '@nx-tools/core': 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.8.0)
       '@nx/devkit': 19.6.4(nx@19.6.4)
       '@renovate/pep440': 1.0.0
       csv-parse: 5.5.6
       handlebars: 4.7.8
       moment-timezone: 0.5.45
       semver: 7.6.2
-      tslib: 2.6.3
+      tslib: 2.8.0
 
-  '@nx-tools/core@6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)':
+  '@nx-tools/core@6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.8.0)':
     dependencies:
       '@actions/exec': 1.1.1
       '@actions/io': 1.1.3
@@ -858,12 +860,12 @@ snapshots:
       chalk: 4.1.2
       ci-info: 4.0.0
       csv-parse: 5.5.6
-      tslib: 2.6.3
+      tslib: 2.8.0
 
-  '@nx-tools/nx-container@6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(@swc/helpers@0.5.13)(dotenv@16.4.5)(tslib@2.6.3)':
+  '@nx-tools/nx-container@6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(@swc/helpers@0.5.13)(dotenv@16.4.5)(tslib@2.8.0)':
     dependencies:
-      '@nx-tools/container-metadata': 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)
-      '@nx-tools/core': 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.6.3)
+      '@nx-tools/container-metadata': 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.8.0)
+      '@nx-tools/core': 6.1.0(@nx/devkit@19.6.4(nx@19.6.4))(tslib@2.8.0)
       '@nx/devkit': 19.6.4(nx@19.6.4)
       '@swc/helpers': 0.5.13
       csv-parse: 5.5.6
@@ -997,7 +999,7 @@ snapshots:
 
   '@swc/helpers@0.5.13':
     dependencies:
-      tslib: 2.6.3
+      tslib: 2.8.0
 
   '@tybys/wasm-util@0.9.0':
     dependencies:
@@ -1395,7 +1397,7 @@ snapshots:
 
   signal-exit@3.0.7: {}
 
-  smol-toml@1.2.1: {}
+  smol-toml@1.3.0: {}
 
   source-map@0.6.1: {}
 
@@ -1446,6 +1448,8 @@ snapshots:
       strip-bom: 3.0.0
 
   tslib@2.6.3: {}
+
+  tslib@2.8.0: {}
 
   tunnel@0.0.6: {}
 
