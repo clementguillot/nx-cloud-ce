@@ -27,11 +27,7 @@
         "file": "apps/server/src/main/docker/Dockerfile.mandrel-builder",
         "metadata": {
           "images": ["ghcr.io/clementguillot/nx-cloud-ce-server"],
-          "tags": [
-            "type=schedule",
-            "type=sha,prefix=",
-            "latest"
-          ]
+          "tags": ["type=schedule", "type=sha,prefix=", "latest"]
         }
       }
     },

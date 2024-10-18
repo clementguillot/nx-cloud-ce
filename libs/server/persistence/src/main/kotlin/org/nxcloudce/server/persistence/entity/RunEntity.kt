@@ -53,15 +53,38 @@ data class RunEntity(
   // https://github.com/clementguillot/nx-cloud-ce/issues/118
   @MongoEntity
   data class ProjectGraph(
-    val nodes: Map<String, Node>,
+    val nodes: Map<String, Project>,
     val dependencies: Map<String, List<Dependency>>,
   ) {
     @MongoEntity
-    data class Node(
+    data class Project(
       var type: String,
       var name: String,
-      var data: Map<String, String>,
-    )
+      var data: Data,
+    ) {
+      @MongoEntity
+      data class Data(
+        var root: String,
+        var sourceRoot: String?,
+        // TODO: can't implement those field due to missing custom codec
+        // https://github.com/clementguillot/nx-cloud-ce/issues/118
+        // var metadata: Map<String, Any>?,
+        // var targets: Map<String, Target>,
+      ) {
+        // @MongoEntity
+        // data class Target(
+        //   val executor: String?,
+        //   val dependsOn: Collection<String>?,
+        //   val options: Map<String, Any>?,
+        //   val configurations: Any?,
+        //   val parallelism: Boolean?,
+        //   val inputs: Collection<Any>?,
+        //   val outputs: Collection<String>?,
+        //   val defaultConfiguration: String?,
+        //   val cache: Boolean?,
+        // )
+      }
+    }
 
     @MongoEntity
     data class Dependency(

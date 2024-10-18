@@ -72,10 +72,16 @@ class RunRepositoryImplTest {
               nodes =
                 mapOf(
                   "apps/server" to
-                    ProjectGraph.Node(
+                    ProjectGraph.Project(
                       type = "application",
                       name = "apps/server",
-                      data = mapOf("root" to "apps/server/src"),
+                      data =
+                        ProjectGraph.Project.Data(
+                          root = "root",
+                          sourceRoot = "root",
+                          metadata = emptyMap(),
+                          targets = emptyMap(),
+                        ),
                     ),
                 ),
               dependencies =
