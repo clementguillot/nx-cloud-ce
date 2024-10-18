@@ -2,6 +2,37 @@ apiVersion: v1
 entries:
   nx-cloud-ce:
   - apiVersion: v2
+    appVersion: v0.4.0
+    created: "2024-10-18T10:07:04.251721866Z"
+    dependencies:
+    - condition: minio.enabled
+      name: minio
+      repository: https://charts.bitnami.com/bitnami
+      version: 14.7.16
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 16.0.3
+    - condition: nginx.enabled
+      name: nginx
+      repository: https://charts.bitnami.com/bitnami
+      version: 18.2.3
+    description: Nx Cloud Community Edition Helm Chart
+    digest: f762e43b3251bb487573019d2f102f10b87e9eb69e5d2cc793fe0bc85af7b144
+    home: https://github.com/clementguillot/nx-cloud-ce
+    keywords:
+    - nx-cloud-ce
+    maintainers:
+    - email: clement1.guillot@gmail.com
+      name: clementguillot
+    name: nx-cloud-ce
+    sources:
+    - https://github.com/clementguillot/nx-cloud-ce
+    type: application
+    urls:
+    - https://github.com/clementguillot/nx-cloud-ce/releases/download/nx-cloud-ce-0.4.0/nx-cloud-ce-0.4.0.tgz
+    version: 0.4.0
+  - apiVersion: v2
     appVersion: v0.3.3
     created: "2024-06-03T10:25:58.809420658Z"
     dependencies:
@@ -217,4 +248,4 @@ entries:
     urls:
     - https://github.com/clementguillot/nx-cloud-ce/releases/download/nx-cloud-ce-0.0.1/nx-cloud-ce-0.0.1.tgz
     version: 0.0.1
-generated: "2024-06-03T10:25:58.809449001Z"
+generated: "2024-10-18T10:07:04.25176715Z"
