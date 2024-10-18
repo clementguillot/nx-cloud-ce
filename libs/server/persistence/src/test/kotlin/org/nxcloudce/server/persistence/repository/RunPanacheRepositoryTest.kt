@@ -87,10 +87,16 @@ class RunPanacheRepositoryTest {
           nodes =
             mapOf(
               "node" to
-                RunEntity.ProjectGraph.Node(
+                RunEntity.ProjectGraph.Project(
                   type = "test type",
                   name = "test name",
-                  data = mapOf("key" to "value"),
+                  data =
+                    RunEntity.ProjectGraph.Project.Data(
+                      root = "root",
+                      sourceRoot = "root",
+                      // metadata = emptyMap(),
+                      // targets = emptyMap(),
+                    ),
                 ),
             ),
           dependencies =

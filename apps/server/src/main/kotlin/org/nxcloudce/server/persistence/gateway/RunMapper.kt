@@ -51,10 +51,33 @@ fun RunEntity.toDomain(): Run =
           nodes =
             projectGraph.nodes?.let {
               it.mapValues { (_, node) ->
-                ProjectGraph.Node(
+                ProjectGraph.Project(
                   type = node.type,
                   name = node.name,
-                  data = node.data,
+                  data =
+                    ProjectGraph.Project.Data(
+                      root = node.data.root,
+                      sourceRoot = node.data.sourceRoot,
+                      metadata = null,
+                      targets = emptyMap(),
+                      // TODO: can't map those two fields for now
+                      // https://github.com/clementguillot/nx-cloud-ce/issues/118
+                      // metadata = node.data.metadata,
+                      // targets =
+                      //   node.data.targets.mapValues { (_, target) ->
+                      //     ProjectGraph.Project.Data.Target(
+                      //       executor = target.executor,
+                      //       dependsOn = target.dependsOn,
+                      //       options = target.options,
+                      //       configurations = target.configurations,
+                      //       parallelism = target.parallelism,
+                      //       inputs = target.inputs,
+                      //       outputs = target.outputs,
+                      //       defaultConfiguration = target.defaultConfiguration,
+                      //       cache = target.cache,
+                      //     )
+                      //   },
+                    ),
                 )
               }
             },
@@ -123,10 +146,29 @@ fun EndRunRequest.Run.toEntity(
         RunEntity.ProjectGraph(
           nodes =
             projectGraph.nodes!!.mapValues { (_, node) ->
-              RunEntity.ProjectGraph.Node(
+              RunEntity.ProjectGraph.Project(
                 type = node.type,
                 name = node.name,
-                data = node.data,
+                data =
+                  RunEntity.ProjectGraph.Project.Data(
+                    root = node.data.root,
+                    sourceRoot = node.data.sourceRoot,
+//                    metadata = node.data.metadata,
+//                    targets =
+//                      node.data.targets.mapValues { (_, target) ->
+//                        RunEntity.ProjectGraph.Project.Data.Target(
+//                          executor = target.executor,
+//                          dependsOn = target.dependsOn,
+//                          options = target.options,
+//                          configurations = target.configurations,
+//                          parallelism = target.parallelism,
+//                          inputs = target.inputs,
+//                          outputs = target.outputs,
+//                          defaultConfiguration = target.defaultConfiguration,
+//                          cache = target.cache,
+//                        )
+//                      },
+                  ),
               )
             },
           dependencies =
