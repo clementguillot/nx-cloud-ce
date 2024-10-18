@@ -36,5 +36,6 @@
     "@jnxplus/nx-gradle"
   ],
   "nxCloudAccessToken": "YzcwZTJjY2QtMDEzYS00NjAyLWE1OGQtYjZiNDU2ZWEwNTdmfHJlYWQtd3JpdGU=",
-  "nxCloudUrl": "http://localhost:8080"
+  "nxCloudUrl": "http://localhost:8080",
+  "useLegacyCache": true
 }
