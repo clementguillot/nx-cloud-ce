@@ -4,8 +4,10 @@ import ch.tutteli.atrium.api.fluent.en_GB.toContainExactly
 import ch.tutteli.atrium.api.fluent.en_GB.toEqual
 import ch.tutteli.atrium.api.verbs.expect
 import io.quarkus.test.junit.QuarkusTest
+import io.smallrye.mutiny.coroutines.asFlow
 import io.smallrye.mutiny.coroutines.awaitSuspending
 import jakarta.inject.Inject
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.bson.types.ObjectId
@@ -43,7 +45,7 @@ class TaskPanacheRepositoryTest {
       val runId = ObjectId()
       taskPanacheRepository.persist(listOf(buildTaskEntity(runId), buildTaskEntity(runId), buildTaskEntity())).awaitSuspending()
 
-      val result = taskPanacheRepository.findAllByRunId(runId).awaitSuspending()
+      val result = taskPanacheRepository.findAllByRunId(runId).asFlow().toList()
       val totalCount = taskPanacheRepository.count().awaitSuspending()
 
       expect(totalCount).toEqual(3)

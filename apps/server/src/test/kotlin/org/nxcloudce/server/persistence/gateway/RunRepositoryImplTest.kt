@@ -7,8 +7,10 @@ import io.mockk.every
 import io.mockk.verify
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
+import io.smallrye.mutiny.Multi
 import io.smallrye.mutiny.Uni
 import jakarta.inject.Inject
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import org.bson.types.ObjectId
 import org.junit.jupiter.api.Test
@@ -120,10 +122,14 @@ class RunRepositoryImplTest {
       // Given
       val dummyRuns = listOf(buildRunEntity(), buildRunEntity())
       val thresholdDate = LocalDateTime.now()
-      every { mockRunPanacheRepository.findAllByEndTimeLowerThan(thresholdDate) } returns Uni.createFrom().item(dummyRuns)
+      every {
+        mockRunPanacheRepository.findAllByEndTimeLowerThan(
+          thresholdDate,
+        )
+      } returns Multi.createFrom().items(*dummyRuns.toTypedArray())
 
       // When
-      val result = runRepository.findAllByCreationDateOlderThan(thresholdDate)
+      val result = runRepository.findAllByCreationDateOlderThan(thresholdDate).toList()
 
       // Then
       expect(result.size).toEqual(2)

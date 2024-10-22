@@ -1,7 +1,10 @@
 package org.nxcloudce.server.persistence.gateway
 
+import io.smallrye.mutiny.coroutines.asFlow
 import io.smallrye.mutiny.coroutines.awaitSuspending
 import jakarta.enterprise.context.ApplicationScoped
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import org.bson.types.ObjectId
 import org.nxcloudce.server.domain.run.gateway.TaskRepository
 import org.nxcloudce.server.domain.run.model.RunId
@@ -24,8 +27,8 @@ class TaskRepositoryImpl(private val taskPanacheRepository: TaskPanacheRepositor
     return entities.map { it.toDomain() }
   }
 
-  override suspend fun findAllByRunId(runId: RunId): Collection<Task> =
-    taskPanacheRepository.findAllByRunId(ObjectId(runId.value)).awaitSuspending().map {
+  override fun findAllByRunId(runId: RunId): Flow<Task> =
+    taskPanacheRepository.findAllByRunId(ObjectId(runId.value)).asFlow().map {
       it.toDomain()
     }
 

@@ -1,7 +1,10 @@
 package org.nxcloudce.server.persistence.gateway
 
+import io.smallrye.mutiny.coroutines.asFlow
 import io.smallrye.mutiny.coroutines.awaitSuspending
 import jakarta.enterprise.context.ApplicationScoped
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import org.bson.types.ObjectId
 import org.nxcloudce.server.domain.run.gateway.RunRepository
 import org.nxcloudce.server.domain.run.model.Run
@@ -25,10 +28,8 @@ class RunRepositoryImpl(
     return runPanacheRepository.persist(entity).awaitSuspending().run { entity.toDomain() }
   }
 
-  override suspend fun findAllByCreationDateOlderThan(date: LocalDateTime): Collection<Run> =
-    runPanacheRepository.findAllByEndTimeLowerThan(date).awaitSuspending().map {
-      it.toDomain()
-    }
+  override fun findAllByCreationDateOlderThan(date: LocalDateTime): Flow<Run> =
+    runPanacheRepository.findAllByEndTimeLowerThan(date).asFlow().map { it.toDomain() }
 
   override suspend fun delete(run: Run) = runPanacheRepository.deleteById(ObjectId(run.id.value)).awaitSuspending()
 }

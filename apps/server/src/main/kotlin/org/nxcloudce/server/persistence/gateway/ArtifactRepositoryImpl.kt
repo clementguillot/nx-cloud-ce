@@ -60,8 +60,8 @@ class ArtifactRepositoryImpl(
     return entities.map { it.toDomain() }
   }
 
-  override suspend fun delete(artifact: Artifact.Exist): Boolean =
-    artifactPanacheRepository.deleteByArtifactId(artifact.id.value).awaitSuspending().let {
+  override suspend fun delete(artifactId: ArtifactId): Boolean =
+    artifactPanacheRepository.deleteByArtifactId(artifactId.value).awaitSuspending().let {
       when (it) {
         0L -> false
         1L -> true

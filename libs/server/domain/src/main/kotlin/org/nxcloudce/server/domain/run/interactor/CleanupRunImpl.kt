@@ -1,7 +1,5 @@
 package org.nxcloudce.server.domain.run.interactor
 
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import org.jboss.logging.Logger
@@ -27,37 +25,31 @@ class CleanupRunImpl(
     request: CleanupRunRequest,
     presenter: (CleanupRunResponse) -> T,
   ): T {
-    val runs = runRepository.findAllByCreationDateOlderThan(request.creationDateThreshold)
-    logger.info("Found run(s) to delete: ${runs.size}")
+    var deletedRunCount = 0
 
-    runs.forEach { run ->
-      val tasks = taskRepository.findAllByRunId(run.id)
-      val artifacts =
-        artifactRepository.findByHash(
-          tasks.filter { it.artifactId != null }.map { it.hash },
-          run.workspaceId,
-        )
-      logger.info("Run contains ${tasks.size} task(s) and ${artifacts.size} artifact(s)")
+    runRepository.findAllByCreationDateOlderThan(request.creationDateThreshold).collect { run ->
+      logger.info("Removing run ${run.id}")
 
-      coroutineScope {
-        artifacts.map { artifact ->
-          async {
-            Pair(
-              storageService.deleteArtifact(artifact.id, run.workspaceId),
-              artifactRepository.delete(artifact),
-            )
+      taskRepository.findAllByRunId(run.id).collect { task ->
+        task.artifactId?.let { artifactId ->
+          coroutineScope {
+            launch { storageService.deleteArtifact(artifactId, run.workspaceId) }
+            launch { artifactRepository.delete(artifactId) }
           }
         }
       }
-        .awaitAll()
-      logger.info("Artifacts and their files have deleted")
+
+      logger.info("Artifacts and their files have been deleted")
+
       coroutineScope {
         launch { taskRepository.deleteAllByRunId(run.id) }
         launch { runRepository.delete(run) }
       }
+
       logger.info("Tasks and run have been deleted")
+      deletedRunCount++
     }
 
-    return presenter(CleanupRunResponse(deletedCount = runs.size))
+    return presenter(CleanupRunResponse(deletedCount = deletedRunCount))
   }
 }

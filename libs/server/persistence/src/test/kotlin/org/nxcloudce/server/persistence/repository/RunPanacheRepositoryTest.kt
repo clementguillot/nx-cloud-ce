@@ -3,8 +3,10 @@ package org.nxcloudce.server.persistence.repository
 import ch.tutteli.atrium.api.fluent.en_GB.toEqual
 import ch.tutteli.atrium.api.verbs.expect
 import io.quarkus.test.junit.QuarkusTest
+import io.smallrye.mutiny.coroutines.asFlow
 import io.smallrye.mutiny.coroutines.awaitSuspending
 import jakarta.inject.Inject
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.bson.types.ObjectId
@@ -43,7 +45,7 @@ class RunPanacheRepositoryTest {
       runPanacheRepository.persist(listOf(buildRunEntity())).awaitSuspending()
       runPanacheRepository.persist(listOf(buildRunEntity(olderDate))).awaitSuspending()
 
-      val result = runPanacheRepository.findAllByEndTimeLowerThan(LocalDateTime.now().minusDays(1)).awaitSuspending()
+      val result = runPanacheRepository.findAllByEndTimeLowerThan(LocalDateTime.now().minusDays(1)).asFlow().toList()
       val totalCount = runPanacheRepository.count().awaitSuspending()
 
       expect(result.size).toEqual(1)

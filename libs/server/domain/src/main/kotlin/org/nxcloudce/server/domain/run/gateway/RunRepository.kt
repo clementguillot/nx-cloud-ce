@@ -1,5 +1,6 @@
 package org.nxcloudce.server.domain.run.gateway
 
+import kotlinx.coroutines.flow.Flow
 import org.nxcloudce.server.domain.run.model.Run
 import org.nxcloudce.server.domain.run.model.RunStatus
 import org.nxcloudce.server.domain.run.usecase.EndRunRequest
@@ -13,7 +14,7 @@ interface RunRepository {
     workspaceId: WorkspaceId,
   ): Run
 
-  suspend fun findAllByCreationDateOlderThan(date: LocalDateTime): Collection<Run>
+  fun findAllByCreationDateOlderThan(date: LocalDateTime): Flow<Run>
 
   suspend fun delete(run: Run): Boolean
 }
