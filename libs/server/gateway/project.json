@@ -1,8 +1,8 @@
 {
-  "name": "libs/server/storage/azure",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "name": "libs/server/gateway",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/server/storage/azure/src",
+  "sourceRoot": "libs/server/gateway/src",
   "targets": {
     "build": {
       "executor": "@jnxplus/nx-gradle:run-task",

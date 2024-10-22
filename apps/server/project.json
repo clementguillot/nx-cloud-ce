@@ -6,7 +6,7 @@
   "targets": {
     "build": {
       "executor": "@jnxplus/nx-gradle:run-task",
-      "outputs": ["{projectRoot}/build"],
+      "outputs": ["{projectRoot}/build/classes", "{projectRoot}/build/libs"],
       "options": {
         "task": "quarkusBuild"
       }
@@ -58,11 +58,7 @@
       "options": {
         "task": "test"
       },
-      "outputs": [
-        "{projectRoot}/build/classes",
-        "{projectRoot}/build/reports",
-        "{projectRoot}/build/test-results"
-      ]
+      "outputs": ["{projectRoot}/build/jacoco-report"]
     },
     "integration-test": {
       "executor": "@jnxplus/nx-gradle:run-task",

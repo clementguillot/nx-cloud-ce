@@ -18,8 +18,8 @@ import org.nxcloudce.server.domain.workspace.interactor.GetWorkspaceAccessTokenI
 import org.nxcloudce.server.domain.workspace.usecase.CreateOrgAndWorkspace
 import org.nxcloudce.server.domain.workspace.usecase.CreateWorkspace
 import org.nxcloudce.server.domain.workspace.usecase.GetWorkspaceAccessToken
-import org.nxcloudce.server.persistence.gateway.*
-import org.nxcloudce.server.storage.gateway.StorageServiceImpl
+import org.nxcloudce.server.gateway.persistence.*
+import org.nxcloudce.server.gateway.storage.StorageServiceImpl
 
 @ApplicationScoped
 class DomainUseCaseProducers(
