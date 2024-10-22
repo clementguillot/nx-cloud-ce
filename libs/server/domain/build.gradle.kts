@@ -50,14 +50,15 @@ tasks.withType<Jar> {
 
 tasks.withType<Test> {
   systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
-  finalizedBy("jacocoTestReport")
-}
+  finalizedBy(tasks.jacocoTestReport)
 
-tasks.jacocoTestReport {
-  reports {
-    csv.required.set(false)
-    xml.required.set(true)
-    xml.outputLocation.set(layout.buildDirectory.file("reports/jacoco/jacoco.xml"))
+  configure<JacocoTaskExtension> {
+    excludeClassLoaders = listOf("*QuarkusClassLoader")
+    setDestinationFile(layout.buildDirectory.file("jacoco-quarkus.exec").get().asFile)
+  }
+
+  tasks.jacocoTestReport {
+    enabled = false
   }
 }
 
