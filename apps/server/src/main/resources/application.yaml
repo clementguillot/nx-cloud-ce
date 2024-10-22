@@ -1,7 +1,6 @@
 quarkus:
   http:
-    port:
-      8080
+    port: 8080
     root-path: "/nx-cloud"
   mongodb:
     database: nx-cloud-ce
