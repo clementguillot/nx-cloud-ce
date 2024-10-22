@@ -5,8 +5,10 @@ import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.every
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
+import io.smallrye.mutiny.Multi
 import io.smallrye.mutiny.Uni
 import jakarta.inject.Inject
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import org.bson.types.ObjectId
 import org.junit.jupiter.api.Test
@@ -103,10 +105,10 @@ class TaskRepositoryImplTest {
       // Given
       val dummyRunId = ObjectId()
       val dummyTaskEntities = listOf(buildTaskEntity(dummyRunId))
-      every { mockTaskPanacheRepository.findAllByRunId(dummyRunId) } returns Uni.createFrom().item(dummyTaskEntities)
+      every { mockTaskPanacheRepository.findAllByRunId(dummyRunId) } returns Multi.createFrom().items(*dummyTaskEntities.toTypedArray())
 
       // When
-      val result = taskRepository.findAllByRunId(RunId(dummyRunId.toString()))
+      val result = taskRepository.findAllByRunId(RunId(dummyRunId.toString())).toList()
 
       // Then
       expect(result.size).toEqual(1)

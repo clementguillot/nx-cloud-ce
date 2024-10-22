@@ -3,6 +3,7 @@ package org.nxcloudce.server.domain.run.interactor
 import ch.tutteli.atrium.api.fluent.en_GB.toEqual
 import ch.tutteli.atrium.api.verbs.expect
 import io.mockk.*
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 import org.nxcloudce.server.domain.run.gateway.ArtifactRepository
@@ -31,22 +32,16 @@ class CleanupRunImplTest {
       val dummyTasks = listOf(buildTask(dummyRuns[0].id, dummyRuns[0].workspaceId), buildTask(dummyRuns[0].id, dummyRuns[0].workspaceId))
       val dummyArtifacts =
         listOf(
-          buildArtifact(dummyTasks[0].hash, dummyTasks[0].workspaceId),
-          buildArtifact(dummyTasks[1].hash, dummyTasks[1].workspaceId),
+          buildArtifact(dummyTasks[0].hash, dummyTasks[0].workspaceId, dummyTasks[0].artifactId!!),
+          buildArtifact(dummyTasks[1].hash, dummyTasks[1].workspaceId, dummyTasks[1].artifactId!!),
         )
 
-      coEvery { mockRunRepository.findAllByCreationDateOlderThan(thresholdDate) } returns dummyRuns
-      coEvery { mockTaskRepository.findAllByRunId(any()) } returns dummyTasks
+      coEvery { mockRunRepository.findAllByCreationDateOlderThan(thresholdDate) } returns flowOf(*dummyRuns.toTypedArray())
+      coEvery { mockTaskRepository.findAllByRunId(any()) } returns flowOf(*dummyTasks.toTypedArray())
       coEvery { mockArtifactRepository.findByHash(any(), dummyRuns[0].workspaceId) } returns dummyArtifacts
 
       coEvery { mockStorageService.deleteArtifact(any(), dummyRuns[0].workspaceId) } just runs
-      coEvery {
-        mockArtifactRepository.delete(
-          match {
-            dummyArtifacts.contains(it)
-          },
-        )
-      } returns true
+      coEvery { mockArtifactRepository.delete(any()) } returns true
       coEvery { mockTaskRepository.deleteAllByRunId(any()) } returns 2L
       coEvery { mockRunRepository.delete(match { dummyRuns.contains(it) }) } returns true
 
@@ -59,7 +54,7 @@ class CleanupRunImplTest {
 
       coVerify(exactly = 1) { mockStorageService.deleteArtifact(dummyArtifacts[0].id, dummyRuns[0].workspaceId) }
       coVerify(exactly = 1) { mockStorageService.deleteArtifact(dummyArtifacts[1].id, dummyRuns[0].workspaceId) }
-      coVerify(exactly = 2) { mockArtifactRepository.delete(match { dummyArtifacts.contains(it) }) }
+      coVerify(exactly = 2) { mockArtifactRepository.delete(any()) }
       coVerify(exactly = 1) { mockTaskRepository.deleteAllByRunId(dummyRuns[0].id) }
       coVerify(exactly = 1) { mockRunRepository.delete(dummyRuns[0]) }
     }
@@ -108,9 +103,10 @@ class CleanupRunImplTest {
   private fun buildArtifact(
     hash: Hash,
     workspaceId: WorkspaceId,
+    id: ArtifactId = ArtifactId(),
   ): Artifact.Exist =
     Artifact.Exist(
-      id = ArtifactId(),
+      id = id,
       hash = hash,
       workspaceId = workspaceId,
       put = "put-url",

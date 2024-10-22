@@ -142,8 +142,8 @@ class ArtifactRepositoryImplTest {
       } returns Uni.createFrom().item(0)
 
       // When
-      val validResult = artifactRepository.delete(validArtifact)
-      val invalidResult = artifactRepository.delete(invalidArtifact)
+      val validResult = artifactRepository.delete(validArtifact.id)
+      val invalidResult = artifactRepository.delete(invalidArtifact.id)
 
       // Then
       expect(validResult).toEqual(true)

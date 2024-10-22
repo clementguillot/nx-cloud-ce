@@ -21,5 +21,5 @@ interface ArtifactRepository {
     workspaceId: WorkspaceId,
   ): Collection<Artifact.Exist>
 
-  suspend fun delete(artifact: Artifact.Exist): Boolean
+  suspend fun delete(artifactId: ArtifactId): Boolean
 }

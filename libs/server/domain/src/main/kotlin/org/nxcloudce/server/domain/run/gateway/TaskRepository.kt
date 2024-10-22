@@ -1,5 +1,6 @@
 package org.nxcloudce.server.domain.run.gateway
 
+import kotlinx.coroutines.flow.Flow
 import org.nxcloudce.server.domain.run.model.RunId
 import org.nxcloudce.server.domain.run.model.Task
 import org.nxcloudce.server.domain.run.usecase.EndRunRequest
@@ -12,7 +13,7 @@ interface TaskRepository {
     workspaceId: WorkspaceId,
   ): Collection<Task>
 
-  suspend fun findAllByRunId(runId: RunId): Collection<Task>
+  fun findAllByRunId(runId: RunId): Flow<Task>
 
   suspend fun deleteAllByRunId(runId: RunId): Long
 }
