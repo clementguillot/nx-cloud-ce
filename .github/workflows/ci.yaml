@@ -80,8 +80,15 @@ jobs:
       - name: Setup build tools
         uses: ./.github/actions/setup-tools
 
-      - name: Run Test for affected projects
+      - name: Run Test for affected projects (PR)
+        if: github.ref != 'refs/heads/main'
         run: pnpm exec nx affected -t test
+        env:
+          NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+
+      - name: Run Test for all projects (main)
+        if: github.ref == 'refs/heads/main'
+        run: pnpm exec nx run-many --target=test --all
         env:
           NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
 
