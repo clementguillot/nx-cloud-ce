@@ -24,4 +24,4 @@ spec:
       port: {{ .Values.server.service.servicePortHttp }}
       targetPort: {{ .Values.server.containerPorts.server }}
   selector:
-    {{- include "nx-cloud-ce.selectorLabels" (dict "context" . "name" .Values.server.name) | nindent 4 }}
+    {{- include "nx-cloud-ce.selectorLabels" (dict "context" . "name" .Values.server.name "component" .Values.server.name) | nindent 4 }}

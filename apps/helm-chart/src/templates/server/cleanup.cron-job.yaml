@@ -1,4 +1,5 @@
 {{- if .Values.server.cleanup.enabled }}
+{{- $component := printf "%s%s" .Values.server.name "-cleanup" }}
 apiVersion: batch/v1
 kind: CronJob
 
@@ -12,7 +13,7 @@ metadata:
   name: {{ template "nx-cloud-ce.server.fullname" . }}-cleanup
   namespace: {{ .Release.Namespace | quote }}
   labels:
-    {{- include "nx-cloud-ce.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 4 }}
+    {{- include "nx-cloud-ce.labels" (dict "context" . "component" $component "name" .Values.server.name) | nindent 4 }}
 
 spec:
   schedule: {{ .Values.server.cleanup.schedule }}
@@ -23,7 +24,7 @@ spec:
     spec:
       {{- if .Values.server.cleanup.activeDeadlineSeconds }}
       activeDeadlineSeconds: {{ .Values.server.cleanup.activeDeadlineSeconds }}
-      {{- end}}
+      {{- end }}
       template:
         metadata:
           annotations:
@@ -33,7 +34,7 @@ spec:
             {{- end }}
             {{- end }}
           labels:
-            {{- include "nx-cloud-ce.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 12 }}
+            {{- include "nx-cloud-ce.labels" (dict "context" . "component" $component "name" .Values.server.name) | nindent 12 }}
             {{- with (mergeOverwrite (deepCopy .Values.global.podLabels) .Values.server.podLabels) }}
               {{- toYaml . | nindent 14 }}
             {{- end }}
@@ -51,7 +52,7 @@ spec:
           terminationGracePeriodSeconds: {{ .Values.server.terminationGracePeriodSeconds }}
           {{- end }}
           containers:
-            - name: {{ .Values.server.name }}-cleanup
+            - name: {{ $component }}
               image: {{ .Values.server.image.repository }}:{{ default (include "nx-cloud-ce.defaultTag" .) .Values.server.image.tag }}
               imagePullPolicy: {{ default .Values.global.image.imagePullPolicy .Values.server.image.imagePullPolicy }}
               args:
