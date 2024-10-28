@@ -48,39 +48,39 @@ fun RunEntity.toDomain(): Run =
     projectGraph =
       this@toDomain.projectGraph?.let { projectGraph ->
         ProjectGraph(
-          nodes =
-            projectGraph.nodes.let {
-              it.mapValues { (_, node) ->
-                ProjectGraph.Project(
-                  type = node.type,
-                  name = node.name,
-                  data =
-                    ProjectGraph.Project.Data(
-                      root = node.data.root,
-                      sourceRoot = node.data.sourceRoot,
-                      metadata = null,
-                      targets = emptyMap(),
-                      // TODO: can't map those two fields for now
-                      // https://github.com/clementguillot/nx-cloud-ce/issues/118
-                      // metadata = node.data.metadata,
-                      // targets =
-                      //   node.data.targets.mapValues { (_, target) ->
-                      //     ProjectGraph.Project.Data.Target(
-                      //       executor = target.executor,
-                      //       dependsOn = target.dependsOn,
-                      //       options = target.options,
-                      //       configurations = target.configurations,
-                      //       parallelism = target.parallelism,
-                      //       inputs = target.inputs,
-                      //       outputs = target.outputs,
-                      //       defaultConfiguration = target.defaultConfiguration,
-                      //       cache = target.cache,
-                      //     )
-                      //   },
-                    ),
-                )
-              }
-            },
+          nodes = emptyMap(),
+//            projectGraph.nodes.let {
+//              it.mapValues { (_, node) ->
+//                ProjectGraph.Project(
+//                  type = node.type,
+//                  name = node.name,
+//                  data =
+//                    ProjectGraph.Project.Data(
+//                      root = node.data.root,
+//                      sourceRoot = node.data.sourceRoot,
+//                      metadata = null,
+//                      targets = emptyMap(),
+//                      // TODO: can't map those two fields for now
+//                      // https://github.com/clementguillot/nx-cloud-ce/issues/118
+//                      // metadata = node.data.metadata,
+//                      // targets =
+//                      //   node.data.targets.mapValues { (_, target) ->
+//                      //     ProjectGraph.Project.Data.Target(
+//                      //       executor = target.executor,
+//                      //       dependsOn = target.dependsOn,
+//                      //       options = target.options,
+//                      //       configurations = target.configurations,
+//                      //       parallelism = target.parallelism,
+//                      //       inputs = target.inputs,
+//                      //       outputs = target.outputs,
+//                      //       defaultConfiguration = target.defaultConfiguration,
+//                      //       cache = target.cache,
+//                      //     )
+//                      //   },
+//                    ),
+//                )
+//              }
+//            },
           dependencies =
             projectGraph.dependencies.let {
               it.mapValues { (_, dependencies) ->
