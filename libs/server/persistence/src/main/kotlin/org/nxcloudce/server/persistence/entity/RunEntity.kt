@@ -49,40 +49,31 @@ data class RunEntity(
     var platformName: String?,
   )
 
-  // TODO: we should not use `val`, otherwise, values can't be late-initialized
-  // https://github.com/clementguillot/nx-cloud-ce/issues/118
   @MongoEntity
   data class ProjectGraph(
-    val nodes: Map<String, Project>,
-    val dependencies: Map<String, List<Dependency>>,
+    var nodes: Map<String, Project>,
+    var dependencies: Map<String, List<Dependency>>,
   ) {
     @MongoEntity
     data class Project(
       var type: String,
       var name: String,
-      var data: Data,
+      var data: ProjectConfiguration,
     ) {
       @MongoEntity
-      data class Data(
+      data class ProjectConfiguration(
         var root: String,
         var sourceRoot: String?,
-        // TODO: can't implement those field due to missing custom codec
-        // https://github.com/clementguillot/nx-cloud-ce/issues/118
-        // var metadata: Map<String, Any>?,
-        // var targets: Map<String, Target>,
+        var targets: Map<String, String>?,
+        var metadata: Metadata?,
       ) {
-        // @MongoEntity
-        // data class Target(
-        //   val executor: String?,
-        //   val dependsOn: Collection<String>?,
-        //   val options: Map<String, Any>?,
-        //   val configurations: Any?,
-        //   val parallelism: Boolean?,
-        //   val inputs: Collection<Any>?,
-        //   val outputs: Collection<String>?,
-        //   val defaultConfiguration: String?,
-        //   val cache: Boolean?,
-        // )
+        @MongoEntity
+        data class Metadata(
+          var description: String?,
+          var technologies: Collection<String>?,
+          var targetGroups: Map<String, Collection<String>>?,
+          // missing `owners?`
+        )
       }
     }
 

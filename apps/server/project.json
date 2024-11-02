@@ -14,7 +14,12 @@
     "build-native-sources": {
       "executor": "@jnxplus/nx-gradle:run-task",
       "options": {
-        "task": ["build", "-Dquarkus.package.type=native-sources"]
+        "task": [
+          "build",
+          "-Dquarkus.package.jar.enabled=false",
+          "-Dquarkus.native.enabled=true",
+          "-Dquarkus.native.sources-only=true"
+        ]
       },
       "outputs": ["{projectRoot}/build/native-sources"]
     },

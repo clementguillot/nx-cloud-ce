@@ -82,11 +82,32 @@ class RunTest {
               type = "application",
               name = "apps/server",
               data =
-                ProjectGraph.Project.Data(
+                ProjectGraph.Project.ProjectConfiguration(
                   root = "root",
                   sourceRoot = "root",
-                  metadata = emptyMap(),
-                  targets = emptyMap(),
+                  metadata =
+                    ProjectGraph.Project.ProjectConfiguration.ProjectMetadata(
+                      description = null,
+                      technologies = null,
+                      targetGroups = null,
+                    ),
+                  targets =
+                    mapOf(
+                      "apps/server" to
+                        ProjectGraph.Project.ProjectConfiguration.TargetConfiguration(
+                          executor = "nx",
+                          command = "nx build apps/server",
+                          outputs = null,
+                          dependsOn = null,
+                          inputs = null,
+                          options = null,
+                          configurations = null,
+                          defaultConfiguration = null,
+                          cache = null,
+                          parallelism = null,
+                          syncGenerators = null,
+                        ),
+                    ),
                 ),
             ),
         ),

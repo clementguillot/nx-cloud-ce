@@ -1,12 +1,13 @@
 package org.nxcloudce.server.gateway.persistence
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.bson.types.ObjectId
 import org.nxcloudce.server.domain.run.model.*
 import org.nxcloudce.server.domain.run.usecase.EndRunRequest
 import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 import org.nxcloudce.server.persistence.entity.RunEntity
 
-fun RunEntity.toDomain(): Run =
+fun RunEntity.toDomain(objectMapper: ObjectMapper): Run =
   Run {
     id = RunId(this@toDomain.id.toString())
     workspaceId = WorkspaceId(this@toDomain.workspaceId.toString())
@@ -48,39 +49,36 @@ fun RunEntity.toDomain(): Run =
     projectGraph =
       this@toDomain.projectGraph?.let { projectGraph ->
         ProjectGraph(
-          nodes = emptyMap(),
-//            projectGraph.nodes.let {
-//              it.mapValues { (_, node) ->
-//                ProjectGraph.Project(
-//                  type = node.type,
-//                  name = node.name,
-//                  data =
-//                    ProjectGraph.Project.Data(
-//                      root = node.data.root,
-//                      sourceRoot = node.data.sourceRoot,
-//                      metadata = null,
-//                      targets = emptyMap(),
-//                      // TODO: can't map those two fields for now
-//                      // https://github.com/clementguillot/nx-cloud-ce/issues/118
-//                      // metadata = node.data.metadata,
-//                      // targets =
-//                      //   node.data.targets.mapValues { (_, target) ->
-//                      //     ProjectGraph.Project.Data.Target(
-//                      //       executor = target.executor,
-//                      //       dependsOn = target.dependsOn,
-//                      //       options = target.options,
-//                      //       configurations = target.configurations,
-//                      //       parallelism = target.parallelism,
-//                      //       inputs = target.inputs,
-//                      //       outputs = target.outputs,
-//                      //       defaultConfiguration = target.defaultConfiguration,
-//                      //       cache = target.cache,
-//                      //     )
-//                      //   },
-//                    ),
-//                )
-//              }
-//            },
+          projectGraph.nodes.let {
+            it.mapValues { (_, node) ->
+              ProjectGraph.Project(
+                type = node.type,
+                name = node.name,
+                data =
+                  ProjectGraph.Project.ProjectConfiguration(
+                    root = node.data.root,
+                    sourceRoot = node.data.sourceRoot,
+                    targets =
+                      node.data.targets?.let { target ->
+                        target.mapValues { (_, serializedTarget) ->
+                          objectMapper.readValue(
+                            serializedTarget,
+                            ProjectGraph.Project.ProjectConfiguration.TargetConfiguration::class.java,
+                          )
+                        }
+                      },
+                    metadata =
+                      node.data.metadata?.let { metadata ->
+                        ProjectGraph.Project.ProjectConfiguration.ProjectMetadata(
+                          description = metadata.description,
+                          technologies = metadata.technologies,
+                          targetGroups = metadata.targetGroups,
+                        )
+                      },
+                  ),
+              )
+            }
+          },
           dependencies =
             projectGraph.dependencies.let {
               it.mapValues { (_, dependencies) ->
@@ -102,6 +100,7 @@ fun RunEntity.toDomain(): Run =
 fun EndRunRequest.Run.toEntity(
   status: RunStatus,
   workspaceId: WorkspaceId,
+  objectMapper: ObjectMapper,
 ): RunEntity =
   RunEntity(
     id = null,
@@ -145,34 +144,33 @@ fun EndRunRequest.Run.toEntity(
       projectGraph?.let { projectGraph ->
         RunEntity.ProjectGraph(
           nodes =
-            projectGraph.nodes!!.mapValues { (_, node) ->
+            projectGraph.nodes.mapValues { (_, node) ->
               RunEntity.ProjectGraph.Project(
                 type = node.type,
                 name = node.name,
                 data =
-                  RunEntity.ProjectGraph.Project.Data(
+                  RunEntity.ProjectGraph.Project.ProjectConfiguration(
                     root = node.data.root,
                     sourceRoot = node.data.sourceRoot,
-//                    metadata = node.data.metadata,
-//                    targets =
-//                      node.data.targets.mapValues { (_, target) ->
-//                        RunEntity.ProjectGraph.Project.Data.Target(
-//                          executor = target.executor,
-//                          dependsOn = target.dependsOn,
-//                          options = target.options,
-//                          configurations = target.configurations,
-//                          parallelism = target.parallelism,
-//                          inputs = target.inputs,
-//                          outputs = target.outputs,
-//                          defaultConfiguration = target.defaultConfiguration,
-//                          cache = target.cache,
-//                        )
-//                      },
+                    targets =
+                      node.data.targets?.let {
+                        it.mapValues { (_, target) ->
+                          objectMapper.writeValueAsString(target)
+                        }
+                      },
+                    metadata =
+                      node.data.metadata?.let {
+                        RunEntity.ProjectGraph.Project.ProjectConfiguration.Metadata(
+                          description = it.description,
+                          technologies = it.technologies,
+                          targetGroups = it.targetGroups,
+                        )
+                      },
                   ),
               )
             },
           dependencies =
-            projectGraph.dependencies!!.mapValues { (_, dependencies) ->
+            projectGraph.dependencies.mapValues { (_, dependencies) ->
               dependencies.map { dependency ->
                 RunEntity.ProjectGraph.Dependency(
                   source = dependency.source,

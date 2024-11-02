@@ -16,15 +16,20 @@ val javaVersion: String by project
 val quarkusPlatformGroupId: String by project
 val quarkusPlatformArtifactId: String by project
 val quarkusPlatformVersion: String by project
+val jacksonDatatypeJsr310Version: String by project
 val ktlintVersion: String by project
 val atriumVersion: String by project
 val mockkVersion: String by project
 val quarkusMockkVersion: String by project
 
 dependencies {
+  implementation(kotlin("stdlib-jdk8"))
+  implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
   implementation(enforcedPlatform("$quarkusPlatformGroupId:$quarkusPlatformArtifactId:$quarkusPlatformVersion"))
   implementation("io.quarkus:quarkus-kotlin")
   implementation("io.quarkus:quarkus-mongodb-panache-kotlin")
+  implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDatatypeJsr310Version")
 
   implementation(project(":libs:server:domain"))
   implementation(project(":libs:server:persistence"))
