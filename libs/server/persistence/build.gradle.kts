@@ -39,7 +39,7 @@ dependencies {
 }
 
 group = "org.nxcloudce.server"
-version = "0.4.3"
+version = "0.4.4"
 
 java {
   sourceCompatibility = JavaVersion.toVersion(javaVersion)
