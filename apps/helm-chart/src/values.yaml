@@ -253,6 +253,17 @@ mongodb:
     # MANDATORY: enable this "experimental" feature to create a secret for service binding
     enabled: true
 
+  initdbScripts:
+    grant-role-to-server.js: |
+      use server
+      db.grantRolesToUser(
+        "server",
+        [
+          { role: "dbAdmin", db: "server" }
+        ],
+        { w: "majority", wtimeout: 5000 }
+      );
+
 ## Embedded NGINX configuration (Bitnami Helm Chart)
 nginx:
   # If `enabled`, Bitnami's chart is installed.

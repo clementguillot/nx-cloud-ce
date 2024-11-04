@@ -2,6 +2,9 @@ quarkus:
   http:
     port: 8080
     root-path: "/nx-cloud"
+  liquibase-mongodb:
+    change-log: db/change-log.yaml
+    migrate-at-start: true
   mongodb:
     database: nx-cloud-ce
   smallrye-openapi:

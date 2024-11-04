@@ -1,4 +1,4 @@
-package org.nxcloudce.server.technical.producer
+package org.nxcloudce.server.gateway.infrastructure
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule

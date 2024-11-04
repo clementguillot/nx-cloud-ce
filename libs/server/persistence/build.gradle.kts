@@ -26,6 +26,7 @@ dependencies {
   implementation(enforcedPlatform("$quarkusPlatformGroupId:$quarkusPlatformArtifactId:$quarkusPlatformVersion"))
   implementation("io.quarkus:quarkus-arc")
   implementation("io.quarkus:quarkus-kotlin")
+  implementation("io.quarkus:quarkus-liquibase-mongodb")
   implementation("io.quarkus:quarkus-mongodb-panache-kotlin")
 
   testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")

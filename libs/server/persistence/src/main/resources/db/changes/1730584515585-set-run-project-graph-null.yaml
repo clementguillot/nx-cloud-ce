@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1730584515585-1
+      author: clementguillot
+      changes:
+        - runCommand:
+            command: |
+              {
+                update: "run",
+                updates: [
+                  {
+                    q: {},
+                    u: { $set: { projectGraph: null } },
+                    multi: true
+                  }
+                ]
+              }

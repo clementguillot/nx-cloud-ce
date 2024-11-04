@@ -78,11 +78,32 @@ class RunRepositoryImplTest {
                       type = "application",
                       name = "apps/server",
                       data =
-                        ProjectGraph.Project.Data(
+                        ProjectGraph.Project.ProjectConfiguration(
                           root = "root",
                           sourceRoot = "root",
-                          metadata = emptyMap(),
-                          targets = emptyMap(),
+                          metadata =
+                            ProjectGraph.Project.ProjectConfiguration.ProjectMetadata(
+                              description = null,
+                              technologies = null,
+                              targetGroups = null,
+                            ),
+                          targets =
+                            mapOf(
+                              "build" to
+                                ProjectGraph.Project.ProjectConfiguration.TargetConfiguration(
+                                  executor = "@nx/angular:ng-packagr-lite",
+                                  command = null,
+                                  outputs = listOf("^build", "build"),
+                                  dependsOn = null,
+                                  inputs = listOf("production", "^production"),
+                                  options = null,
+                                  configurations = null,
+                                  defaultConfiguration = null,
+                                  cache = null,
+                                  parallelism = null,
+                                  syncGenerators = null,
+                                ),
+                            ),
                         ),
                     ),
                 ),
