@@ -6,6 +6,11 @@ import org.nxcloudce.server.domain.workspace.model.Workspace
 
 interface CreateWorkspace : UseCase<CreateWorkspaceRequest, CreateWorkspaceResponse>
 
-data class CreateWorkspaceRequest(val orgId: OrganizationId, val name: String)
+data class CreateWorkspaceRequest(
+  val orgId: OrganizationId,
+  val name: String,
+)
 
-data class CreateWorkspaceResponse(val workspace: Workspace)
+data class CreateWorkspaceResponse(
+  val workspace: Workspace,
+)

@@ -10,7 +10,8 @@ class ClientControllerTest {
   @Test
   fun `should return a valid bundle if the version matches`() {
     given()
-      .`when`().get("/client/verify?version=dummy-version")
+      .`when`()
+      .get("/client/verify?version=dummy-version")
       .then()
       .statusCode(200)
       .body(
@@ -26,7 +27,8 @@ class ClientControllerTest {
   @Test
   fun `should return an invalid bundle if the version is empty or different`() {
     given()
-      .`when`().get("/client/verify")
+      .`when`()
+      .get("/client/verify")
       .then()
       .statusCode(200)
       .body(
@@ -38,7 +40,8 @@ class ClientControllerTest {
         `is`(equalTo("dummy-version")),
       )
     given()
-      .`when`().get("/client/verify?version=not-matching")
+      .`when`()
+      .get("/client/verify?version=not-matching")
       .then()
       .statusCode(200)
       .body(

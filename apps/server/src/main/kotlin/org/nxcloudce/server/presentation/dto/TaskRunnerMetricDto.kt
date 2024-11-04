@@ -5,7 +5,9 @@ import org.nxcloudce.server.domain.metric.usecase.SaveMetricsRequest
 import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 
 @RegisterForReflection
-data class TaskRunnerMetricDto(val entries: Collection<PerformanceEntry>) {
+data class TaskRunnerMetricDto(
+  val entries: Collection<PerformanceEntry>,
+) {
   data class PerformanceEntry(
     val durationMs: Int,
     val success: Boolean,

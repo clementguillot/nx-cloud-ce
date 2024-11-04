@@ -48,13 +48,16 @@ class GcsEmulatorResource : QuarkusTestResourceLifecycleManager {
       """.trimIndent()
 
     val req =
-      HttpRequest.newBuilder()
+      HttpRequest
+        .newBuilder()
         .uri(URI.create(modifyExternalUrlRequestUri))
         .header("Content-Type", "application/json")
         .PUT(BodyPublishers.ofString(updateExternalUrlJson))
         .build()
     val response =
-      HttpClient.newBuilder().build()
+      HttpClient
+        .newBuilder()
+        .build()
         .send(req, BodyHandlers.discarding())
 
     if (response.statusCode() != 200) {
@@ -69,7 +72,8 @@ class GcsEmulatorResource : QuarkusTestResourceLifecycleManager {
     bucket: String,
   ) {
     val storage =
-      StorageOptions.newBuilder()
+      StorageOptions
+        .newBuilder()
         .setHost(endpoint)
         .setProjectId("test-project")
         .setCredentials(NoCredentials.getInstance())

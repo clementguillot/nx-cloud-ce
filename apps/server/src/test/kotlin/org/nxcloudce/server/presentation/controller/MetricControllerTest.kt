@@ -30,8 +30,7 @@ class MetricControllerTest {
                 ),
               ),
           ),
-        )
-        .`when`()
+        ).`when`()
         .post("/save-metrics")
         .then()
         .statusCode(200)

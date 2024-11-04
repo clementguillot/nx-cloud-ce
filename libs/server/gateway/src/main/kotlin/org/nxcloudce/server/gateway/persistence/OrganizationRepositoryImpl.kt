@@ -15,16 +15,17 @@ import org.nxcloudce.server.persistence.repository.OrganizationPanacheRepository
 @ApplicationScoped
 class OrganizationRepositoryImpl(
   private val orgPanacheRepository: OrganizationPanacheRepository,
-) : OrganizationRepository, OrganizationValidationService, OrganizationCreationService {
+) : OrganizationRepository,
+  OrganizationValidationService,
+  OrganizationCreationService {
   override suspend fun create(org: CreateOrganizationRequest): Organization {
     val entity = org.toEntity()
 
     return orgPanacheRepository.persist(entity).awaitSuspending().run { entity.toDomain() }
   }
 
-  override suspend fun isValidOrgId(id: OrganizationId): Boolean {
-    return orgPanacheRepository.findById(ObjectId(id.value)).awaitSuspending() !== null
-  }
+  override suspend fun isValidOrgId(id: OrganizationId): Boolean =
+    orgPanacheRepository.findById(ObjectId(id.value)).awaitSuspending() !== null
 
   override fun createOrg(orgName: String): Uni<Organization> {
     val entity = CreateOrganizationRequest(orgName).toEntity()

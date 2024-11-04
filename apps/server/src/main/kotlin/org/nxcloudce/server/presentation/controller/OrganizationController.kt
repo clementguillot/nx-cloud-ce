@@ -13,7 +13,9 @@ import org.nxcloudce.server.presentation.dto.IdDto
 @Path("/private/create-org")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-class OrganizationController(private val createOrganization: CreateOrganization) {
+class OrganizationController(
+  private val createOrganization: CreateOrganization,
+) {
   @Operation(
     summary = "Create a public cloud counterpart for a private cloud org",
   )

@@ -1,6 +1,8 @@
 package org.nxcloudce.server.domain.run.model
 
-enum class CacheStatus(val value: String) {
+enum class CacheStatus(
+  val value: String,
+) {
   REMOTE_CACHE_HIT("remote-cache-hit"),
   LOCAL_CACHE_HIT("local-cache-hit"),
   CACHE_MISS("cache-miss"),

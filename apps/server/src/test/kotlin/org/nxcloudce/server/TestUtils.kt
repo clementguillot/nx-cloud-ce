@@ -12,7 +12,8 @@ import java.util.zip.GZIPOutputStream
 
 fun prepareWorkspaceAndAccessToken(): String {
   val response =
-    RestAssured.given()
+    RestAssured
+      .given()
       .header("Content-Type", "application/json")
       .body(
         CreateOrgAndWorkspaceDto(
@@ -20,8 +21,7 @@ fun prepareWorkspaceAndAccessToken(): String {
           installationSource = "junit",
           nxInitDate = null,
         ),
-      )
-      .post("/create-org-and-workspace")
+      ).post("/create-org-and-workspace")
       .`as`(InitWorkspaceDto::class.java)
 
   return response.token

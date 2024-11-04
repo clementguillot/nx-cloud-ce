@@ -6,7 +6,9 @@ import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 
 interface SaveMetrics : UseCase<SaveMetricsRequest, SaveMetricsResponse>
 
-data class SaveMetricsRequest(val metrics: Collection<Metric>) {
+data class SaveMetricsRequest(
+  val metrics: Collection<Metric>,
+) {
   data class Metric(
     val workspaceId: WorkspaceId,
     val durationMs: Int,
@@ -17,4 +19,6 @@ data class SaveMetricsRequest(val metrics: Collection<Metric>) {
   )
 }
 
-data class SaveMetricsResponse(val metrics: Collection<TaskRunnerMetric>)
+data class SaveMetricsResponse(
+  val metrics: Collection<TaskRunnerMetric>,
+)

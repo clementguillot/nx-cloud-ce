@@ -33,8 +33,7 @@ class HeartbeatControllerTest {
             runGroup = "junit",
             logs = null,
           ),
-        )
-        .`when`()
+        ).`when`()
         .post("/heartbeat")
         .then()
         .statusCode(200)
@@ -58,8 +57,7 @@ class HeartbeatControllerTest {
             dispatcher,
             objectMapper,
           ),
-        )
-        .`when`()
+        ).`when`()
         .post("/heartbeat/logs")
         .then()
         .statusCode(200)

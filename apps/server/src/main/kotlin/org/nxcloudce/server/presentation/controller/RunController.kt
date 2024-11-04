@@ -40,7 +40,12 @@ class RunController(
     startRun(
       StartRunRequest(
         hashes = startRunDto.hashes.map { Hash(it) },
-        workspaceId = WorkspaceId(identity.deferredIdentity.awaitSuspending().principal.name),
+        workspaceId =
+          WorkspaceId(
+            identity.deferredIdentity
+              .awaitSuspending()
+              .principal.name,
+          ),
         canPut = isReadWriteContext(),
       ),
     ) { response ->
@@ -54,7 +59,8 @@ class RunController(
   @Path("/runs/end")
   @Consumes(MediaType.APPLICATION_OCTET_STREAM)
   suspend fun end(request: ByteArray): RunSummaryDto =
-    gzipJsonDecoder.from(request, RunDto.End::class)
+    gzipJsonDecoder
+      .from(request, RunDto.End::class)
       .let { dto ->
         endRun(
           EndRunRequest(

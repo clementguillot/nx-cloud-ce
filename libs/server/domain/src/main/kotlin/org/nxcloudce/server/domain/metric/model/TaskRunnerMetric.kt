@@ -3,7 +3,9 @@ package org.nxcloudce.server.domain.metric.model
 import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 import java.time.LocalDateTime
 
-class TaskRunnerMetric private constructor(builder: Builder) {
+class TaskRunnerMetric private constructor(
+  builder: Builder,
+) {
   companion object {
     operator fun invoke(block: Builder.() -> Unit): TaskRunnerMetric {
       val builder = Builder()

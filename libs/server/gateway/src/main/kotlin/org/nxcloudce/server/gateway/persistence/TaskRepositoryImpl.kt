@@ -14,7 +14,9 @@ import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 import org.nxcloudce.server.persistence.repository.TaskPanacheRepository
 
 @ApplicationScoped
-class TaskRepositoryImpl(private val taskPanacheRepository: TaskPanacheRepository) : TaskRepository {
+class TaskRepositoryImpl(
+  private val taskPanacheRepository: TaskPanacheRepository,
+) : TaskRepository {
   override suspend fun create(
     tasks: Collection<EndRunRequest.Task>,
     runId: RunId,

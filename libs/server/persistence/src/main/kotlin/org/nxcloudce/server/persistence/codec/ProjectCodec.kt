@@ -8,7 +8,9 @@ import org.nxcloudce.server.persistence.codec.readRequiredField
 import org.nxcloudce.server.persistence.codec.writeRequiredField
 import org.nxcloudce.server.persistence.entity.RunEntity
 
-class ProjectCodec(private val registry: CodecRegistry) : Codec<RunEntity.ProjectGraph.Project> {
+class ProjectCodec(
+  private val registry: CodecRegistry,
+) : Codec<RunEntity.ProjectGraph.Project> {
   private val configurationCodec by lazy {
     registry[RunEntity.ProjectGraph.Project.ProjectConfiguration::class.java]
   }

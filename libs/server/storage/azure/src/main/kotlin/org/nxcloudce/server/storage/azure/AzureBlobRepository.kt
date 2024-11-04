@@ -62,8 +62,8 @@ class AzureBlobRepository(
     BlobServiceSasSignatureValues(
       OffsetDateTime.now().plus(presignExpiration.toJavaDuration()),
       sasPermission,
-    )
-      .setStartTime(OffsetDateTime.now()).let { sasValue ->
+    ).setStartTime(OffsetDateTime.now())
+      .let { sasValue ->
         blobClient.generateSas(sasValue)
       }
 }

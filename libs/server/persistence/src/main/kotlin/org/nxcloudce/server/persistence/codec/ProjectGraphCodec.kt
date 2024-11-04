@@ -9,7 +9,9 @@ import org.bson.codecs.EncoderContext
 import org.bson.codecs.configuration.CodecRegistry
 import org.nxcloudce.server.persistence.entity.RunEntity
 
-class ProjectGraphCodec(private val registry: CodecRegistry) : Codec<RunEntity.ProjectGraph> {
+class ProjectGraphCodec(
+  private val registry: CodecRegistry,
+) : Codec<RunEntity.ProjectGraph> {
   private val projectCodec by lazy {
     registry[RunEntity.ProjectGraph.Project::class.java]
   }

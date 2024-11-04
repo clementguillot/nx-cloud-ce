@@ -5,6 +5,10 @@ import org.nxcloudce.server.domain.organization.model.Organization
 
 interface CreateOrganization : UseCase<CreateOrganizationRequest, CreateOrganizationResponse>
 
-data class CreateOrganizationRequest(val name: String)
+data class CreateOrganizationRequest(
+  val name: String,
+)
 
-data class CreateOrganizationResponse(val organization: Organization)
+data class CreateOrganizationResponse(
+  val organization: Organization,
+)

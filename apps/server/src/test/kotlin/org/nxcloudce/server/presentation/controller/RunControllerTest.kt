@@ -67,11 +67,11 @@ class RunControllerTest {
             clientInstanceId = UUID.randomUUID(),
             clientInstanceSource = "CLOUD_RUNNER",
           ),
-        )
-        .`when`()
+        ).`when`()
         .post("/v2/runs/start")
         .then()
-        .log().body()
+        .log()
+        .body()
         .statusCode(200)
         .body(
           "artifacts.size()",
@@ -107,8 +107,7 @@ class RunControllerTest {
             dispatcher,
             objectMapper,
           ),
-        )
-        .`when`()
+        ).`when`()
         .post("/runs/end")
         .then()
         .statusCode(200)
@@ -140,8 +139,7 @@ class RunControllerTest {
             dispatcher,
             objectMapper,
           ),
-        )
-        .`when`()
+        ).`when`()
         .post("/runs/end")
         .then()
         .statusCode(200)
@@ -173,8 +171,7 @@ class RunControllerTest {
             dispatcher,
             objectMapper,
           ),
-        )
-        .`when`()
+        ).`when`()
         .post("/runs/end")
         .then()
         .statusCode(200)

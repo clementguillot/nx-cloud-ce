@@ -3,9 +3,13 @@ package org.nxcloudce.server.domain.run.model
 import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 import java.time.LocalDateTime
 
-@JvmInline value class TaskId(val value: String)
+@JvmInline value class TaskId(
+  val value: String,
+)
 
-class Task private constructor(builder: Builder) {
+class Task private constructor(
+  builder: Builder,
+) {
   companion object {
     operator fun invoke(block: Builder.() -> Unit): Task {
       val builder = Builder()

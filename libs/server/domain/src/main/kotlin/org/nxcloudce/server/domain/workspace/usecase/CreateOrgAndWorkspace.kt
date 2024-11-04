@@ -12,6 +12,13 @@ interface CreateOrgAndWorkspace {
   ): Uni<T>
 }
 
-data class CreateOrgAndWorkspaceRequest(val workspaceName: String, val installationSource: String, val nxInitDate: LocalDateTime?)
+data class CreateOrgAndWorkspaceRequest(
+  val workspaceName: String,
+  val installationSource: String,
+  val nxInitDate: LocalDateTime?,
+)
 
-data class CreateOrgAndWorkspaceResponse(val workspace: Workspace, val accessToken: AccessToken)
+data class CreateOrgAndWorkspaceResponse(
+  val workspace: Workspace,
+  val accessToken: AccessToken,
+)

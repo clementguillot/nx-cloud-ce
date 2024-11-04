@@ -22,7 +22,10 @@ data class RemoteArtifactListDto(
       )
   }
 
-  data class RemoteArtifact(val artifactId: String, val artifactUrls: Url) {
+  data class RemoteArtifact(
+    val artifactId: String,
+    val artifactUrls: Url,
+  ) {
     data class Url(
       val get: String?,
       val put: String?,

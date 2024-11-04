@@ -58,5 +58,8 @@ class GzipJsonDecoderTest {
       }.toThrow<Exception>()
     }
 
-  data class DummyClass(val stringProperty: String, val intProperty: Int)
+  data class DummyClass(
+    val stringProperty: String,
+    val intProperty: Int,
+  )
 }

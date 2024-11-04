@@ -5,6 +5,10 @@ import java.time.LocalDateTime
 
 interface CleanupRun : UseCase<CleanupRunRequest, CleanupRunResponse>
 
-data class CleanupRunRequest(val creationDateThreshold: LocalDateTime)
+data class CleanupRunRequest(
+  val creationDateThreshold: LocalDateTime,
+)
 
-data class CleanupRunResponse(val deletedCount: Int)
+data class CleanupRunResponse(
+  val deletedCount: Int,
+)

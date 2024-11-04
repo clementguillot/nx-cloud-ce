@@ -8,7 +8,9 @@ import org.nxcloudce.server.presentation.dto.VerifyClientBundleDto
 import org.nxcloudce.server.technical.ServerConfiguration
 
 @Path("/client/verify")
-class ClientController(private val serverConfiguration: ServerConfiguration) {
+class ClientController(
+  private val serverConfiguration: ServerConfiguration,
+) {
   @Operation(
     summary = "Verifies the version of the `nx-cloud-client-bundle`, returns a download URL if needed",
   )

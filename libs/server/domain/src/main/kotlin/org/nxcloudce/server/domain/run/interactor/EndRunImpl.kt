@@ -38,7 +38,8 @@ class EndRunImpl(
     tasks: Collection<Task>,
     workspaceId: WorkspaceId,
   ): Collection<Artifact.Exist> =
-    tasks.filter { it.uploadedToStorage }
+    tasks
+      .filter { it.uploadedToStorage }
       .map { mapOf(it.artifactId!! to it.hash) }
       .flatMap { artifactRepository.createRemoteArtifacts(it, workspaceId) }
 }

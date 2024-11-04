@@ -13,7 +13,9 @@ import org.nxcloudce.server.technical.GzipJsonDecoder
 
 @Path("/heartbeat")
 @Authenticated
-class HeartbeatController(private val gzipJsonDecoder: GzipJsonDecoder) {
+class HeartbeatController(
+  private val gzipJsonDecoder: GzipJsonDecoder,
+) {
   companion object {
     private val logger = Logger.getLogger(HeartbeatController::class.java)
   }

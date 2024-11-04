@@ -5,6 +5,10 @@ import org.nxcloudce.server.domain.workspace.model.AccessToken
 
 interface GetWorkspaceAccessToken : UseCase<GetWorkspaceAccessTokenRequest, GetWorkspaceAccessTokenResponse>
 
-data class GetWorkspaceAccessTokenRequest(val encodedAccessToken: String)
+data class GetWorkspaceAccessTokenRequest(
+  val encodedAccessToken: String,
+)
 
-data class GetWorkspaceAccessTokenResponse(val accessToken: AccessToken?)
+data class GetWorkspaceAccessTokenResponse(
+  val accessToken: AccessToken?,
+)

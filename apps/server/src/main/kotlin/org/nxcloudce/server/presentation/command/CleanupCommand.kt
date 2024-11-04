@@ -7,7 +7,9 @@ import org.nxcloudce.server.domain.run.usecase.CleanupRun
 import org.nxcloudce.server.domain.run.usecase.CleanupRunRequest
 import java.time.LocalDateTime
 
-class CleanupCommand(private val cleanupRun: CleanupRun) : QuarkusApplication {
+class CleanupCommand(
+  private val cleanupRun: CleanupRun,
+) : QuarkusApplication {
   companion object {
     private val logger = Logger.getLogger(CleanupCommand::class.java)
   }

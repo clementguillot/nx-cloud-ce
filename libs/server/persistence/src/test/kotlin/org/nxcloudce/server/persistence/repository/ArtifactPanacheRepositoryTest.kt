@@ -48,24 +48,26 @@ class ArtifactPanacheRepositoryTest {
       val hashes = listOf("hash1", "hash2", "hash3")
       val workspaceId = ObjectId()
       hashes.forEach {
-        artifactPanacheRepository.persist(
+        artifactPanacheRepository
+          .persist(
+            ArtifactEntity(
+              id = null,
+              artifactId = "someArtifactId",
+              hash = it,
+              workspaceId = workspaceId,
+            ),
+          ).awaitSuspending()
+      }
+
+      artifactPanacheRepository
+        .persist(
           ArtifactEntity(
             id = null,
             artifactId = "someArtifactId",
-            hash = it,
-            workspaceId = workspaceId,
+            hash = "hash4",
+            workspaceId = ObjectId(),
           ),
         ).awaitSuspending()
-      }
-
-      artifactPanacheRepository.persist(
-        ArtifactEntity(
-          id = null,
-          artifactId = "someArtifactId",
-          hash = "hash4",
-          workspaceId = ObjectId(),
-        ),
-      ).awaitSuspending()
 
       val result = artifactPanacheRepository.findByHash(hashes, workspaceId.toString())
       val count = artifactPanacheRepository.count().awaitSuspending()
@@ -78,20 +80,21 @@ class ArtifactPanacheRepositoryTest {
   @Test
   fun `should delete entities by their Artifact ID`() =
     runTest {
-      artifactPanacheRepository.persist(
-        ArtifactEntity(
-          id = null,
-          artifactId = "artifact-id",
-          hash = "has",
-          workspaceId = ObjectId(),
-        ),
-        ArtifactEntity(
-          id = null,
-          artifactId = "artifact-id-2",
-          hash = "has",
-          workspaceId = ObjectId(),
-        ),
-      ).awaitSuspending()
+      artifactPanacheRepository
+        .persist(
+          ArtifactEntity(
+            id = null,
+            artifactId = "artifact-id",
+            hash = "has",
+            workspaceId = ObjectId(),
+          ),
+          ArtifactEntity(
+            id = null,
+            artifactId = "artifact-id-2",
+            hash = "has",
+            workspaceId = ObjectId(),
+          ),
+        ).awaitSuspending()
 
       val result = artifactPanacheRepository.deleteByArtifactId("artifact-id").awaitSuspending()
       val totalCount = artifactPanacheRepository.count().awaitSuspending()

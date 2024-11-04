@@ -38,12 +38,14 @@ class CreateOrgAndWorkspaceImplTest {
     every { mockOrgCreation.createOrg("test workspace") } returns
       Uni.createFrom().item(Organization(dummyOrgId, "test workspace"))
     every { mockWorkspaceRepository.create(dummyRequest, dummyOrgId) } returns
-      Uni.createFrom()
+      Uni
+        .createFrom()
         .item(
           Workspace(dummyWorkspaceId, dummyOrgId, "test workspace", "junit", null),
         )
     every { mockAccessTokenRepository.createDefaultAccessToken(dummyWorkspaceId) } returns
-      Uni.createFrom()
+      Uni
+        .createFrom()
         .item(
           AccessToken {
             id = AccessTokenId("token-ID")

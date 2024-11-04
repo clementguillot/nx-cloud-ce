@@ -29,8 +29,7 @@ class WorkspaceControllerTest {
             orgId = newOrg.id.value,
             name = "new workspace",
           ),
-        )
-        .`when`()
+        ).`when`()
         .post("/private/create-workspace")
         .then()
         .statusCode(200)
@@ -47,8 +46,7 @@ class WorkspaceControllerTest {
           installationSource = "junit",
           nxInitDate = null,
         ),
-      )
-      .`when`()
+      ).`when`()
       .post("/create-org-and-workspace")
       .then()
       .statusCode(200)

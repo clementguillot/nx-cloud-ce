@@ -52,4 +52,6 @@ data class EndRunRequest(
   )
 }
 
-data class EndRunResponse(val run: Run)
+data class EndRunResponse(
+  val run: Run,
+)

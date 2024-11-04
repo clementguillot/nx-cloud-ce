@@ -54,7 +54,11 @@ tasks.withType<Test> {
 
   configure<JacocoTaskExtension> {
     excludeClassLoaders = listOf("*QuarkusClassLoader")
-    destinationFile = layout.buildDirectory.file("jacoco-quarkus.exec").get().asFile
+    destinationFile =
+      layout.buildDirectory
+        .file("jacoco-quarkus.exec")
+        .get()
+        .asFile
   }
 
   tasks.jacocoTestReport {

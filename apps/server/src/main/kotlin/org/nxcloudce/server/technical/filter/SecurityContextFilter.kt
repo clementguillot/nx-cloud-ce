@@ -10,7 +10,9 @@ import org.nxcloudce.server.domain.workspace.usecase.GetWorkspaceAccessTokenRequ
 import java.security.Principal
 
 @Startup
-class SecurityContextFilter(private val getWorkspaceAccessToken: GetWorkspaceAccessToken) {
+class SecurityContextFilter(
+  private val getWorkspaceAccessToken: GetWorkspaceAccessToken,
+) {
   @ServerRequestFilter(preMatching = true)
   suspend fun preMatchingFilter(requestContext: ContainerRequestContext) {
     val apiKey = requestContext.headers.getFirst("authorization")

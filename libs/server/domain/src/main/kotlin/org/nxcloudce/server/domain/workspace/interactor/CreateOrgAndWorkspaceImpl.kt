@@ -17,8 +17,8 @@ class CreateOrgAndWorkspaceImpl(
   override operator fun <T> invoke(
     request: CreateOrgAndWorkspaceRequest,
     presenter: (Uni<CreateOrgAndWorkspaceResponse>) -> Uni<T>,
-  ): Uni<T> {
-    return presenter(
+  ): Uni<T> =
+    presenter(
       withTransaction {
         orgCreation
           .createOrg(request.workspaceName)
@@ -32,11 +32,9 @@ class CreateOrgAndWorkspaceImpl(
                   Pair(workspace, token)
                 }
               }
-          }
-          .flatMap { firstLevelUni -> firstLevelUni.flatMap { secondLevelUni -> secondLevelUni } }
+          }.flatMap { firstLevelUni -> firstLevelUni.flatMap { secondLevelUni -> secondLevelUni } }
           .onItem()
           .transform { CreateOrgAndWorkspaceResponse(it.first, it.second) }
       },
     )
-  }
 }

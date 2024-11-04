@@ -2,11 +2,17 @@ package org.nxcloudce.server.domain.workspace.model
 
 import java.util.*
 
-@JvmInline value class AccessTokenId(val value: String)
+@JvmInline value class AccessTokenId(
+  val value: String,
+)
 
-@JvmInline value class AccessTokenPublicId(val value: String = UUID.randomUUID().toString())
+@JvmInline value class AccessTokenPublicId(
+  val value: String = UUID.randomUUID().toString(),
+)
 
-class AccessToken private constructor(builder: Builder) {
+class AccessToken private constructor(
+  builder: Builder,
+) {
   companion object {
     operator fun invoke(block: Builder.() -> Unit): AccessToken {
       val builder = Builder()
@@ -49,7 +55,9 @@ class AccessToken private constructor(builder: Builder) {
   }
 }
 
-enum class AccessLevel(val value: String) {
+enum class AccessLevel(
+  val value: String,
+) {
   READ_ONLY("read"),
   READ_WRITE("read-write"),
   ;

@@ -1,3 +1,5 @@
 package org.nxcloudce.server.presentation.dto
 
-data class IdDto(val id: String)
+data class IdDto(
+  val id: String,
+)

@@ -7,6 +7,12 @@ import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 
 interface StartRun : UseCase<StartRunRequest, StartRunResponse>
 
-data class StartRunRequest(val hashes: Collection<Hash>, val workspaceId: WorkspaceId, val canPut: Boolean)
+data class StartRunRequest(
+  val hashes: Collection<Hash>,
+  val workspaceId: WorkspaceId,
+  val canPut: Boolean,
+)
 
-data class StartRunResponse(val artifacts: Collection<Artifact>)
+data class StartRunResponse(
+  val artifacts: Collection<Artifact>,
+)

@@ -4,7 +4,9 @@ import org.nxcloudce.server.domain.run.gateway.StorageService
 import org.nxcloudce.server.domain.workspace.model.WorkspaceId
 import java.util.*
 
-@JvmInline value class ArtifactId(val value: String = UUID.randomUUID().toString())
+@JvmInline value class ArtifactId(
+  val value: String = UUID.randomUUID().toString(),
+)
 
 sealed class Artifact {
   abstract val id: ArtifactId
