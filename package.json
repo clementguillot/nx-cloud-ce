@@ -6,8 +6,8 @@
   "private": true,
   "devDependencies": {
     "@jnxplus/nx-gradle": "1.15.0",
-    "@nx-tools/container-metadata": "6.1.0",
-    "@nx-tools/nx-container": "6.1.0",
+    "@nx-tools/container-metadata": "6.1.1",
+    "@nx-tools/nx-container": "6.1.1",
     "@nx/workspace": "20.0.8",
     "nx": "20.0.8",
     "prettier": "3.3.3"
