@@ -10,6 +10,6 @@
     "@nx-tools/nx-container": "6.2.0",
     "@nx/workspace": "20.0.8",
     "nx": "20.0.8",
-    "prettier": "3.3.3"
+    "prettier": "3.4.2"
   }
 }
