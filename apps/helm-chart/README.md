@@ -1,6 +1,6 @@
 # apps/helm-chart
 
-This directory contains the [Helm](https://helm.sh/) chart for deploying Nx Cloud CE on a [Kubernetes](https://kubernetes.io/) cluster.
+This directory contains the [Helm](https://helm.sh/) chart for deploying Graphoenix on a [Kubernetes](https://kubernetes.io/) cluster.
 
 As an all-in-one package, this chart includes Bitnami's Helm Charts for MongoDB (DB) and NGINX (Reverse Proxy).
 
@@ -28,16 +28,16 @@ For production (or stable) environments, you can install this chart from GHCR, u
 First, you need to add this Helm repository:
 
 ```shell script
-helm repo add nx-cloud-ce https://clementguillot.github.io/nx-cloud-ce
+helm repo add graphoenix https://clementguillot.github.io/graphoenix
 ```
 
 And then, you can install the chart:
 
 ```shell script
-helm install [release name] nx-cloud-ce/nx-cloud-ce [-n [namespace]]
+helm install [release name] graphoenix/graphoenix [-n [namespace]]
 ```
 
-You need to replace `[release name]` by the desired release name, e.g. `nx-cloud-ce`.
+You need to replace `[release name]` by the desired release name, e.g. `graphoenix`.
 
 You can optionally specify a destination namespace with `-n [dest-namespace]`, otherwise, chart will be installed in namespace `default`.
 

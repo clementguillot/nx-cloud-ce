@@ -40,7 +40,7 @@ dependencies {
   testImplementation("org.testcontainers:testcontainers:$testContainerVersion")
 }
 
-group = "org.nxcloudce.server.storage"
+group = "org.graphoenix.server.storage"
 version = "0.5.1"
 
 java {

@@ -1,4 +1,4 @@
-nx-server:
+graphoenix-server:
   storage:
     gcs:
-      bucket: "nx-cloud-ce-test"
+      bucket: "graphoenix-test"

@@ -39,7 +39,7 @@ dependencies {
   testImplementation("io.quarkus:quarkus-jacoco")
 }
 
-group = "org.nxcloudce.server"
+group = "org.graphoenix.server"
 version = "0.5.1"
 
 java {

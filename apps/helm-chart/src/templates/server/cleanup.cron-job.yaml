@@ -10,10 +10,10 @@ metadata:
     {{ $key }}: {{ $value | quote }}
     {{- end }}
   {{- end }}
-  name: {{ template "nx-cloud-ce.server.fullname" . }}-cleanup
+  name: {{ template "graphoenix.server.fullname" . }}-cleanup
   namespace: {{ .Release.Namespace | quote }}
   labels:
-    {{- include "nx-cloud-ce.labels" (dict "context" . "component" $component "name" .Values.server.name) | nindent 4 }}
+    {{- include "graphoenix.labels" (dict "context" . "component" $component "name" .Values.server.name) | nindent 4 }}
 
 spec:
   schedule: {{ .Values.server.cleanup.schedule }}
@@ -34,7 +34,7 @@ spec:
             {{- end }}
             {{- end }}
           labels:
-            {{- include "nx-cloud-ce.labels" (dict "context" . "component" $component "name" .Values.server.name) | nindent 12 }}
+            {{- include "graphoenix.labels" (dict "context" . "component" $component "name" .Values.server.name) | nindent 12 }}
             {{- with (mergeOverwrite (deepCopy .Values.global.podLabels) .Values.server.podLabels) }}
               {{- toYaml . | nindent 14 }}
             {{- end }}
@@ -53,7 +53,7 @@ spec:
           {{- end }}
           containers:
             - name: {{ $component }}
-              image: {{ .Values.server.image.repository }}:{{ default (include "nx-cloud-ce.defaultTag" .) .Values.server.image.tag }}
+              image: {{ .Values.server.image.repository }}:{{ default (include "graphoenix.defaultTag" .) .Values.server.image.tag }}
               imagePullPolicy: {{ default .Values.global.image.imagePullPolicy .Values.server.image.imagePullPolicy }}
               args:
                 - "cleanup"
@@ -66,10 +66,10 @@ spec:
                 - name: NX_SERVER_CONFIGURATION_APPLICATION_URL
                   value: {{ .Values.global.domain }}
                 - name: QUARKUS_MONGODB_CONNECTION_STRING
-                  {{- include "nx-cloud-ce.server.database.connection-string" . | nindent 18 }}
+                  {{- include "graphoenix.server.database.connection-string" . | nindent 18 }}
                 - name: QUARKUS_MONGODB_DATABASE
                   value: {{  default .Values.server.name .Values.server.database.dbName }}
-                {{- include "nx-cloud-ce.server.s3.settings" . | nindent 16 }}
+                {{- include "graphoenix.server.s3.settings" . | nindent 16 }}
               {{- with .Values.server.envFrom }}
               envFrom:
                 {{- toYaml . | nindent 16 }}
@@ -83,7 +83,7 @@ spec:
               securityContext:
                 {{- toYaml . | nindent 16 }}
               {{- end }}
-          {{- with include "nx-cloud-ce.affinity" (dict "context" . "component" .Values.server) }}
+          {{- with include "graphoenix.affinity" (dict "context" . "component" .Values.server) }}
           affinity:
             {{- trim . | nindent 12 }}
           {{- end }}

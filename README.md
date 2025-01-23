@@ -1,19 +1,19 @@
-# Nx Cloud - Community Edition
+# Graphoenix
 
 Open source and community-based implementation of Nx Cloud.
 
-[![License](https://img.shields.io/github/license/clementguillot/nx-cloud-ce)]()
-[![build](https://github.com/clementguillot/nx-cloud-ce/actions/workflows/ci.yaml/badge.svg)](https://github.com/clementguillot/nx-cloud-ce/actions/workflows/ci.yaml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=clementguillot_nx-cloud-ce&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=clementguillot_nx-cloud-ce)
+[![License](https://img.shields.io/github/license/clementguillot/graphoenix)]()
+[![build](https://github.com/clementguillot/graphoenix/actions/workflows/ci.yaml/badge.svg)](https://github.com/clementguillot/graphoenix/actions/workflows/ci.yaml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=clementguillot_graphoenix&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=clementguillot_graphoenix)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
 ## What is Nx Cloud?
 
 [Nx Cloud](https://nx.app) is a great suite of cloud-powered capabilities designed to enhance the development experience for teams using the [Nx](https://github.com/nrwl/nx) to manage their monorepo projects.
 
-## Why a Community Edition?
+## Why Graphoenix?
 
-Since Nx Cloud is a proprietary software from Narwhal Technologies Inc., it is hard, almost impossible to actively contribute to it development. This Community Edition aims to open to everyone the possibility to bring new features.
+Since Nx Cloud is a proprietary software from Narwhal Technologies Inc., it is hard, almost impossible to actively contribute to its development. Graphoenix aims to open to everyone the possibility to bring new features.
 
 ## Features
 
@@ -21,10 +21,10 @@ Since Nx Cloud is a proprietary software from Narwhal Technologies Inc., it is h
 
 ## Project structure
 
-| Application/library                  | Summary                                                       |
-|--------------------------------------|---------------------------------------------------------------|
-| [`apps/helm-chart`](apps/helm-chart) | Helm Chart to deploy Nx Cloud CE on Kubernetes                |
-| [`apps/server`](apps/server)         | Backend of Nx Cloud CE, handles requests from Nx Cloud client |
+| Application/library                  | Summary                                                     |
+|--------------------------------------|-------------------------------------------------------------|
+| [`apps/helm-chart`](apps/helm-chart) | Helm Chart to deploy Graphoenix on Kubernetes                |
+| [`apps/server`](apps/server)         | Backend of Graphoenix, handles requests from Nx Cloud client |
 
 ## External Code and Licenses
 

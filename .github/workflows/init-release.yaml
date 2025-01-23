@@ -1,4 +1,4 @@
-name: Init Nx Cloud CE Release
+name: Init Graphoenix Release
 
 on:
   workflow_dispatch:

@@ -31,7 +31,7 @@
         "context": "apps/server",
         "file": "apps/server/src/main/docker/Dockerfile.mandrel-builder",
         "metadata": {
-          "images": ["ghcr.io/clementguillot/nx-cloud-ce-server"],
+          "images": ["ghcr.io/clementguillot/graphoenix-server"],
           "tags": ["type=schedule", "type=sha,prefix=", "latest"]
         }
       }

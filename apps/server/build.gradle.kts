@@ -59,7 +59,7 @@ dependencies {
   testImplementation("io.rest-assured:rest-assured")
 }
 
-group = "org.nxcloudce.server"
+group = "org.graphoenix.server"
 version = "0.5.1"
 
 java {

@@ -1,4 +1,4 @@
-name: Publish Nx Cloud CE Release
+name: Publish Graphoenix Release
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - image: ghcr.io/clementguillot/nx-cloud-ce-server
+          - image: ghcr.io/clementguillot/graphoenix-server
 
     steps:
       - name: Checkout code

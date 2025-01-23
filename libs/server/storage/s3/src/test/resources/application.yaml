@@ -6,14 +6,14 @@ quarkus:
   s3:
     devservices:
       enabled: true
-      buckets: [nx-cloud-ce-test]
+      buckets: [graphoenix-test]
 
-nx-server:
+graphoenix-server:
   storage:
     s3:
       endpoint: http://localhost:4566
       region: us-east-1
       access-key-id: test-key
       secret-access-key: test-secret
-      bucket: nx-cloud-ce-test
+      bucket: graphoenix-test
       force-path-style: true
