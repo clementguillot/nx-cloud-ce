@@ -6,7 +6,7 @@ quarkus:
     change-log: db/change-log.yaml
     migrate-at-start: true
   mongodb:
-    database: nx-cloud-ce
+    database: graphoenix
   smallrye-openapi:
     security-scheme: api-key
     api-key-parameter-in: header
@@ -16,7 +16,7 @@ quarkus:
       configuration:
         enabled: false
 
-nx-server:
+graphoenix-server:
   configuration:
     client-bundle-version: 2412.18.5.hotfix5
     client-bundle-path: nx-cloud/static/client-bundle
@@ -25,7 +25,7 @@ nx-server:
   quarkus:
     mongodb:
       connection-string: mongodb://localhost:27017
-  nx-server:
+  graphoenix-server:
     configuration:
       application-url: http://localhost:8080
     storage:
@@ -33,7 +33,7 @@ nx-server:
       s3:
         endpoint: http://localhost:9000
         region: us-east-1
-        access-key-id: nx-cloud-ce
-        secret-access-key: nx-cloud-ce
-        bucket: nx-cloud-ce
+        access-key-id: graphoenix
+        secret-access-key: graphoenix
+        bucket: graphoenix
         force-path-style: true

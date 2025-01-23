@@ -1,29 +1,29 @@
-## Nx Cloud CE configuration
-## Ref: https://github.com/clementguillot/nx-cloud-ce
+## Graphoenix configuration
+## Ref: https://github.com/clementguillot/graphoenix
 ##
 
-# -- Provide a name in place of `nx-cloud-ce`
-nameOverride: nx-cloud-ce
-# -- String to fully override `"nx-cloud-ce.fullname"`
+# -- Provide a name in place of `graphoenix`
+nameOverride: graphoenix
+# -- String to fully override `"graphoenix.fullname"`
 fullnameOverride: ""
 
 ## Globally shared configuration
 global:
   # -- Default domain used by all components
-  domain: https://nx-cloud-ce.example.com
+  domain: https://graphoenix.example.com
 
   # -- Common labels for the all resources
   additionalLabels: {}
-    # app: nx-cloud-ce
+    # app: graphoenix
 
   # -- Number of old deployment ReplicaSets to retain. The rest will be garbage collected.
   revisionHistoryLimit: 3
 
   # Default image used by all components
   image:
-    # -- Overrides the global Nx Cloud CE image tag whose default is the chart appVersion
+    # -- Overrides the global Graphoenix image tag whose default is the chart appVersion
     tag: ""
-    # -- If defined, a imagePullPolicy applied to all Nx Cloud CE deployments
+    # -- If defined, a imagePullPolicy applied to all Graphoenix deployments
     imagePullPolicy: IfNotPresent
 
   # -- Secrets with credentials to pull images from a private registry
@@ -82,20 +82,20 @@ global:
 
 ## Server
 server:
-  # -- Nx Cloud CE server name string
+  # -- Graphoenix server name string
   name: server
 
   # -- The number of server pods to run
   replicas: 1
 
-  ## Nx Cloud CE server image
+  ## Graphoenix server image
   image:
-    # -- Repository to use for the Nx Cloud CE server
-    repository: ghcr.io/clementguillot/nx-cloud-ce-server
-    # -- Tag to use for the Nx Cloud CE server
+    # -- Repository to use for the Graphoenix server
+    repository: ghcr.io/clementguillot/graphoenix-server
+    # -- Tag to use for the Graphoenix server
     # @default -- `""` (defaults to global.image.tag)
     tag: ""
-    # -- Image pull policy for the Nx Cloud CE server
+    # -- Image pull policy for the Graphoenix server
     # @default -- `""` (defaults to global.image.imagePullPolicy)
     imagePullPolicy: ""
 
@@ -112,13 +112,13 @@ server:
     # @default -- `""` (defaults to mongodb.enabled=true)
     connectionStringSecretKeyRef: ""
 
-  # -- Additional command line arguments to pass to Nx Cloud CE server
+  # -- Additional command line arguments to pass to Graphoenix server
   extraArgs: []
 
-  # -- Environment variables to pass to Nx Cloud CE server
+  # -- Environment variables to pass to Graphoenix server
   env: []
 
-  # -- envFrom to pass to Nx Cloud CE server
+  # -- envFrom to pass to Graphoenix server
   # @default -- `[]` (See [values.yaml])
   envFrom: []
   # - configMapRef:
@@ -138,7 +138,7 @@ server:
   # -- Labels to be added to server pods
   podLabels: {}
 
-  # -- Resource limits and requests for the Nx Cloud CE server
+  # -- Resource limits and requests for the Graphoenix server
   resources: {}
   #  limits:
   #    cpu: 500m
@@ -152,7 +152,7 @@ server:
     # -- Server container port
     server: 8080
 
-  # -- Nx Cloud CE server container-level security context
+  # -- Graphoenix server container-level security context
   # @default -- See [values.yaml]
   containerSecurityContext:
     runAsNonRoot: true
@@ -198,7 +198,7 @@ server:
     # -- Server service http port name, can be used to route traffic via istio
     servicePortHttpName: http
 
-  ## Nx Cloud CE server emptyDir volumes
+  ## Graphoenix server emptyDir volumes
   emptyDir:
     # -- EmptyDir size limit for the Argo CD server
     # @default -- `""` (defaults not set if not specified i.e. no size limit)
@@ -230,7 +230,7 @@ minio:
   enabled: true
 
   # Comma, semi-colon or space separated list of buckets to create at initialization (only in standalone mode)
-  defaultBuckets: "nx-cloud-ce"
+  defaultBuckets: "graphoenix"
 
 ## Embedded MongoDB configuration (Bitnami Helm Chart)
 mongodb:
@@ -278,7 +278,7 @@ nginx:
       http: 80
 
   # ConfigMap with custom server block to be added to NGINX configuration
-  existingServerBlockConfigmap: '{{ template "nx-cloud-ce.fullname" . }}'
+  existingServerBlockConfigmap: '{{ template "graphoenix.fullname" . }}'
 
   # Configuration to add to NGINX server block
   extraServerBlockConfiguration: ""

@@ -3,7 +3,7 @@ quarkus:
     devservices:
       image-name: mongo:8.0.3
 
-nx-server:
+graphoenix-server:
   configuration:
     application-url: http://localtest
     client-bundle-version: dummy-version
@@ -15,5 +15,5 @@ nx-server:
       region: us-east-1
       access-key-id: test-key
       secret-access-key: test-secret
-      bucket: nx-cloud-ce-test
+      bucket: graphoenix-test
       force-path-style: true

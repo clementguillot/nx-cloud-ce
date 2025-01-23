@@ -36,7 +36,7 @@ dependencies {
   testImplementation("io.quarkus:quarkus-test-hibernate-reactive-panache")
 }
 
-group = "org.nxcloudce.server"
+group = "org.graphoenix.server"
 version = "0.5.1"
 
 java {

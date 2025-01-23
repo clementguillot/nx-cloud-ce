@@ -39,7 +39,7 @@ dependencies {
   testImplementation("io.quarkiverse.amazonservices:quarkus-amazon-s3:$quarkusAwsS3Version")
 }
 
-group = "org.nxcloudce.server.storage"
+group = "org.graphoenix.server.storage"
 version = "0.5.1"
 
 java {

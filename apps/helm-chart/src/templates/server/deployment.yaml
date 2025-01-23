@@ -8,13 +8,13 @@ metadata:
     {{ $key }}: {{ $value | quote }}
     {{- end }}
   {{- end }}
-  name: {{ template "nx-cloud-ce.server.fullname" . }}
+  name: {{ template "graphoenix.server.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
-    {{- include "nx-cloud-ce.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 4 }}
+    {{- include "graphoenix.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 4 }}
 
 spec:
-  {{- with include "nx-cloud-ce.strategy" (mergeOverwrite (deepCopy .Values.global.deploymentStrategy) .Values.server.deploymentStrategy) }}
+  {{- with include "graphoenix.strategy" (mergeOverwrite (deepCopy .Values.global.deploymentStrategy) .Values.server.deploymentStrategy) }}
   strategy:
     {{- trim . | nindent 4 }}
   {{- end }}
@@ -22,7 +22,7 @@ spec:
   revisionHistoryLimit: {{ .Values.global.revisionHistoryLimit }}
   selector:
     matchLabels:
-       {{- include "nx-cloud-ce.selectorLabels" (dict "context" . "name" .Values.server.name) | nindent 6 }}
+       {{- include "graphoenix.selectorLabels" (dict "context" . "name" .Values.server.name) | nindent 6 }}
   template:
     metadata:
       annotations:
@@ -32,7 +32,7 @@ spec:
         {{- end }}
         {{- end }}
       labels:
-        {{- include "nx-cloud-ce.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 8 }}
+        {{- include "graphoenix.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 8 }}
         {{- with (mergeOverwrite (deepCopy .Values.global.podLabels) .Values.server.podLabels) }}
           {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -51,7 +51,7 @@ spec:
       {{- end }}
       containers:
       - name: {{ .Values.server.name }}
-        image: {{ .Values.server.image.repository }}:{{ default (include "nx-cloud-ce.defaultTag" .) .Values.server.image.tag }}
+        image: {{ .Values.server.image.repository }}:{{ default (include "graphoenix.defaultTag" .) .Values.server.image.tag }}
         imagePullPolicy: {{ default .Values.global.image.imagePullPolicy .Values.server.image.imagePullPolicy }}
         env:
           {{- with (concat .Values.global.env .Values.server.env) }}
@@ -60,10 +60,10 @@ spec:
           - name: NX_SERVER_CONFIGURATION_APPLICATION_URL
             value: {{ .Values.global.domain }}
           - name: QUARKUS_MONGODB_CONNECTION_STRING
-            {{- include "nx-cloud-ce.server.database.connection-string" . | nindent 12 }}
+            {{- include "graphoenix.server.database.connection-string" . | nindent 12 }}
           - name: QUARKUS_MONGODB_DATABASE
             value: {{  default .Values.server.name .Values.server.database.dbName }}
-          {{- include "nx-cloud-ce.server.s3.settings" . | nindent 10 }}
+          {{- include "graphoenix.server.s3.settings" . | nindent 10 }}
         {{- with .Values.server.envFrom }}
         envFrom:
           {{- toYaml . | nindent 10 }}
@@ -81,7 +81,7 @@ spec:
         securityContext:
           {{- toYaml . | nindent 10 }}
         {{- end }}
-      {{- with include "nx-cloud-ce.affinity" (dict "context" . "component" .Values.server) }}
+      {{- with include "graphoenix.affinity" (dict "context" . "component" .Values.server) }}
       affinity:
         {{- trim . | nindent 8 }}
       {{- end }}

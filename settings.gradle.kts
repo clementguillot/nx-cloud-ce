@@ -18,7 +18,7 @@ pluginManagement {
   }
 }
 
-rootProject.name = "nx-cloud-ce"
+rootProject.name = "graphoenix"
 include(":apps:server")
 include(":libs:server:domain")
 include(":libs:server:gateway")

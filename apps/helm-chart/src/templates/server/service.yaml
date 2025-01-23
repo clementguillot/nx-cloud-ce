@@ -8,10 +8,10 @@ metadata:
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 {{- end }}
-  name: {{ template "nx-cloud-ce.server.fullname" . }}
+  name: {{ template "graphoenix.server.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
-    {{- include "nx-cloud-ce.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 4 }}
+    {{- include "graphoenix.labels" (dict "context" . "component" .Values.server.name "name" .Values.server.name) | nindent 4 }}
 {{- if .Values.server.service.labels }}
 {{- toYaml .Values.server.service.labels | nindent 4 }}
 {{- end }}
@@ -24,4 +24,4 @@ spec:
       port: {{ .Values.server.service.servicePortHttp }}
       targetPort: {{ .Values.server.containerPorts.server }}
   selector:
-    {{- include "nx-cloud-ce.selectorLabels" (dict "context" . "name" .Values.server.name "component" .Values.server.name) | nindent 4 }}
+    {{- include "graphoenix.selectorLabels" (dict "context" . "name" .Values.server.name "component" .Values.server.name) | nindent 4 }}

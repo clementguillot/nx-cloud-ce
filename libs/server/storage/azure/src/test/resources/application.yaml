@@ -1,7 +1,7 @@
-nx-server:
+graphoenix-server:
   storage:
     azure:
-      container-name: "nx-cloud-ce-test"
+      container-name: "graphoenix-test"
 
 quarkus:
   azure:

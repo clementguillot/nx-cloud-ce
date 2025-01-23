@@ -3,15 +3,15 @@ apiVersion: v1
 kind: ConfigMap
 
 metadata:
-  name: {{ template "nx-cloud-ce.fullname" . }}-nginx
+  name: {{ template "graphoenix.fullname" . }}-nginx
   namespace: {{ .Release.Namespace | quote }}
   labels:
-    {{- include "nx-cloud-ce.labels" (dict "context" . "component" .Values.server.name "name" "nginx") | nindent 4 }}
+    {{- include "graphoenix.labels" (dict "context" . "component" .Values.server.name "name" "nginx") | nindent 4 }}
 
 data:
   nginx-server-block.conf: |-
     upstream server {
-      server {{ template "nx-cloud-ce.server.fullname" . }}:{{ template "nx-cloud-ce.server.port". }};
+      server {{ template "graphoenix.server.fullname" . }}:{{ template "graphoenix.server.port". }};
     }
 
     server {
