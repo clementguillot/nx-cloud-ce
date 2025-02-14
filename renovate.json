@@ -1,6 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", ":semanticCommits"],
+  "extends": [
+    "config:recommended",
+    ":semanticCommits"
+  ],
   "packageRules": [
     {
       "description": "Group JNxPlus dependencies",
@@ -10,9 +13,9 @@
         "settings.gradle.kts",
         "package.json"
       ],
-      "matchPackagePatterns": [
-        "io.github.khalilou88.jnxplus",
-        "@jnxplus/nx-gradle"
+      "matchPackageNames": [
+        "/io.github.khalilou88.jnxplus/",
+        "/@jnxplus/nx-gradle/"
       ]
     },
     {
@@ -21,14 +24,16 @@
       "matchFileNames": [
         "package.json"
       ],
-      "matchPackagePatterns": [
-        "@nx-tools/nx-container",
-        "@nx-tools/container-metadata"
+      "matchPackageNames": [
+        "/@nx-tools/nx-container/",
+        "/@nx-tools/container-metadata/"
       ]
     },
     {
       "description": "Keep major/minor versions in Quarkus dockerfiles",
-      "matchFileNames": ["**/src/main/docker/Dockerfile.*"],
+      "matchFileNames": [
+        "**/src/main/docker/Dockerfile.*"
+      ],
       "matchPackageNames": [
         "registry.access.redhat.com/ubi8/openjdk-21",
         "registry.access.redhat.com/ubi8/ubi-minimal"
@@ -43,9 +48,9 @@
         "gradle.properties",
         "settings.gradle.kts"
       ],
-      "matchPackagePatterns": [
-        "io.quarkus",
-        "io.quarkus.platform:quarkus-bom"
+      "matchPackageNames": [
+        "/io.quarkus/",
+        "/io.quarkus.platform:quarkus-bom/"
       ]
     }
   ]
